@@ -1,3 +1,8 @@
 OCR-free Document Understanding Transformer
   Link: http://arxiv.org/pdf/2111.15664v5
   Has our project's exact idea but without Handwriting Recognition
+
+
+Text Detection Forgot About Document OCR
+  Link: http://arxiv.org/pdf/2210.07903v2
+  General OCR with classic pipeline for working
