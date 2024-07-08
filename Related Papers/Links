@@ -19,3 +19,10 @@ Transformer-Based Handwritten Text Recognition
   GitHub: https://github.com/rsommerfeld/trocr
 
 Most of the models are trained on the IAM dataset
+
+Paddle OCR :
+  Link: https://github.com/PaddlePaddle/PaddleOCR/blob/main/README_en.md
+  - this main has to feature 
+    - text from image to to another feild 
+    - table understanding
+  
