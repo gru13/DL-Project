@@ -9,7 +9,7 @@ Text Detection Forgot About Document OCR
   General OCR with classic pipeline for working
 
 Handwriting Recognition using OCR 
-  Link: https://github.com/gasparian/CRNN-OC  R-lite
+  Link: https://github.com/gasparian/CRNN-OCR-lite
   - CRNN model used as the OCR core engine
   - Check out the /models 
 
