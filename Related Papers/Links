@@ -1,29 +1,32 @@
-OCR-free Document Understanding Transformer
-  Link: http://arxiv.org/pdf/2111.15664v5
-  Has our project's exact idea but without Handwriting Recognition
-  Model link: https://huggingface.co/jinhybr/OCR-Donut-CORD
+OCR-free Document Understanding Transformer : [Link](http://arxiv.org/pdf/2111.15664v5)   
+  >Has our project's exact idea but without Handwriting Recognition  
+  >Model link: https://huggingface.co/jinhybr/OCR-Donut-CORD 
 
 
-Text Detection Forgot About Document OCR
-  Link: http://arxiv.org/pdf/2210.07903v2
-  General OCR with classic pipeline for working
+Text Detection Forgot About Document OCR : [Link](http://arxiv.org/pdf/2210.07903v2)  
+  >General OCR with classic pipeline for working
+  
+    
 
-Handwriting Recognition using OCR 
-  Link: https://github.com/gasparian/CRNN-OCR-lite
-  - CRNN model used as the OCR core engine
-  - Check out the /models 
+Handwriting Recognition using OCR : [Link](https://github.com/gasparian/CRNN-OCR-lite) 
+  >- CRNN model used as the OCR core engine
+  >- Check out the /models 
 
-Transformer-Based Handwritten Text Recognition
-  Link: https://arxiv.org/abs/2109.10282
-  Pre-trained model at https://huggingface.co/docs/transformers/model_doc/trocr
-  GitHub: https://github.com/rsommerfeld/trocr
+  
+    
+Transformer-Based Handwritten Text Recognition : [Link](https://arxiv.org/abs/2109.10282)    
+  >- Pre-trained model at https://huggingface.co/docs/transformers/model_doc/trocr   
+  >- GitHub: https://github.com/rsommerfeld/trocr
 
 Most of the models are trained on the IAM dataset
 
-Paddle OCR :
-  Link: https://github.com/PaddlePaddle/PaddleOCR/blob/main/README_en.md
-  - this main has to feature 
-    - text from image to to another feild 
-    - table understanding
-  VVVV Important and most similar to our problem statement
   
+    
+Paddle OCR : [Link](https://github.com/PaddlePaddle/PaddleOCR/blob/main/README_en.md)  
+  >- text from image to to another feild 
+  >- table understanding  
+   VVVV Important and most similar to our problem statement
+    
+      
+  
+  Paddle-Ocr Medium instruction => [link](https://medium.com/@anhtuan_40207/tutorial-ocr-with-paddleocr-pp-ocr-9a4342e4d7f)
