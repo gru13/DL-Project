@@ -1,0 +1,5 @@
+Guru -> currently working in Code directory
+
+guys if any of you tring out some code, pls try out in system and update the "requirent.txt" file
+    usage -> "pip install -r requirements.txt"
+    update -> "pip freeze > requirements.txt"
