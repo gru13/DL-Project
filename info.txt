@@ -1,4 +1,4 @@
-Guru -> currently working in Code directory
+Guru -> currently working in Code/Guru directory
 
 guys if any of you tring out some code, pls try out in system and update the "requirent.txt" file
     usage -> "pip install -r requirements.txt"
