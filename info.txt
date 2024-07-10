@@ -1,6 +1,6 @@
 Guru -> currently working in Code/Guru directory
 
-guys if any of you tring out some code, pls try out in system and update the "requirent.txt" file
+guys if any of you trying out some code, pls try out in system and update the "requirements.txt" file
     usage -> "pip install -r requirements.txt"
     update -> "pip freeze > requirements.txt"
 pls use virtual env for this project
