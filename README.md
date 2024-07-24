@@ -5,4 +5,5 @@ team members(team - 9)
   SHREE PRASAD M - CH.EN.U4AIE22050	  
   VEDA CHATIYODE - CH.EN.U4AIE22069  
 
-![image](https://github.com/gru13/DL-Project/assets/97793422/0711729c-75c7-4832-96b8-e0e125bc47aa)
+![image](https://github.com/user-attachments/assets/8f4f0d89-ec8d-48f5-ba52-d384091fb8f3)
+
