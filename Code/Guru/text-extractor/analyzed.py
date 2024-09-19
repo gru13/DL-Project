@@ -6,15 +6,10 @@ import os
 import json
 
 # Set the image path (update this to the correct path on your system)
-imagePath = "/mnt/d/Sem5/DL/DL-Project/sample-data/canara bank.png"
+imagePath = r"./NEFT Challan for Guru Prjt.jpg"
 
 # Initialize PaddleOCR with pre-downloaded model paths
-ocr = PaddleOCR(use_angle_cls=True, lang='en', use_gpu=False,
-                det_model_dir='/mnt/d/Sem5/DL/DL-Project/models/en_PP-OCRv3_det_infer',
-                rec_model_dir='/mnt/d/Sem5/DL/DL-Project/models/en_PP-OCRv3_rec_infer',
-                cls_model_dir='/mnt/d/Sem5/DL/DL-Project/models/ch_ppocr_mobile_v2.0_cls_infer',
-                download_model=False,
-                table=True)
+ocr = PaddleOCR(use_angle_cls=True, lang='en', use_gpu=False,table=True)
 
 # Initialize spaCy for named entity recognition
 try:
@@ -46,11 +41,11 @@ def visualize_results(image_path, layout_result, output_path, font_path):
     if image is None:
         print(f"Error: Unable to read image at {image_path}")
         return
-
+    
     boxes = [line[0] for line in layout_result[0]]
     txts = [line[1][0] for line in layout_result[0]]
     scores = [line[1][1] for line in layout_result[0]]
-
+    
     try:
         im_show = draw_ocr(image, boxes, txts, scores, font_path=font_path)
         cv2.imwrite(output_path, im_show)
@@ -103,24 +98,25 @@ def main(image_path):
     """Main function to process the image and output the results."""
     # Try to find a suitable font
     font_paths = [
-        '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+        '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', #linux
+        '/usr/share/fonts/truetype/humor-sans/Humor-Sans.ttf', #colab
         '/System/Library/Fonts/Supplemental/Arial.ttf',  # macOS
         'C:/Windows/Fonts/Arial.ttf',  # Windows
     ]
     font_path = next((path for path in font_paths if os.path.exists(path)), None)
-
+    
     if font_path is None:
         print("Warning: No suitable font found. Text visualization may fail.")
-
+    
     extracted_info, output_path = process_form(image_path, font_path)
 
     if extracted_info and output_path:
         print(f"Analysis complete. Visualized result saved to: {output_path}")
-
+        
         # Save extracted info to JSON
         json_output_path = os.path.splitext(image_path)[0] + "_output.json"
-
         save_json(extracted_info, json_output_path)
+        
         print(f"Extracted information saved to: {json_output_path}")
         print("\nExtracted Information:")
         for item in extracted_info:
@@ -134,6 +130,4 @@ def main(image_path):
     else:
         print("Form processing failed.")
 
-# Run the main function
-if __name__ == "__main__":
-    main(imagePath)
+main(imagePath)
