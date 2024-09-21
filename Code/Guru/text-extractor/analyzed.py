@@ -126,7 +126,7 @@ def main(image_path):
             print("Entities:")
             for entity, label in item['entities']:
                 print(f"  - {entity}: {label}")
-            print()
+            print() 
     else:
         print("Form processing failed.")
 
