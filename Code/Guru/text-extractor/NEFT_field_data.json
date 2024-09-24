@@ -1,0 +1,584 @@
+{
+  "form_fields": [
+    {
+      "id": 1,
+      "text": "PGK/06-2020/2500Px50",
+      "bbox": [
+        82,
+        26,
+        460,
+        54
+      ]
+    },
+    {
+      "id": 2,
+      "text": "F.No.272",
+      "bbox": [
+        2098,
+        40,
+        162,
+        47
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Application for National Electronic Fund Transfer/",
+      "bbox": [
+        1131,
+        79,
+        1106,
+        64
+      ]
+    },
+    {
+      "id": 4,
+      "text": "To,",
+      "bbox": [
+        108,
+        92,
+        70,
+        41
+      ]
+    },
+    {
+      "id": 5,
+      "text": "The Branch Manager",
+      "bbox": [
+        115,
+        145,
+        398,
+        51
+      ]
+    },
+    {
+      "id": 6,
+      "text": "Real-Time Gross Settlement Systems (NEFT/RTGS)",
+      "bbox": [
+        1085,
+        138,
+        1142,
+        54
+      ]
+    },
+    {
+      "id": 7,
+      "text": "CITY UNION BANK",
+      "bbox": [
+        115,
+        208,
+        535,
+        60
+      ]
+    },
+    {
+      "id": 8,
+      "text": "Date",
+      "bbox": [
+        1595,
+        220,
+        109,
+        59
+      ]
+    },
+    {
+      "id": 9,
+      "text": "THEPPERUMANALLUR-Branch",
+      "bbox": [
+        114,
+        270,
+        684,
+        94
+      ]
+    },
+    {
+      "id": 10,
+      "text": "PAN No.",
+      "bbox": [
+        1425,
+        283,
+        177,
+        55
+      ]
+    },
+    {
+      "id": 11,
+      "text": "Dear sir,",
+      "bbox": [
+        117,
+        332,
+        170,
+        55
+      ]
+    },
+    {
+      "id": 12,
+      "text": "*To be provided by CITy UNION BANK customer",
+      "bbox": [
+        1531,
+        349,
+        696,
+        51
+      ]
+    },
+    {
+      "id": 13,
+      "text": "Please remit through NEFT/RTGS a sum of",
+      "bbox": [
+        121,
+        406,
+        834,
+        47
+      ]
+    },
+    {
+      "id": 14,
+      "text": "(Rupees in words)",
+      "bbox": [
+        1386,
+        405,
+        346,
+        55
+      ]
+    },
+    {
+      "id": 15,
+      "text": "only",
+      "bbox": [
+        2144,
+        485,
+        86,
+        40
+      ]
+    },
+    {
+      "id": 16,
+      "text": "as per details given below :",
+      "bbox": [
+        121,
+        518,
+        506,
+        44
+      ]
+    },
+    {
+      "id": 17,
+      "text": "Cash",
+      "bbox": [
+        138,
+        580,
+        171,
+        48
+      ]
+    },
+    {
+      "id": 18,
+      "text": "Cheque",
+      "bbox": [
+        429,
+        577,
+        241,
+        54
+      ]
+    },
+    {
+      "id": 19,
+      "text": "Debit my / our account",
+      "bbox": [
+        760,
+        574,
+        520,
+        64
+      ]
+    },
+    {
+      "id": 20,
+      "text": "*In case ot cash,please fill in the pay-in-slip",
+      "bbox": [
+        121,
+        630,
+        736,
+        50
+      ]
+    },
+    {
+      "id": 21,
+      "text": "*To be filled by the Applicant in CAPITAL LETTERS",
+      "bbox": [
+        125,
+        669,
+        905,
+        51
+      ]
+    },
+    {
+      "id": 22,
+      "text": "DETAILS OF APPLICANT (REMITTER)",
+      "bbox": [
+        829,
+        745,
+        677,
+        44
+      ]
+    },
+    {
+      "id": 23,
+      "text": "Account Number",
+      "bbox": [
+        111,
+        828,
+        254,
+        40
+      ]
+    },
+    {
+      "id": 24,
+      "text": "Cheque Number",
+      "bbox": [
+        101,
+        887,
+        264,
+        54
+      ]
+    },
+    {
+      "id": 25,
+      "text": "Cheque Date",
+      "bbox": [
+        1498,
+        914,
+        201,
+        37
+      ]
+    },
+    {
+      "id": 26,
+      "text": "Remitter's Name",
+      "bbox": [
+        105,
+        959,
+        267,
+        51
+      ]
+    },
+    {
+      "id": 27,
+      "text": "Address",
+      "bbox": [
+        101,
+        1028,
+        147,
+        56
+      ]
+    },
+    {
+      "id": 28,
+      "text": "Mobile/OtherNumber",
+      "bbox": [
+        105,
+        1174,
+        299,
+        44
+      ]
+    },
+    {
+      "id": 29,
+      "text": " DETAILS OF BENEFICIARY",
+      "bbox": [
+        859,
+        1253,
+        548,
+        34
+      ]
+    },
+    {
+      "id": 30,
+      "text": "Beneticiary's Name",
+      "bbox": [
+        101,
+        1309,
+        303,
+        51
+      ]
+    },
+    {
+      "id": 31,
+      "text": "Account Number",
+      "bbox": [
+        105,
+        1385,
+        260,
+        44
+      ]
+    },
+    {
+      "id": 32,
+      "text": "Bank Name",
+      "bbox": [
+        101,
+        1447,
+        196,
+        55
+      ]
+    },
+    {
+      "id": 33,
+      "text": "fs code (11-digit)",
+      "bbox": [
+        101,
+        1520,
+        264,
+        55
+      ]
+    },
+    {
+      "id": 34,
+      "text": "Branch Address",
+      "bbox": [
+        101,
+        1589,
+        251,
+        51
+      ]
+    },
+    {
+      "id": 35,
+      "text": "Sender to Receiver information (if any):",
+      "bbox": [
+        102,
+        1672,
+        679,
+        51
+      ]
+    },
+    {
+      "id": 36,
+      "text": "This transfer is valid for a single transaction.The fund transfer will be governed by the Terms and Conditions given on our website www.City Union Bank.com",
+      "bbox": [
+        115,
+        1784,
+        2070,
+        61
+      ]
+    },
+    {
+      "id": 37,
+      "text": "Do not fall prey to false promises :beware ot dubious scheme",
+      "bbox": [
+        1393,
+        1873,
+        808,
+        41
+      ]
+    },
+    {
+      "id": 38,
+      "text": "*I understand that this facity is available only at select locations and banks covered under Electronic Funds Transfer Facility offered by RBI",
+      "bbox": [
+        108,
+        2120,
+        1781,
+        51
+      ]
+    },
+    {
+      "id": 39,
+      "text": "CUSTOMER SIGNATURE (s)",
+      "bbox": [
+        508,
+        2180,
+        1011,
+        47
+      ]
+    },
+    {
+      "id": 40,
+      "text": "Signature",
+      "bbox": [
+        115,
+        2378,
+        155,
+        37
+      ]
+    },
+    {
+      "id": 41,
+      "text": "Signature",
+      "bbox": [
+        833,
+        2381,
+        155,
+        37
+      ]
+    },
+    {
+      "id": 42,
+      "text": "Signature",
+      "bbox": [
+        1554,
+        2384,
+        155,
+        38
+      ]
+    },
+    {
+      "id": 43,
+      "text": "Name",
+      "bbox": [
+        369,
+        2433,
+        115,
+        56
+      ]
+    },
+    {
+      "id": 44,
+      "text": "Name",
+      "bbox": [
+        1090,
+        2436,
+        112,
+        56
+      ]
+    },
+    {
+      "id": 45,
+      "text": "Name",
+      "bbox": [
+        1812,
+        2436,
+        108,
+        56
+      ]
+    },
+    {
+      "id": 46,
+      "text": "*Primary Applicant)",
+      "bbox": [
+        268,
+        2486,
+        310,
+        55
+      ]
+    },
+    {
+      "id": 47,
+      "text": "*(Joint Applicant 1",
+      "bbox": [
+        996,
+        2490,
+        297,
+        54
+      ]
+    },
+    {
+      "id": 48,
+      "text": "*(Joint Applicant 2)",
+      "bbox": [
+        1721,
+        2493,
+        290,
+        51
+      ]
+    },
+    {
+      "id": 49,
+      "text": "Customer Acknowledgment",
+      "bbox": [
+        908,
+        2602,
+        506,
+        44
+      ]
+    },
+    {
+      "id": 50,
+      "text": "Beneticiary's Name",
+      "bbox": [
+        121,
+        2668,
+        300,
+        44
+      ]
+    },
+    {
+      "id": 51,
+      "text": "Account Number",
+      "bbox": [
+        1170,
+        2671,
+        264,
+        44
+      ]
+    },
+    {
+      "id": 52,
+      "text": "Please remit through NEFT/RTGS a sum of",
+      "bbox": [
+        118,
+        2744,
+        683,
+        44
+      ]
+    },
+    {
+      "id": 53,
+      "text": "Rupees in words)",
+      "bbox": [
+        1161,
+        2747,
+        279,
+        44
+      ]
+    },
+    {
+      "id": 54,
+      "text": "only",
+      "bbox": [
+        2141,
+        2833,
+        63,
+        37
+      ]
+    },
+    {
+      "id": 55,
+      "text": "Bank Seal",
+      "bbox": [
+        1901,
+        2932,
+        215,
+        47
+      ]
+    },
+    {
+      "id": 56,
+      "text": "With Date &Time",
+      "bbox": [
+        1868,
+        3007,
+        290,
+        51
+      ]
+    },
+    {
+      "id": 57,
+      "text": "Date:",
+      "bbox": [
+        115,
+        3054,
+        102,
+        37
+      ]
+    },
+    {
+      "id": 58,
+      "text": "ofRequest",
+      "bbox": [
+        1924,
+        3057,
+        182,
+        37
+      ]
+    }
+  ]
+}
