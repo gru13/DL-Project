@@ -2,3 +2,5 @@ PaddleOCR-main
 models
 /Code/Guru/dumped
 .venv
+/Code/Guru/empty-boxes/runs
+/Code/Guru/empty-boxes/dataset
