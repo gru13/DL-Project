@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merged YOLO Detections Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .canvas-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .detection-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .source-models {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        .model-tag {
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: white;
+        }
+        .model-a { background-color: #4CAF50; }
+        .model-b { background-color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="canvas-container">
+            <div class="controls">
+                <button onclick="loadJSON()">Load JSON</button>
+                <button onclick="saveJSON()">Save JSON</button>
+                <button onclick="deleteSelected()">Delete Selected</button>
+                <input type="file" id="jsonInput" style="display: none;" accept=".json">
+            </div>
+            <canvas id="canvas" width="800" height="600"></canvas>
+        </div>
+        <div class="sidebar">
+            <h2>Merged Detections</h2>
+            <div id="detectionsList"></div>
+        </div>
+    </div>
+
+    <script>
+        let canvas = new fabric.Canvas('canvas');
+        let imageObj;
+
+        const COLORS = {
+            single: ['rgba(0,255,0,0.3)', 'green'],
+            multiple: ['rgba(255,165,0,0.3)', 'orange']
+        };
+
+        function initCanvas(imagePath) {
+            fabric.Image.fromURL(imagePath, function(img) {
+                imageObj = img;
+                canvas.setDimensions({
+                    width: img.width,
+                    height: img.height
+                });
+                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+            });
+        }
+
+        function addBox(detection) {
+            const isMultiSource = detection.source_models.length > 1;
+            const colorSet = isMultiSource ? COLORS.multiple : COLORS.single;
+            
+            let [x1, y1, x2, y2] = detection.bbox;
+            let rect = new fabric.Rect({
+                left: x1,
+                top: y1,
+                width: x2 - x1,
+                height: y2 - y1,
+                fill: colorSet[0],
+                stroke: colorSet[1],
+                strokeWidth: 2,
+                selectable: true
+            });
+            
+            rect.id = detection.id;
+            rect.sourceModels = detection.source_models;
+            rect.classId = detection.class_id;
+            rect.confidence = detection.confidence;
+            
+            canvas.add(rect);
+            updateDetectionsList();
+        }
+
+        function updateDetectionsList() {
+            let detectionsList = document.getElementById('detectionsList');
+            detectionsList.innerHTML = '';
+            
+            canvas.getObjects().forEach(obj => {
+                if (obj.type === 'rect') {
+                    let div = document.createElement('div');
+                    div.className = 'detection-item';
+                    
+                    let sourceModelsHtml = '<div class="source-models">';
+                    obj.sourceModels.forEach(model => {
+                        sourceModelsHtml += `<span class="model-tag ${model.replace('_', '-')}">${model}</span>`;
+                    });
+                    sourceModelsHtml += '</div>';
+                    
+                    div.innerHTML = `
+                        <strong>Class: ${obj.classId}</strong><br>
+                        Confidence: ${obj.confidence.toFixed(2)}<br>
+                        ${sourceModelsHtml}
+                        <small>ID: ${obj.id}</small>
+                    `;
+                    detectionsList.appendChild(div);
+                }
+            });
+        }
+
+        function loadJSON() {
+            document.getElementById('jsonInput').click();
+        }
+
+        document.getElementById('jsonInput').addEventListener('change', function(e) {
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let data = JSON.parse(e.target.result);
+                canvas.clear();
+                initCanvas(data.image_path);
+                data.detections.forEach(detection => addBox(detection));
+            };
+            reader.readAsText(file);
+        });
+
+        function saveJSON() {
+            let objects = canvas.getObjects();
+            let detections = objects.map(obj => {
+                if (obj.type === 'rect') {
+                    return {
+                        id: obj.id,
+                        bbox: [
+                            obj.left,
+                            obj.top,
+                            obj.left + obj.width,
+                            obj.top + obj.height
+                        ],
+                        class_id: obj.classId,
+                        confidence: obj.confidence,
+                        source_models: obj.sourceModels
+                    };
+                }
+            }).filter(x => x);
+
+            let jsonData = {
+                image_path: imageObj.src,
+                detections: detections
+            };
+
+            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonData, null, 2));
+            let downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "merged_detections_modified.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+        function deleteSelected() {
+            let activeObject = canvas.getActiveObject();
+            if (activeObject) {
+                canvas.remove(activeObject);
+                updateDetectionsList();
+                canvas.renderAll();
+            }
+        }
+
+        canvas.on('object:modified', updateDetectionsList);
+        canvas.on('object:moving', updateDetectionsList);
+        canvas.on('object:scaling', updateDetectionsList);
+
+        // Initialize with a placeholder image
+        initCanvas('/api/placeholder/800/600');
+    </script>
+</body>
+</html>

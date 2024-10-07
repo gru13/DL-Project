@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO Detection Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .canvas-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .sidebar {
+            width: 300px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .detection-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .detection-item.selected {
+            background-color: #e3f2fd;
+            border-color: #2196F3;
+        }
+        .create-bbox-panel {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .create-bbox-panel input,
+        .create-bbox-panel select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="canvas-container">
+            <div class="controls">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <button onclick="document.getElementById('imageUpload').click()">Upload Image</button>
+                <button onclick="saveModifications()">Save Modifications</button>
+                <button onclick="toggleCreateMode()">Create Bbox</button>
+            </div>
+            <canvas id="canvas" width="800" height="600"></canvas>
+        </div>
+        <div class="sidebar">
+            <h2>Detections</h2>
+            <div id="detectionsList"></div>
+            <div id="createBboxPanel" class="create-bbox-panel" style="display: none;">
+                <h3>Create New Bbox</h3>
+                <select id="classSelect">
+                    <option value="0">Class 0</option>
+                    <option value="1">Class 1</option>
+                    <!-- Add more class options as needed -->
+                </select>
+                <button onclick="startDrawing()">Start Drawing</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let canvas = new fabric.Canvas('canvas', {
+            selection: false
+        });
+        let currentSessionId = null;
+        let isDrawingMode = false;
+        let drawingRect = null;
+        
+        const COLORS = {
+            single: ['rgba(0,255,0,0.3)', 'green'],
+            multiple: ['rgba(255,165,0,0.3)', 'orange'],
+            selected: ['rgba(33,150,243,0.3)', '#2196F3']
+        };
+
+        // Handle image upload
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                currentSessionId = data.session_id;
+                loadDetections(currentSessionId);
+            });
+        });
+
+        function loadDetections(sessionId) {
+            Promise.all([
+                fetch(`/get_image/${sessionId}`).then(res => res.blob()),
+                fetch(`/get_detections/${sessionId}`).then(res => res.json())
+            ]).then(([imageBlob, detectionsData]) => {
+                const imageUrl = URL.createObjectURL(imageBlob);
+                initCanvas(imageUrl, detectionsData.detections);
+            });
+        }
+
+        function initCanvas(imageUrl, detections) {
+            fabric.Image.fromURL(imageUrl, function(img) {
+                canvas.setDimensions({
+                    width: img.width,
+                    height: img.height
+                });
+                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+                
+                detections.forEach(addBox);
+            });
+        }
+
+        function addBox(detection) {
+            const isMultiSource = detection.source_models.length > 1;
+            const colorSet = isMultiSource ? COLORS.multiple : COLORS.single;
+            
+            let [x1, y1, x2, y2] = detection.bbox;
+            let rect = new fabric.Rect({
+                left: x1,
+                top: y1,
+                width: x2 - x1,
+                height: y2 - y1,
+                fill: colorSet[0],
+                stroke: colorSet[1],
+                strokeWidth: 2,
+                selectable: true
+            });
+            
+            rect.id = detection.id;
+            rect.sourceModels = detection.source_models;
+            rect.classId = detection.class_id;
+            rect.confidence = detection.confidence;
+            
+            canvas.add(rect);
+            updateDetectionsList();
+        }
+
+        function updateDetectionsList() {
+            let detectionsList = document.getElementById('detectionsList');
+            detectionsList.innerHTML = '';
+            
+            canvas.getObjects().forEach(obj => {
+                if (obj.type === 'rect') {
+                    let div = document.createElement('div');
+                    div.className = 'detection-item';
+                    if (obj === canvas.getActiveObject()) {
+                        div.className += ' selected';
+                    }
+                    
+                    div.onclick = function() {
+                        canvas.setActiveObject(obj);
+                        canvas.renderAll();
+                        updateDetectionsList();
+                    };
+                    
+                    div.innerHTML = `
+                        <strong>Class: ${obj.classId}</strong><br>
+                        Confidence: ${obj.confidence.toFixed(2)}<br>
+                        Sources: ${obj.sourceModels.join(', ')}<br>
+                        <small>ID: ${obj.id}</small>
+                    `;
+                    detectionsList.appendChild(div);
+                }
+            });
+        }
+
+        function toggleCreateMode() {
+            const panel = document.getElementById('createBboxPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function startDrawing() {
+            isDrawingMode = true;
+            canvas.selection = false;
+            canvas.getObjects().forEach(obj => {
+                obj.selectable = false;
+            });
+        }
+
+        canvas.on('mouse:down', function(o) {
+            if (!isDrawingMode) return;
+            
+            let pointer = canvas.getPointer(o.e);
+            drawingRect = new fabric.Rect({
+                left: pointer.x,
+                top: pointer.y,
+                width: 0,
+                height: 0,
+                fill: COLORS.single[0],
+                stroke: COLORS.single[1],
+                strokeWidth: 2
+            });
+            canvas.add(drawingRect);
+        });
+
+        canvas.on('mouse:move', function(o) {
+            if (!isDrawingMode || !drawingRect) return;
+            
+            let pointer = canvas.getPointer(o.e);
+            drawingRect.set({
+                width: pointer.x - drawingRect.left,
+                height: pointer.y - drawingRect.top
+            });
+            canvas.renderAll();
+        });
+
+        canvas.on('mouse:up', function() {
+            if (!isDrawingMode || !drawingRect) return;
+            
+            const classId = parseInt(document.getElementById('classSelect').value);
+            drawingRect.id = uuid();
+            drawingRect.classId = classId;
+            drawingRect.confidence = 1.0;
+            drawingRect.sourceModels = ['manual'];
+            
+            isDrawingMode = false;
+            drawingRect = null;
+            
+            canvas.getObjects().forEach(obj => {
+                obj.selectable = true;
+            });
+            
+            updateDetectionsList();
+        });
+
+        canvas.on('object:modified', updateDetectionsList);
+        canvas.on('object:selected', updateDetectionsList);
+        canvas.on('selection:cleared', updateDetectionsList);
+
+        function saveModifications() {
+            const objects = canvas.getObjects();
+            const detections = objects.map(obj => {
+                if (obj.type === 'rect') {
+                    return {
+                        id: obj.id,
+                        bbox: [
+                            obj.left,
+                            obj.top,
+                            obj.left + obj.width,
+                            obj.top + obj.height
+                        ],
+                        class_id: obj.classId,
+                        confidence: obj.confidence,
+                        source_models: obj.sourceModels
+                    };
+                }
+            }).filter(x => x);
+
+            const data = {
+                session_id: currentSessionId,
+                detections: detections
+            };
+
+            fetch('/save_modifications', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Modifications saved successfully');
+            });
+        }
+
+        function uuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+    </script>
+</body>
+</html>
