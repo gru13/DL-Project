@@ -8,8 +8,8 @@ from ultralytics import YOLO
 
 labels = ['Detailed', 'EmptyInput', 'TableColumn', 'boxInput', 'checkBox', 'lineInput', 'signature']
 app = Flask(__name__)
-ocr = PaddleOCR(lang='en', rec_image_shape="3,32,100", rec_batch_num=1, max_text_length=25, rec_algorithm='CRNN', use_gpu=True, rec_model_dir='../models/ppocr_mobile_v4.0_rec_infer/')
-YoloModel = YOLO("../models/best-071024-4.pt")
+ocr = PaddleOCR(lang='en', rec_image_shape="3,32,100", rec_batch_num=1, max_text_length=25, rec_algorithm='CRNN', use_gpu=True, rec_model_dir='./Models/ppocr_mobile_v4.0_rec_infer/')
+YoloModel = YOLO("./Models/best-071024-4.pt")
 
 output_dir = os.path.join(app.static_folder, 'output')
 os.makedirs(output_dir, exist_ok=True)
@@ -133,29 +133,74 @@ def input_update():
     
     return jsonify({'success': True}), 200
 
+
 @app.route('/connection/<image_name>')
 def connection(image_name):
     image_url = url_for('static', filename=f'output/{image_name}.jpg')
-    yolo_json_url = url_for('static', filename=f'output/{image_name}_yolo.json')
-    paddle_json_url = url_for('static', filename=f'output/{image_name}_Paddle.json')
+    yolo_json_path = os.path.join(output_dir, f'{image_name}_yolo.json')
+    paddle_json_path = os.path.join(output_dir, f'{image_name}_Paddle.json')
+
+    print(f"Image URL: {image_url}")
+    print(f"YOLO JSON path: {yolo_json_path}")
+    print(f"Paddle JSON path: {paddle_json_path}")
+
+    
+    try:
+        with open(yolo_json_path, 'r') as yolo_file:
+            yolo_data = json.load(yolo_file)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        # Handle error (e.g., log it and return an error message to the user)
+        return f"Error loading YOLO data: {e}", 500
+
+    try:
+        with open(paddle_json_path, 'r') as paddle_file:
+            paddle_data = json.load(paddle_file)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        return f"Error loading PaddleOCR data: {e}", 500
+
+    # Add Mode field to YOLO data
+    for item in yolo_data:
+        item['Model'] = 'YOLO'
+        item['child'] = []
+
+    # Add Mode field to Paddle data
+    for item in paddle_data:
+        item['Model'] = 'PADDLE'
+        item['parent'] = ''
+
+    # Create the combined layout JSON by merging the two
+    combined_layout = yolo_data + paddle_data
+    layout_json_path = os.path.join(output_dir, f'{image_name}_layout.json')
+    
+
+
+    try:
+        with open(layout_json_path, 'w') as layout_file:
+            json.dump(combined_layout, layout_file, indent=4)
+    except IOError as e:
+        return f"Error writing layout JSON: {e}", 500
+
+    layout_json_url = url_for('static', filename=f'output/{image_name}_layout.json')
+    print(f"Layout JSON URL: {layout_json_url}")
+
     return render_template('connection.html', 
                            image_name=image_name, 
                            image_url=image_url, 
-                           yolo_json_url=yolo_json_url, 
-                           paddle_json_url=paddle_json_url)
+                           layout_json_url=layout_json_url)
+
+
 
 @app.route('/save_changes', methods=['POST'])
 def save_changes():
     layout = request.json
+    image_name = layout.get('image_name')
     
-    # Ensure the output directory exists
-    os.makedirs('output', exist_ok=True)
+    # Save the updated layout JSON
+    layout_json_path = os.path.join(output_dir, f"{image_name}_layout.json")
+    with open(layout_json_path, 'w') as layout_file:
+        json.dump(layout, layout_file, indent=4)
     
-    # Save the layout to a JSON file
-    with open('output/layout.json', 'w') as f:
-        json.dump(layout, f, indent=2)
-    
-    return jsonify({"message": "Changes saved successfully"})
+    return jsonify({"message": "Changes saved successfully"}), 200
 
 @app.route('/get_labels')
 def get_labels():

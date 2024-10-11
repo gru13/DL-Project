@@ -96,6 +96,10 @@
                     <p>Text: ${label.text}</p>
                     <p>Confidence: ${label.confidence.toFixed(2)}</p>
                     <p>Class: ${label.class}</p>
+                    <p>Left: ${labels[index].bbox[0]}</p>
+                    <p>Rigth: ${labels[index].bbox[1]}</p>
+                    <p>Top: ${labels[index].bbox[2]}</p>
+                    <p>Bottom: ${labels[index].bbox[3]}</p>
                     <input type="text" value="${label.text}" onchange="updateLabelText(${index}, this.value)">
                     <select onchange="updateLabelClass(${index}, this.value)">
                         <option value="Label" ${label.class === 'Label' ? 'selected' : ''}>Label</option>
@@ -199,7 +203,19 @@
         function onObjectModified(event) {
             let modifiedObject = event.target;
             if (modifiedObject && modifiedObject.labelIndex !== undefined) {
-                updateLabelFromRect(labels[modifiedObject.labelIndex], modifiedObject);
+                // Use getBoundingRect to get the accurate bounding box after modification
+                let boundingRect = modifiedObject.getBoundingRect();
+        
+                // Update label's bbox with the new rectangle position and size
+                labels[modifiedObject.labelIndex].bbox = [
+                    Math.round(boundingRect.left),
+                    Math.round(boundingRect.top),
+                    Math.round(boundingRect.left + boundingRect.width),
+                    Math.round(boundingRect.top + boundingRect.height)
+                ];
+        
+                // Update the label in the label list
+                updateLabelInList(modifiedObject.labelIndex);
             }
         }
 
@@ -229,6 +245,10 @@
                     <p>Text: ${labels[index].text}</p>
                     <p>Confidence: ${labels[index].confidence.toFixed(2)}</p>
                     <p>Class: ${labels[index].class}</p>
+                    <p>Left: ${labels[index].bbox[0]}</p>
+                    <p>Rigth: ${labels[index].bbox[1]}</p>
+                    <p>Top: ${labels[index].bbox[2]}</p>
+                    <p>Bottom: ${labels[index].bbox[3]}</p>
                     <input type="text" value="${labels[index].text}" onchange="updateLabelText(${index}, this.value)">
                     <select onchange="updateLabelClass(${index}, this.value)">
                         <option value="Label" ${labels[index].class === 'Label' ? 'selected' : ''}>Label</option>
@@ -270,6 +290,7 @@
         }
 
         function saveChanges() {
+            console.log(labels);
             fetch('/label_update', {
                 method: 'POST',
                 headers: {

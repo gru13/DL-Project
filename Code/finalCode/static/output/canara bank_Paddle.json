@@ -1,84 +1,6 @@
 [
     {
-        "uuid": "657c25d2-70b7-475a-8101-3f0fe84c1f4d",
-        "class": "Label",
-        "confidence": 0.9952619075775146,
-        "bbox": [
-            266,
-            71,
-            501,
-            101
-        ],
-        "text": "www.canarabank.com",
-        "child": []
-    },
-    {
-        "uuid": "86b52ad0-e382-4fa8-a4bd-142ab3e898f0",
-        "class": "Label",
-        "confidence": 0.9337552189826965,
-        "bbox": [
-            266,
-            99,
-            606,
-            132
-        ],
-        "text": "Toll Free Helpline 1809990425 0018",
-        "child": []
-    },
-    {
-        "uuid": "38be0e6e-3f04-4728-b71b-5f649257f85c",
-        "class": "Label",
-        "confidence": 0.8627737760543823,
-        "bbox": [
-            1005,
-            106,
-            1204,
-            143
-        ],
-        "text": " Syndicate",
-        "child": []
-    },
-    {
-        "uuid": "a792cd69-5bb7-4c43-9126-d431328bff77",
-        "class": "Label",
-        "confidence": 0.9423270225524902,
-        "bbox": [
-            354,
-            138,
-            1062,
-            178
-        ],
-        "text": "ACCOUNT OPENING FORM FOR RESIDENT INDIVIDUAL (PART-1)",
-        "child": []
-    },
-    {
-        "uuid": "2fe443a6-93ac-4c0e-9816-288367f1bd40",
-        "class": "Label",
-        "confidence": 0.9551975727081299,
-        "bbox": [
-            498,
-            166,
-            919,
-            194
-        ],
-        "text": "(MUST ACCOMPAINED WITH TERMS AND CONDITIONS)",
-        "child": []
-    },
-    {
-        "uuid": "114dbdca-587b-4c44-9732-a201d10c768b",
-        "class": "Label",
-        "confidence": 0.9750826358795166,
-        "bbox": [
-            439,
-            181,
-            985,
-            218
-        ],
-        "text": "CUSTOMER INFORMATION SHEET (CIF Creation/Amendment)",
-        "child": []
-    },
-    {
-        "uuid": "0a6eb428-9feb-4c49-8ed4-7d5767c9852f",
+        "uuid": "abd43ba5-557d-486f-8010-99e6ff0bd7a5",
         "class": "Label",
         "confidence": 0.9828960299491882,
         "bbox": [
@@ -91,20 +13,7 @@
         "child": []
     },
     {
-        "uuid": "7297d27f-063b-4d04-8a62-68003166494f",
-        "class": "Label",
-        "confidence": 0.8962537050247192,
-        "bbox": [
-            405,
-            209,
-            1016,
-            238
-        ],
-        "text": "n case of joint accountsPart-l (ClF Sheet) to be taken for each customer)",
-        "child": []
-    },
-    {
-        "uuid": "45be783c-161c-4525-a54d-2c399ae2416d",
+        "uuid": "656047e2-7f0e-461f-b5bb-fa69e719bcd6",
         "class": "Label",
         "confidence": 0.9276454448699951,
         "bbox": [
@@ -117,46 +26,20 @@
         "child": []
     },
     {
-        "uuid": "fec86416-bd0f-495a-8df2-5b4ed3fc5859",
+        "uuid": "e0a29132-5769-4728-b6b4-715305ae3aaf",
         "class": "Label",
         "confidence": 0.954711377620697,
         "bbox": [
-            686,
-            239,
-            988,
+            694,
+            237,
+            813,
             273
         ],
         "text": "Branch Code",
         "child": []
     },
     {
-        "uuid": "cb1de5b3-0129-4f16-acb7-58a1ee8a7cfe",
-        "class": "Label",
-        "confidence": 0.9392227530479431,
-        "bbox": [
-            43,
-            260,
-            1009,
-            302
-        ],
-        "text": "Fields marked asterix () are mandatoryPlease fill up in BLOck letters only and use black ink for signature",
-        "child": []
-    },
-    {
-        "uuid": "54bc1586-7237-41cf-bc62-3242bfb06bcd",
-        "class": "Label",
-        "confidence": 0.9279778003692627,
-        "bbox": [
-            43,
-            287,
-            196,
-            311
-        ],
-        "text": "For affice use ony",
-        "child": []
-    },
-    {
-        "uuid": "b6f471ff-b093-4bab-bbbf-55488538cfbc",
+        "uuid": "f1d86864-db58-4010-be1b-0fb7d5a8413d",
         "class": "Label",
         "confidence": 0.934995710849762,
         "bbox": [
@@ -169,20 +52,20 @@
         "child": []
     },
     {
-        "uuid": "e238d406-e665-41b7-8999-68a52e014b66",
+        "uuid": "3cc3805b-faf4-4791-98b3-6c63c9d42d49",
         "class": "Label",
         "confidence": 0.9234655499458313,
         "bbox": [
-            629,
+            833,
             317,
-            969,
-            349
+            873,
+            351
         ],
-        "text": "Application typeNewUpdate",
+        "text": "Application type-New",
         "child": []
     },
     {
-        "uuid": "a99ae2ba-b114-442b-9954-d432f47ddb63",
+        "uuid": "aeb74d37-bb03-4103-82ac-c9e9b207f7bf",
         "class": "Label",
         "confidence": 0.9018704295158386,
         "bbox": [
@@ -195,7 +78,7 @@
         "child": []
     },
     {
-        "uuid": "a75bd87b-fff2-48f9-b2ff-ccba91682619",
+        "uuid": "b1efc064-8148-445a-a503-016f135e0c10",
         "class": "Label",
         "confidence": 0.9936500191688538,
         "bbox": [
@@ -208,85 +91,46 @@
         "child": []
     },
     {
-        "uuid": "fe334cd6-e9f3-4d03-9c97-648b086d2ed8",
-        "class": "Label",
-        "confidence": 0.9148931503295898,
-        "bbox": [
-            978,
-            397,
-            1276,
-            422
-        ],
-        "text": "Mandatory for CkyC update request",
-        "child": []
-    },
-    {
-        "uuid": "a3acf186-4d9b-4639-8e59-e9126905d92d",
-        "class": "Label",
-        "confidence": 0.9557512998580933,
-        "bbox": [
-            36,
-            408,
-            167,
-            436
-        ],
-        "text": "Account type:",
-        "child": []
-    },
-    {
-        "uuid": "c7edb088-b6c9-4d56-81da-1bb2c1f64841",
+        "uuid": "c87663f0-2035-4578-be5a-b4547cf2c65f",
         "class": "Label",
         "confidence": 0.9149738550186157,
         "bbox": [
             267,
             413,
-            471,
-            438
+            343,
+            440
         ],
-        "text": "NormalSmall",
+        "text": "Account type-Normal",
         "child": []
     },
     {
-        "uuid": "f76399a4-f2e4-408f-aa05-e99a171ad6e6",
+        "uuid": "8999afe1-7014-462a-bd31-1bf8e50054ca",
         "class": "Label",
         "confidence": 0.9071536064147949,
         "bbox": [
-            462,
+            508,
             416,
-            558,
-            436
+            566,
+            441
         ],
-        "text": "Minor",
+        "text": "Account type-Minor",
         "child": []
     },
     {
-        "uuid": "f7cc70bf-910f-4c1b-bfaa-8b7142831158",
+        "uuid": "7b057dd2-4055-40b9-af0c-b87f61e03d7a",
         "class": "Label",
         "confidence": 0.9626227617263794,
         "bbox": [
-            836,
+            832,
             416,
-            1047,
-            446
+            885,
+            448
         ],
-        "text": "Staff",
+        "text": "StaffStaff No",
         "child": []
     },
     {
-        "uuid": "312c147b-88db-4faa-942f-cb62ff3ed32e",
-        "class": "Label",
-        "confidence": 0.9459778666496277,
-        "bbox": [
-            35,
-            448,
-            202,
-            473
-        ],
-        "text": "1.Personal Details",
-        "child": []
-    },
-    {
-        "uuid": "71ac245f-7e15-41b6-828a-0d573d5d59a4",
+        "uuid": "22e08cde-0246-4abf-a101-338e1ff2b5da",
         "class": "Label",
         "confidence": 0.883030116558075,
         "bbox": [
@@ -299,20 +143,7 @@
         "child": []
     },
     {
-        "uuid": "35cbeb08-d205-4daf-aeb4-2933b598d658",
-        "class": "Label",
-        "confidence": 0.8879517912864685,
-        "bbox": [
-            33,
-            531,
-            272,
-            552
-        ],
-        "text": "(Same as ID Proof) Prefix",
-        "child": []
-    },
-    {
-        "uuid": "9a5451db-f96d-4ba4-955b-fdcc60e4b1a7",
+        "uuid": "ac447efb-349d-4ea9-9e55-fa5cf29e8842",
         "class": "Label",
         "confidence": 0.934666097164154,
         "bbox": [
@@ -325,15 +156,41 @@
         "child": []
     },
     {
-        "id": "4aec8b79-f121-4622-9752-28d01cb428ce",
-        "text": "staffl",
+        "id": "f6ae12e4-d4e0-47b1-b17a-e1d90d14df72",
+        "text": "Staff no",
         "confidence": 1,
         "class": "Label",
         "bbox": [
-            930,
-            415,
-            1006,
-            447
+            929,
+            420,
+            1008,
+            452
+        ],
+        "child": []
+    },
+    {
+        "id": "36a4ea76-52f1-476c-a7ec-43218d9ff0b3",
+        "text": "Account type-Small",
+        "confidence": 1,
+        "class": "Label",
+        "bbox": [
+            389,
+            412,
+            448,
+            442
+        ],
+        "child": []
+    },
+    {
+        "id": "62b4ec81-64fb-4cc8-9169-66a18d00bd3b",
+        "text": "Application type-update",
+        "confidence": 1,
+        "class": "Label",
+        "bbox": [
+            903,
+            321,
+            989,
+            352
         ],
         "child": []
     }
