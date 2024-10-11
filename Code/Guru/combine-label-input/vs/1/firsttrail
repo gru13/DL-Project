@@ -1,0 +1,314 @@
+# #import cv2
+# # import json
+# # import numpy as np
+# # from typing import List, Dict, Tuple
+
+# # def load_image_and_data(image_path: str, combined_json_path: str) -> Tuple[np.ndarray, Dict]:
+# #     # Load the image
+# #     image = cv2.imread(image_path)
+    
+# #     # Load the combined JSON data
+# #     with open(combined_json_path, 'r') as f:
+# #         data = json.load(f)
+    
+# #     return image, data
+
+# # def get_center_point(bbox: List[int]) -> Tuple[int, int]:
+# #     """Calculate the center point of a bounding box"""
+# #     x_center = (bbox[0] + bbox[2]) // 2
+# #     y_center = (bbox[1] + bbox[3]) // 2
+# #     return (x_center, y_center)
+
+# # def draw_connections(image: np.ndarray, data: Dict, line_thickness: int = 2) -> np.ndarray:
+# #     # Create a copy of the image to draw on
+# #     visual_image = image.copy()
+    
+# #     # Create a mapping of text UUIDs to their bounding boxes for quick lookup
+# #     text_uuid_to_bbox = {entry['uuid']: entry['bbox'] for entry in data['text_entries']}
+    
+# #     # Define colors for different classes
+# #     color_map = {}
+    
+# #     for field in data['fields']:
+# #         field_bbox = field['bbox']
+# #         field_center = get_center_point(field_bbox)
+        
+# #         # Generate a unique color for this field class if not already created
+# #         if field['class'] not in color_map:
+# #             color_map[field['class']] = tuple(np.random.randint(0, 255, 3).tolist())
+        
+# #         color = color_map[field['class']]
+        
+# #         # Draw the field box
+# #         cv2.rectangle(visual_image, 
+# #                       (field_bbox[0], field_bbox[1]), 
+# #                       (field_bbox[2], field_bbox[3]), 
+# #                       color, 2)
+        
+# #         # Draw connections to each child text entry
+# #         for child_uuid in field.get('child', []):
+# #             if child_uuid in text_uuid_to_bbox:
+# #                 text_bbox = text_uuid_to_bbox[child_uuid]
+# #                 text_center = get_center_point(text_bbox)
+                
+# #                 # Draw line from field to text
+# #                 cv2.line(visual_image, field_center, text_center, color, line_thickness)
+                
+# #                 # Draw the text box
+# #                 cv2.rectangle(visual_image, 
+# #                               (text_bbox[0], text_bbox[1]), 
+# #                               (text_bbox[2], text_bbox[3]), 
+# #                               color, 1)
+    
+# #     return visual_image
+
+# # def create_legend(data: Dict, color_map: Dict) -> np.ndarray:
+# #     # Create a white image for the legend
+# #     legend_height = len(color_map) * 30 + 10
+# #     legend = np.ones((legend_height, 200, 3), dtype=np.uint8) * 255
+    
+# #     y_offset = 20
+# #     for class_id, color in color_map.items():
+# #         cv2.putText(legend, f"Class {class_id}", (10, y_offset), 
+# #                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+# #         y_offset += 30
+    
+# #     return legend
+
+# # def visualize_connections(image_path: str, combined_json_path: str, output_path: str):
+# #     # Load image and data
+# #     image, data = load_image_and_data(image_path, combined_json_path)
+    
+# #     # Draw connections
+# #     visual_image = draw_connections(image, data)
+    
+# #     # Save the visualized image
+# #     cv2.imwrite(output_path, visual_image)
+    
+# #     print(f"Visualization saved to: {output_path}")
+
+# # image_path = "./images/NEFT.jpg"
+# # combined_json_path = "./combined_output.json"
+# # output_path = "./visualized_connections.jpg"
+
+# # visualize_connections(image_path, combined_json_path, output_path)
+
+
+
+
+
+
+
+
+
+# import torch
+# from transformers import LayoutLMv3Processor, LayoutLMv3ForSequenceClassification, LayoutLMv3Model
+# from PIL import Image
+# import cv2
+# import numpy as np
+# from typing import List, Dict, Tuple
+# import json
+# from datasets import Features, Sequence, ClassLabel, Value, Array2D, Array3D
+
+# def initialize_layoutlmv3():
+#     # Initialize the LayoutLMv3 processor with apply_ocr=False
+#     processor = LayoutLMv3Processor.from_pretrained(
+#         "microsoft/layoutlmv3-base",
+#         apply_ocr=False  # This is the key change
+#     )
+#     model = LayoutLMv3Model.from_pretrained("microsoft/layoutlmv3-base")
+#     return processor, model
+
+# def prepare_input(image_path: str, yolo_data: List[Dict], paddle_data: List[Dict]):
+#     # Load the image
+#     image = Image.open(image_path).convert("RGB")
+    
+#     # Prepare words and boxes for LayoutLMv3
+#     words = []
+#     normalized_boxes = []
+    
+#     # Add YOLO field boxes
+#     for field in yolo_data:
+#         bbox = field['bbox']
+#         words.append(field['class'])  # Use field class as word
+#         normalized_boxes.append(normalize_box(bbox, image.size))
+    
+#     # Add PaddleOCR text boxes
+#     for text_entry in paddle_data:
+#         bbox = text_entry['bbox']
+#         words.append(text_entry['text'])
+#         normalized_boxes.append(normalize_box(bbox, image.size))
+    
+#     # Ensure all boxes are within 0-1000 range
+#     normalized_boxes = [[min(max(coord, 0), 1000) for coord in box] 
+#                         for box in normalized_boxes]
+    
+#     return image, words, normalized_boxes
+
+# def process_layoutlmv3(processor, model, image, words, normalized_boxes):
+#     # Prepare inputs for the model
+#     encoding = processor(
+#         image,
+#         words,
+#         boxes=normalized_boxes,
+#         return_tensors="pt",
+#         padding="max_length",
+#         truncation=True
+#     )
+    
+#     # Get model outputs
+#     with torch.no_grad():
+#         outputs = model(**encoding)
+    
+#     return outputs.last_hidden_state
+
+# # Rest of the code remains the same...
+
+# def process_document(image_path: str, 
+#                     yolo_json_path: str, 
+#                     paddle_json_path: str, 
+#                     output_path: str):
+#     # Load JSON data
+#     with open(yolo_json_path, 'r') as f:
+#         yolo_data = json.load(f)
+#     with open(paddle_json_path, 'r') as f:
+#         paddle_data = json.load(f)
+    
+#     try:
+#         # Initialize LayoutLMv3
+#         processor, model = initialize_layoutlmv3()
+        
+#         # Prepare input
+#         image, words, normalized_boxes = prepare_input(image_path, yolo_data, paddle_data)
+        
+#         # Process with LayoutLMv3
+#         last_hidden_states = process_layoutlmv3(processor, model, image, words, normalized_boxes)
+        
+#         # Calculate attention scores
+#         attention_scores = calculate_attention_scores(
+#             last_hidden_states, 
+#             len(yolo_data), 
+#             len(paddle_data)
+#         )
+        
+#         # Assign relationships
+#         assign_relationships(attention_scores, yolo_data, paddle_data)
+        
+#     except Exception as e:
+#         print(f"Error during LayoutLMv3 processing: {str(e)}")
+#         print("Falling back to geometric analysis...")
+        
+#         # Fallback to geometric analysis
+#         for field in yolo_data:
+#             field['child'] = []
+#         for text_entry in paddle_data:
+#             text_entry['parent'] = None
+            
+#             # Find the closest field based on geometric analysis
+#             closest_field = None
+#             min_distance = float('inf')
+            
+#             for field in yolo_data:
+#                 field_box = field['bbox']
+#                 text_box = text_entry['bbox']
+                
+#                 # Simple center point distance
+#                 field_center = [(field_box[0] + field_box[2]) / 2, 
+#                                (field_box[1] + field_box[3]) / 2]
+#                 text_center = [(text_box[0] + text_box[2]) / 2, 
+#                               (text_box[1] + text_box[3]) / 2]
+                
+#                 distance = np.sqrt((field_center[0] - text_center[0])**2 + 
+#                                   (field_center[1] - text_center[1])**2)
+                
+#                 if distance < min_distance:
+#                     min_distance = distance
+#                     closest_field = field
+            
+#             if closest_field and min_distance < 200:  # Threshold of 200 pixels
+#                 text_entry['parent'] = closest_field['uuid']
+#                 closest_field['child'].append(text_entry['uuid'])
+    
+#     # Save combined output
+#     combined_output = {
+#         "fields": yolo_data,
+#         "text_entries": paddle_data
+#     }
+#     with open(output_path, 'w') as f:
+#         json.dump(combined_output, f, indent=4)
+    
+#     return yolo_data, paddle_data
+# def visualize_connections(image_path: str, 
+#                          combined_data: Dict, 
+#                          output_path: str):
+#     # Load image
+#     image = cv2.imread(image_path)
+#     visual_image = image.copy()
+    
+#     # Create color map for classes
+#     unique_classes = set(field['class'] for field in combined_data['fields'])
+#     color_map = {cls: tuple(np.random.randint(0, 255, 3).tolist()) 
+#                  for cls in unique_classes}
+    
+#     # Draw fields and connections
+#     for field in combined_data['fields']:
+#         color = color_map[field['class']]
+#         bbox = field['bbox']
+        
+#         # Draw field box
+#         cv2.rectangle(visual_image, 
+#                       (bbox[0], bbox[1]), 
+#                       (bbox[2], bbox[3]), 
+#                       color, 2)
+        
+#         # Add field class label
+#         cv2.putText(visual_image, field['class'], 
+#                     (bbox[0], bbox[1] - 5),
+#                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+        
+#         # Draw connections to child text entries
+#         field_center = ((bbox[0] + bbox[2]) // 2, (bbox[1] + bbox[3]) // 2)
+        
+#         for text_entry in combined_data['text_entries']:
+#             if text_entry['uuid'] in field['child']:
+#                 text_bbox = text_entry['bbox']
+#                 text_center = ((text_bbox[0] + text_bbox[2]) // 2, 
+#                                (text_bbox[1] + text_bbox[3]) // 2)
+                
+#                 # Draw connection line
+#                 cv2.line(visual_image, field_center, text_center, color, 1)
+                
+#                 # Draw text box
+#                 cv2.rectangle(visual_image, 
+#                               (text_bbox[0], text_bbox[1]), 
+#                               (text_bbox[2], text_bbox[3]), 
+#                               color, 1)
+    
+#     # Save visualization
+#     cv2.imwrite(output_path, visual_image)
+
+# # Example usage
+# if __name__ == "__main__":
+#     image_path = "./images/NEFT.jpg"
+#     yolo_json_path = "./output/NEFT/NEFT_yolo.json"
+#     paddle_json_path = "./output/NEFT/NEFT_paddleOCR.json"
+#     output_path = "./output/NEFT/NEFT_combined_layoutlmv3.json"
+#     visualization_path = "./output/NEFT/NEFT_visualization_layoutlmv3.jpg"
+    
+#     # Install required packages
+#     # !pip install transformers datasets torch Pillow
+
+#     # Process document
+#     updated_yolo, updated_paddle = process_document(
+#         image_path, 
+#         yolo_json_path, 
+#         paddle_json_path, 
+#         output_path
+#     )
+    
+#     # Load combined output for visualization
+#     with open(output_path, 'r') as f:
+#         combined_data = json.load(f)
+    
+#     # Visualize connections
+#     visualize_connections(image_path, combined_data, visualization_path)

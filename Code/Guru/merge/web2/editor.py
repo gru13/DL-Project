@@ -21,6 +21,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 model_a = YOLO('./models/best-071024-2.pt')
 model_b = YOLO('./models/best-071024-3.pt')
 
+labels = ['Detailed', 'EmptyInput', 'TableColumn', 'boxInput', 'checkBox', 'lineInput', 'signature']
+
+
 def extract_detections(results, model_name):
     detections = []
     for result in results:
@@ -34,7 +37,7 @@ def extract_detections(results, model_name):
                 'source_model': model_name,
                 'bbox': [float(x1), float(y1), float(x2), float(y2)],
                 'confidence': confidence,
-                'class_id': class_id
+                'class_name': labels[class_id]
             }
             detections.append(detection)
     return detections

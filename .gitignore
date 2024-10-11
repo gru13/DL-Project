@@ -4,3 +4,4 @@ models
 .venv
 /Code/Guru/empty-boxes/runs
 /Code/Guru/empty-boxes/dataset
+/Code/Guru/combine-label-input/.venv

@@ -1,0 +1,410 @@
+<!--
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Input Editor</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    height: 100vh;
+                    overflow: hidden;
+                }
+                .container {
+                    display: flex;
+                    height: 80vh;
+                    gap: 20px;
+                }
+                .canvas-container {
+                    border: 1px solid #ccc;
+                    overflow: auto;
+                    width: 80vw;
+                    height: 80vh;
+                }
+                #labelList {
+                    flex: 1;
+                    max-width: 20vw;
+                    height: 80vh;
+                    overflow-y: auto;
+                    border: 1px solid #ccc;
+                    padding: 10px;
+                }
+                button {
+                    padding: 10px 20px;
+                    background-color: #4CAF50;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+                .label-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 10px;
+                }
+                .highlight {
+                    background-color: #e7f3fe;
+                }
+                .label-actions button {
+                    background-color: #f44336; /* Red for delete */
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Input Editor</h1>
+            
+            <div class="container">
+                <div class="canvas-container">
+                    <canvas id="canvas" width="800" height="600"></canvas>
+                </div>
+                <div id="labelList">
+                    <h2>Labels</h2>
+                    <div id="labels"></div>
+                </div>
+            </div>
+            
+            <button id="saveButton">Save</button>
+            <button id="next">Next Connections</button>
+            
+    <script>
+        const canvas = new fabric.Canvas('canvas');
+        let labels = [];
+        
+        // Load the image and labels
+        document.addEventListener("DOMContentLoaded", async function() {
+            const imageUrl = "{{ image_url }}";
+            const jsonUrl = "{{ json_url }}";
+            
+            // Load image
+            fabric.Image.fromURL(imageUrl, img => {
+                canvas.setDimensions({
+                    width: img.width,
+                    height: img.height
+                });
+                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+            });
+            
+            // Load labels
+            const response = await fetch(jsonUrl);
+            labels = await response.json();
+            renderLabels();
+        });
+        
+        document.getElementById('saveButton').addEventListener('click', async function() {
+            // Update bounding boxes based on canvas objects
+            canvas.getObjects().forEach((obj, index) => {
+                const bbox = [
+                Math.round(obj.left),
+                Math.round(obj.top),
+                Math.round(obj.left + obj.width),
+                Math.round(obj.top + obj.height)
+                ];
+                labels[index].bbox = bbox;
+            });
+            
+            const imageName = "{{ image_name }}";  // Pass the image name to save
+            try {
+                const response = await fetch('/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ image_name: imageName, labels: labels })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('Changes saved successfully!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+        
+        function renderLabels() {
+            canvas.remove(...canvas.getObjects());
+            const labelList = document.getElementById('labels');
+            labelList.innerHTML = ''; // Clear existing labels
+            
+            labels.forEach((label, index) => {
+                // Add rectangle to canvas
+                const rect = new fabric.Rect({
+                    left: label.bbox[0],
+                    top: label.bbox[1],
+                    width: label.bbox[2] - label.bbox[0],
+                    height: label.bbox[3] - label.bbox[1],
+                    stroke: 'green',
+                    strokeWidth: 2,
+                    fill: 'transparent',
+                    selectable: true
+                });
+                
+                rect.on('mousedown', function() {
+                    highlightLabel(index);
+                    canvas.setActiveObject(rect);
+                    scrollToLabel(index);
+                });
+                
+                canvas.add(rect);
+                
+                // Add label to sidebar
+                const labelElement = document.createElement('div');
+                labelElement.className = 'label-item';
+                labelElement.innerHTML = `Text: ${label.text || label.class} 
+                <div class="label-actions">
+                    <button onclick="editLabel(${index})">Edit</button>
+                    <button onclick="deleteLabel(${index})">Delete</button>
+                </div>`;
+                labelElement.dataset.index = index;
+                
+                labelElement.onclick = function() {
+                    highlightLabel(index);
+                    canvas.setActiveObject(rect);
+                    scrollToLabel(index);
+                };
+                
+                labelList.appendChild(labelElement);
+            });
+            
+            canvas.renderAll();
+        }
+        
+        function scrollToLabel(index) {
+            const labelList = document.getElementById('labelList');
+            const labelElement = labelList.querySelector(`.label-item[data-index='${index}']`);
+            if (labelElement) {
+                labelElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+        
+        function highlightLabel(index) {
+            const labelElements = document.querySelectorAll('.label-item');
+            labelElements.forEach((el, i) => {
+                el.classList.remove('highlight');
+                if (i === index) {
+                    el.classList.add('highlight');
+                }
+            });
+        }
+        
+        function editLabel(index) {
+            const newText = prompt('Enter new text:', labels[index].text);
+            if (newText !== null) {
+                labels[index].text = newText;
+                renderLabels();
+            }
+        }
+        
+        function deleteLabel(index) {
+            if (confirm('Are you sure you want to delete this label?')) {
+                labels.splice(index, 1);
+                renderLabels();
+            }
+        }
+    </script>
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .canvas-container {
+            flex: 1;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        #labelList {
+            flex: 0 0 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Input Editor</h1>
+    <div class="container">
+        <div class="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="labelList">
+            <h2>Labels</h2>
+            <div id="labels"></div>
+        </div>
+    </div>
+    <button onclick="runYOLO()">Run YOLO</button>
+    <button onclick="saveChanges()">Save Changes</button>
+    <button onclick="goToConnections()">Next: Connections</button>
+
+    <script>
+        let canvas;
+        let labels = [];
+
+        window.onload = function() {
+            canvas = new fabric.Canvas('canvas');
+            canvas.setWidth(800);
+            canvas.setHeight(600);
+
+            // Load the image
+            fabric.Image.fromURL('{{ image_url }}', function(img) {
+                canvas.setWidth(img.width);
+                canvas.setHeight(img.height);
+                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+            });
+
+            // Load the JSON data
+            fetch('{{ json_url }}')
+                .then(response => response.json())
+                .then(data => {
+                    labels = data;
+                    drawBoxesAndUpdateList();
+                });
+        }
+
+        function drawBoxesAndUpdateList() {
+            canvas.clear();
+            let labelList = document.getElementById('labels');
+            labelList.innerHTML = '';
+
+            labels.forEach((label, index) => {
+                let rect = new fabric.Rect({
+                    left: label.bbox[0],
+                    top: label.bbox[1],
+                    width: label.bbox[2] - label.bbox[0],
+                    height: label.bbox[3] - label.bbox[1],
+                    fill: 'rgba(0,255,0,0.3)',
+                    stroke: 'green',
+                    strokeWidth: 2,
+                    selectable: true,
+                    hoverCursor: 'move'
+                });
+
+                canvas.add(rect);
+
+                rect.on('modified', function() {
+                    updateLabelFromRect(label, rect);
+                });
+
+                let labelDiv = document.createElement('div');
+                labelDiv.innerHTML = `
+                    <p>Class: ${label.class}</p>
+                    <p>Confidence: ${label.confidence.toFixed(2)}</p>
+                    <select onchange="updateLabelClass(${index}, this.value)">
+                        <option value="Detailed" ${label.class === 'Detailed' ? 'selected' : ''}>Detailed</option>
+                        <option value="EmptyInput" ${label.class === 'EmptyInput' ? 'selected' : ''}>EmptyInput</option>
+                        <option value="TableColumn" ${label.class === 'TableColumn' ? 'selected' : ''}>TableColumn</option>
+                        <option value="boxInput" ${label.class === 'boxInput' ? 'selected' : ''}>boxInput</option>
+                        <option value="checkBox" ${label.class === 'checkBox' ? 'selected' : ''}>checkBox</option>
+                        <option value="lineInput" ${label.class === 'lineInput' ? 'selected' : ''}>lineInput</option>
+                        <option value="signature" ${label.class === 'signature' ? 'selected' : ''}>signature</option>
+                    </select>
+                `;
+                labelList.appendChild(labelDiv);
+            });
+
+            canvas.renderAll();
+        }
+
+        function updateLabelFromRect(label, rect) {
+            label.bbox = [
+                Math.round(rect.left),
+                Math.round(rect.top),
+                Math.round(rect.left + rect.width),
+                Math.round(rect.top + rect.height)
+            ];
+            drawBoxesAndUpdateList();
+        }
+
+        function updateLabelClass(index, newClass) {
+            labels[index].class = newClass;
+            drawBoxesAndUpdateList();
+        }
+
+        function runYOLO() {
+            fetch('/run_yolo/{{ image_name }}', {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('YOLO prediction completed. Reloading page...');
+                    location.reload();
+                } else {
+                    alert('Error running YOLO prediction.');
+                }
+            });
+        }
+
+        function saveChanges() {
+            fetch('/input_update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    image_name: '{{ image_name }}',
+                    labels: labels
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Changes saved successfully!');
+                } else {
+                    alert('Error saving changes.');
+                }
+            });
+        }
+
+        function goToConnections() {
+            // Implement the next step in your workflow here
+            alert('Connections page not implemented yet.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Label Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            height: 80vh;
+            gap: 20px;
+        }
+        .canvas-container {
+            border: 1px solid #ccc;
+            overflow: auto;
+            width: 80vw;
+            height: 80vh;
+        }
+        #labelList {
+            flex: 1;
+            max-width: 20vw;
+            height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .label-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .highlight {
+            background-color: #d0f0c0; /* Highlight color */
+        }
+        .label-actions {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #saveButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>OCR Label Editor</h1>
+
+    <div class="container">
+        <div class="canvas-container">
+            <canvas id="canvas" width="800" height="600"></canvas>
+        </div>
+        <div id="labelList">
+            <h2>Labels</h2>
+        </div>
+    </div>
+    
+    <button id="saveButton">Save Changes</button>
+
+    <script>
+        const canvas = new fabric.Canvas('canvas');
+        let labels = [];
+        let image = null;
+
+        // Load the image and labels
+        document.addEventListener("DOMContentLoaded", async function() {
+            const imageUrl = "{{ image_url }}";
+            const jsonUrl = "{{ json_url }}";
+
+            // Load image
+            fabric.Image.fromURL(imageUrl, img => {
+                canvas.setDimensions({
+                    width: img.width,
+                    height: img.height
+                });
+                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+                image = img;
+            });
+
+            // Load labels
+            const response = await fetch(jsonUrl);
+            labels = await response.json();
+            renderLabels();
+        });
+
+        document.getElementById('saveButton').addEventListener('click', async function() {
+            // Update bounding boxes based on canvas objects
+            canvas.getObjects().forEach((obj, index) => {
+                const bbox = [
+                    Math.round(obj.left),
+                    Math.round(obj.top),
+                    Math.round(obj.left + obj.width),
+                    Math.round(obj.top + obj.height)
+                ];
+                labels[index].bbox = bbox;
+            });
+            
+            const imageName = "{{ image_name }}";  // Pass the image name to save
+            try {
+                const response = await fetch('/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ image_name: imageName, labels: labels })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    alert('Changes saved successfully!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        function renderLabels() {
+            canvas.remove(...canvas.getObjects());
+            const labelList = document.getElementById('labelList');
+            labelList.innerHTML = '<h2>Labels</h2>';
+            
+            labels.forEach((label, index) => {
+                // Add rectangle to canvas
+                const rect = new fabric.Rect({
+                    left: label.bbox[0],
+                    top: label.bbox[1],
+                    width: label.bbox[2] - label.bbox[0],
+                    height: label.bbox[3] - label.bbox[1],
+                    stroke: 'green',
+                    strokeWidth: 2,
+                    fill: 'transparent',
+                    selectable: true
+                });
+                
+                rect.on('mousedown', function() {
+                    highlightLabel(index);
+                    canvas.setActiveObject(rect);
+                    scrollToLabel(index);
+                });
+        
+                canvas.add(rect);
+                
+                // Add label to sidebar
+                const labelElement = document.createElement('div');
+                labelElement.className = 'label-item';
+                labelElement.innerHTML = `Text: ${label.text} 
+                    <div class="label-actions">
+                        <button onclick="editLabel(${index})">Edit</button>
+                        <button onclick="deleteLabel(${index})">Delete</button>
+                    </div>`;
+                labelElement.dataset.index = index;
+                
+                labelElement.onclick = function() {
+                    highlightLabel(index);
+                    canvas.setActiveObject(rect);
+                    scrollToLabel(index);
+                };
+                
+                labelList.appendChild(labelElement);
+            });
+            
+            canvas.renderAll();
+        }
+        
+        function scrollToLabel(index) {
+            const labelList = document.getElementById('labelList');
+            const labelElement = labelList.querySelector(`.label-item[data-index='${index}']`);
+            if (labelElement) {
+                labelElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function highlightLabel(index) {
+            const labelElements = document.querySelectorAll('.label-item');
+            labelElements.forEach((el, i) => {
+                el.classList.remove('highlight');
+                if (i === index) {
+                    el.classList.add('highlight');
+                }
+            });
+        }
+
+        function editLabel(index) {
+            const newText = prompt('Enter new text:', labels[index].text);
+            if (newText !== null) {
+                labels[index].text = newText;
+                renderLabels();
+            }
+        }
+
+        function deleteLabel(index) {
+            if (confirm('Are you sure you want to delete this label?')) {
+                labels.splice(index, 1);
+                renderLabels();
+            }
+        }
+    </script>
+</body>
+</html>
