@@ -5,6 +5,7 @@ import json
 import uuid
 from paddleocr import PaddleOCR
 from ultralytics import YOLO
+import shutil
 
 labels = ['Detailed', 'EmptyInput', 'TableColumn', 'boxInput', 'checkBox', 'lineInput', 'signature']
 app = Flask(__name__)
@@ -12,6 +13,7 @@ ocr = PaddleOCR(lang='en', rec_image_shape="3,32,100", rec_batch_num=1, max_text
 YoloModel = YOLO("./Models/best-071024-4.pt")
 
 output_dir = os.path.join(app.static_folder, 'output')
+template_dir = os.path.join(app.static_folder, 'Templates')
 os.makedirs(output_dir, exist_ok=True)
 
 @app.route('/')
@@ -23,8 +25,9 @@ def paddleOCRrun():
     image_file = request.files['image']
     image_name = image_file.filename
     img_path = os.path.join(output_dir, image_name)
+    os.makedirs(template_dir+'/'+image_name, exist_ok=True)
     image_file.save(img_path)
-    
+    image_file.save(template_dir+'/'+image_name+'image.jpg')
     result = ocr.ocr(img_path)
     
     def convert_quad_to_rect(quad_bbox):
@@ -170,17 +173,15 @@ def connection(image_name):
 
     # Create the combined layout JSON by merging the two
     combined_layout = yolo_data + paddle_data
-    layout_json_path = os.path.join(output_dir, f'{image_name}_layout.json')
+    os.makedirs(template_dir+'/'+image_name, exist_ok=True)
+    layout_json_path = os.path.join(template_dir, f'{image_name}/layout.json')
     
-
-
     try:
         with open(layout_json_path, 'w') as layout_file:
             json.dump(combined_layout, layout_file, indent=4)
     except IOError as e:
         return f"Error writing layout JSON: {e}", 500
-
-    layout_json_url = url_for('static', filename=f'output/{image_name}_layout.json')
+    layout_json_url = url_for('static', filename=f'Templates/{image_name}/layout.json')
     print(f"Layout JSON URL: {layout_json_url}")
 
     return render_template('connection.html', 

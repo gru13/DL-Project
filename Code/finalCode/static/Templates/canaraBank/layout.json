@@ -1,6 +1,6 @@
 [
     {
-        "uuid": "2fd5effc-d16a-48bf-950f-6db9e2d2bac7",
+        "uuid": "744172f0-95a8-4de3-bc42-1a7cdf47a4d6",
         "class": "signature",
         "confidence": 0.9824337959289551,
         "bbox": [
@@ -15,7 +15,7 @@
         "child": []
     },
     {
-        "uuid": "52c99083-2f98-4b22-8f19-bc4cf950ea83",
+        "uuid": "73a91bc0-6951-4274-b066-91af16598b1f",
         "class": "boxInput",
         "confidence": 0.8347908854484558,
         "bbox": [
@@ -30,14 +30,14 @@
         "child": []
     },
     {
-        "uuid": "ef28d198-85f1-45bb-ad55-467bbf3056c5",
+        "uuid": "1989123d-2a39-4f06-b1ac-9c0bfa6fa71e",
         "class": "boxInput",
         "confidence": 0.828605055809021,
         "bbox": [
-            155,
+            185,
             310,
-            643,
-            353
+            641,
+            351
         ],
         "text": "",
         "parent": "",
@@ -45,7 +45,7 @@
         "child": []
     },
     {
-        "uuid": "d4b18506-397a-4247-849b-2909d41844ad",
+        "uuid": "3268e361-46e5-4d2e-9440-f1be4b76a053",
         "class": "boxInput",
         "confidence": 0.8262649774551392,
         "bbox": [
@@ -60,7 +60,7 @@
         "child": []
     },
     {
-        "uuid": "f144315a-0e67-449e-a514-3d36d62cc0d9",
+        "uuid": "b8978b0c-f269-436c-84b5-22d14de6f91e",
         "class": "boxInput",
         "confidence": 0.7754120826721191,
         "bbox": [
@@ -75,7 +75,7 @@
         "child": []
     },
     {
-        "uuid": "7443cbfc-a3df-4254-b348-6089b8fabd22",
+        "uuid": "ea4d9f2d-fdc4-4eb9-b106-cebf399f5c50",
         "class": "boxInput",
         "confidence": 0.7589086890220642,
         "bbox": [
@@ -90,14 +90,14 @@
         "child": []
     },
     {
-        "uuid": "c4b244f1-5f4a-48b6-a4d8-bff6e45b47fc",
+        "uuid": "92f9ec99-df35-471c-ab95-ffd1a902dca7",
         "class": "boxInput",
         "confidence": 0.7435683012008667,
         "bbox": [
-            154,
+            184,
             355,
-            642,
-            395
+            640,
+            393
         ],
         "text": "",
         "parent": "",
@@ -105,14 +105,14 @@
         "child": []
     },
     {
-        "uuid": "e213745a-ce4d-4e97-96ed-899479594eaf",
+        "uuid": "ca1101d6-3baf-4726-893e-4ab62d318568",
         "class": "boxInput",
         "confidence": 0.6998792290687561,
         "bbox": [
-            318,
-            554,
-            1372,
-            602
+            373,
+            561,
+            1223,
+            600
         ],
         "text": "",
         "parent": "",
@@ -120,7 +120,7 @@
         "child": []
     },
     {
-        "uuid": "af2d8e42-0e92-4bec-971d-7998c6a1466d",
+        "uuid": "c5aafd3c-634a-46f6-85ea-36bfe5b43031",
         "class": "boxInput",
         "confidence": 0.6991352438926697,
         "bbox": [
@@ -135,7 +135,7 @@
         "child": []
     },
     {
-        "uuid": "53b4ab62-6fb0-4845-ae25-4e80bb3700ca",
+        "uuid": "b8a0030f-e86e-4aad-8815-bc94a5ab04af",
         "class": "boxInput",
         "confidence": 0.6956430077552795,
         "bbox": [
@@ -150,14 +150,14 @@
         "child": []
     },
     {
-        "uuid": "f26a4716-7722-466e-a232-1741c980dcee",
+        "uuid": "cfdd5f08-f7e8-43c3-aaa4-06b969e811d6",
         "class": "boxInput",
         "confidence": 0.6936095356941223,
         "bbox": [
-            325,
+            675,
             492,
-            1377,
-            532
+            1375,
+            530
         ],
         "text": "",
         "parent": "",
@@ -165,7 +165,7 @@
         "child": []
     },
     {
-        "uuid": "7e068bc8-6ba6-4a50-8c71-6a7475e38437",
+        "uuid": "456da7a9-a18b-4686-bb67-ee25f281441b",
         "class": "boxInput",
         "confidence": 0.6448901891708374,
         "bbox": [
@@ -180,7 +180,7 @@
         "child": []
     },
     {
-        "uuid": "b965fe5f-1efc-4927-9cbe-1ebb6f32f6d0",
+        "uuid": "7db67d1c-6cc3-4676-9719-d75816215538",
         "class": "boxInput",
         "confidence": 0.6165914535522461,
         "bbox": [
@@ -195,7 +195,7 @@
         "child": []
     },
     {
-        "uuid": "0600b6d2-2820-4b12-8873-6f7c5256cafb",
+        "uuid": "e77cc4e9-0517-4d2a-b0a9-0934172474ee",
         "class": "checkBox",
         "confidence": 0.5929456353187561,
         "bbox": [
@@ -210,7 +210,7 @@
         "child": []
     },
     {
-        "uuid": "99b7f8f8-08b4-4e5f-a4a5-b99fe977f574",
+        "uuid": "f84ee860-3cb2-47e6-b4a5-18422f71e097",
         "class": "boxInput",
         "confidence": 0.5373026728630066,
         "bbox": [
@@ -225,7 +225,7 @@
         "child": []
     },
     {
-        "uuid": "ee19f99e-fb10-4ac4-b60c-8a5af8231a4a",
+        "uuid": "800b009f-007e-4430-ae66-936fb466182f",
         "class": "checkBox",
         "confidence": 0.5139018893241882,
         "bbox": [
@@ -240,7 +240,7 @@
         "child": []
     },
     {
-        "uuid": "237ac5be-45ea-4bd7-bf6d-b0e3605d8ef9",
+        "uuid": "801b4585-4984-4cd8-9060-ecc781f98f15",
         "class": "checkBox",
         "confidence": 0.4944188594818115,
         "bbox": [
@@ -255,7 +255,22 @@
         "child": []
     },
     {
-        "uuid": "7437ab11-59e2-4ebd-9679-f57aa66b1ac5",
+        "uuid": "1cb74d7c-6013-4dda-ab2d-3003b405b11a",
+        "class": "boxInput",
+        "confidence": 0.47355520725250244,
+        "bbox": [
+            317,
+            557,
+            1364,
+            605
+        ],
+        "text": "",
+        "parent": "",
+        "Model": "YOLO",
+        "child": []
+    },
+    {
+        "uuid": "230c547d-5aa9-4981-8ee6-e5342f82930a",
         "class": "boxInput",
         "confidence": 0.4419352412223816,
         "bbox": [
@@ -270,7 +285,7 @@
         "child": []
     },
     {
-        "uuid": "b13b917f-1f1d-40f9-a445-6c3d68533927",
+        "uuid": "08dcfcfe-e36e-42e6-a399-ee6ddaa3c15d",
         "class": "boxInput",
         "confidence": 0.41952186822891235,
         "bbox": [
@@ -285,142 +300,7 @@
         "child": []
     },
     {
-        "uuid": "23580eda-ec0c-4bd1-9c14-cda33c99d493",
-        "class": "Label",
-        "confidence": 0.8313014507293701,
-        "bbox": [
-            851,
-            41,
-            1286,
-            94
-        ],
-        "text": "doler d Canara Bank",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "68b0d53d-7143-4a43-b6ba-2c0e7070e8ff",
-        "class": "Label",
-        "confidence": 0.9952619075775146,
-        "bbox": [
-            266,
-            71,
-            501,
-            101
-        ],
-        "text": "www.canarabank.com",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "d85fec92-f518-4e2f-b762-eb9c9d66a78c",
-        "class": "Label",
-        "confidence": 0.9337552189826965,
-        "bbox": [
-            266,
-            99,
-            606,
-            132
-        ],
-        "text": "Toll Free Helpline 1800425 0018",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "08c4214e-bee1-4eb2-a18a-1bc0e1a6fedb",
-        "class": "Label",
-        "confidence": 0.8627737760543823,
-        "bbox": [
-            1005,
-            106,
-            1204,
-            143
-        ],
-        "text": " Syndicate",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "1c8556e7-0592-4ec7-97cf-6286db2fe097",
-        "class": "Label",
-        "confidence": 0.9423270225524902,
-        "bbox": [
-            354,
-            138,
-            1062,
-            178
-        ],
-        "text": "ACCOUNT OPENING FORM FOR RESIDENT INDIVIDUAL (PART-1)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "ba1a55c5-a4d0-401b-8876-142fc36f8aaf",
-        "class": "Label",
-        "confidence": 0.9551975727081299,
-        "bbox": [
-            498,
-            166,
-            919,
-            194
-        ],
-        "text": "(MUST ACCOMPAINED WITH TERMS AND CONDITIONS)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "a211a2b8-f6b9-4fdf-aa99-968c5fd5dc16",
-        "class": "Label",
-        "confidence": 0.9750826358795166,
-        "bbox": [
-            439,
-            181,
-            985,
-            218
-        ],
-        "text": "CUSTOMER INFORMATION SHEET (CIF Creation/Amendment)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "aab1455f-b5bf-49e2-a6b2-d94c6f3b019d",
-        "class": "Label",
-        "confidence": 0.9828960299491882,
-        "bbox": [
-            1104,
-            178,
-            1149,
-            198
-        ],
-        "text": "Date:",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "77d24c88-e92f-47f1-83bc-3279c7966f81",
-        "class": "Label",
-        "confidence": 0.8962537050247192,
-        "bbox": [
-            405,
-            209,
-            1016,
-            238
-        ],
-        "text": "n case of joint accountsPart-l (ClF Sheet) to be taken for each customer)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "f11321a8-a8c8-480e-b6f3-5ee50d705afa",
+        "uuid": "dbd1b583-0ffa-4678-ba8a-a70071c8deb6",
         "class": "Label",
         "confidence": 0.9276454448699951,
         "bbox": [
@@ -435,7 +315,7 @@
         "parent": ""
     },
     {
-        "uuid": "630dfbca-fb24-4300-ac0c-89fc0bcfc3a7",
+        "uuid": "1f23033c-ae6f-486d-88af-9f145c21e028",
         "class": "Label",
         "confidence": 0.954711377620697,
         "bbox": [
@@ -450,37 +330,7 @@
         "parent": ""
     },
     {
-        "uuid": "bc544b55-3a17-471b-b2f9-b60a0b6fea53",
-        "class": "Label",
-        "confidence": 0.9392227530479431,
-        "bbox": [
-            43,
-            260,
-            1009,
-            302
-        ],
-        "text": "Fields marked asterix () are mandatoryPlease fill up in BLOck letters only and use black ink for signature",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "f6cd342d-e403-4ed0-a277-9bb7ba95b0d2",
-        "class": "Label",
-        "confidence": 0.9279778003692627,
-        "bbox": [
-            43,
-            287,
-            196,
-            311
-        ],
-        "text": "For affice use ony",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "737e9b62-19a4-4021-bd20-5025b89d08fe",
+        "uuid": "3f4c7c48-711b-4fdb-b8d9-1354fb5640f5",
         "class": "Label",
         "confidence": 0.934995710849762,
         "bbox": [
@@ -495,22 +345,7 @@
         "parent": ""
     },
     {
-        "uuid": "87a120f8-4951-42ea-8cc6-9b0534bd6cdb",
-        "class": "Label",
-        "confidence": 0.9234655499458313,
-        "bbox": [
-            629,
-            317,
-            969,
-            349
-        ],
-        "text": "Application typeNewUpdate",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "21df13ce-b924-4c9c-9ceb-d1debbde7055",
+        "uuid": "534a2dc1-bc4d-40a1-b01e-5a7e1aebb6bc",
         "class": "Label",
         "confidence": 0.9018704295158386,
         "bbox": [
@@ -525,7 +360,7 @@
         "parent": ""
     },
     {
-        "uuid": "f7d30407-3023-478a-8aa0-3e58e11253d6",
+        "uuid": "d4b2d125-378c-4d11-82e2-0bb4e657d46b",
         "class": "Label",
         "confidence": 0.9936500191688538,
         "bbox": [
@@ -540,22 +375,7 @@
         "parent": ""
     },
     {
-        "uuid": "ed9b6815-4dfc-4450-8af2-c86e4f917bb4",
-        "class": "Label",
-        "confidence": 0.9148931503295898,
-        "bbox": [
-            978,
-            397,
-            1276,
-            422
-        ],
-        "text": "Mandatory for CkyC update request",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "3717bf99-1e86-4b84-bdee-f0e9cf8727e9",
+        "uuid": "b90bf328-ebd0-44be-b0a9-314d2febd87f",
         "class": "Label",
         "confidence": 0.9557512998580933,
         "bbox": [
@@ -570,7 +390,7 @@
         "parent": ""
     },
     {
-        "uuid": "0b40684d-5741-4076-8697-f7c119602a29",
+        "uuid": "e414bbca-b8b0-4af2-a0df-3f46768796a3",
         "class": "Label",
         "confidence": 0.9149738550186157,
         "bbox": [
@@ -585,7 +405,7 @@
         "parent": ""
     },
     {
-        "uuid": "e0099144-7454-4f52-a8b5-587acee05267",
+        "uuid": "a0bc49f8-a0ae-4d8f-80e6-a746e6dbf603",
         "class": "Label",
         "confidence": 0.9071536064147949,
         "bbox": [
@@ -600,7 +420,7 @@
         "parent": ""
     },
     {
-        "uuid": "f3a0e386-dfcb-4a6d-be88-4fac72d012d1",
+        "uuid": "7c61b835-f619-4020-bfde-22f00c737c2f",
         "class": "Label",
         "confidence": 0.9626227617263794,
         "bbox": [
@@ -615,7 +435,7 @@
         "parent": ""
     },
     {
-        "uuid": "e9114e1e-1981-4e67-96d9-234e92ea531e",
+        "uuid": "757cf7e3-de93-463a-a821-f2d2485265b6",
         "class": "Label",
         "confidence": 0.9459778666496277,
         "bbox": [
@@ -630,7 +450,7 @@
         "parent": ""
     },
     {
-        "uuid": "fc6fce9a-b6b3-4d5f-842d-711fa944ab9d",
+        "uuid": "bbfa696d-d003-4d9c-958d-5a8f02dd1215",
         "class": "Label",
         "confidence": 0.883030116558075,
         "bbox": [
@@ -645,22 +465,7 @@
         "parent": ""
     },
     {
-        "uuid": "abe7ec98-2116-4c4e-81ed-19d402f88a1a",
-        "class": "Label",
-        "confidence": 0.8879517912864685,
-        "bbox": [
-            33,
-            531,
-            272,
-            552
-        ],
-        "text": "(Same as ID Proof) Prefix",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "2891bd4e-9f54-423c-b253-353f16147749",
+        "uuid": "63919479-7e84-4288-bb28-e0ab670d6141",
         "class": "Label",
         "confidence": 0.934666097164154,
         "bbox": [

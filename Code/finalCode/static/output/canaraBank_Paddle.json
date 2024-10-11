@@ -1,0 +1,158 @@
+[
+    {
+        "uuid": "dbd1b583-0ffa-4678-ba8a-a70071c8deb6",
+        "class": "Label",
+        "confidence": 0.9276454448699951,
+        "bbox": [
+            48,
+            232,
+            180,
+            257
+        ],
+        "text": "Branch Name :",
+        "child": []
+    },
+    {
+        "uuid": "1f23033c-ae6f-486d-88af-9f145c21e028",
+        "class": "Label",
+        "confidence": 0.954711377620697,
+        "bbox": [
+            686,
+            239,
+            988,
+            273
+        ],
+        "text": "Branch Code",
+        "child": []
+    },
+    {
+        "uuid": "3f4c7c48-711b-4fdb-b8d9-1354fb5640f5",
+        "class": "Label",
+        "confidence": 0.934995710849762,
+        "bbox": [
+            42,
+            312,
+            166,
+            337
+        ],
+        "text": "Customer ID:",
+        "child": []
+    },
+    {
+        "uuid": "534a2dc1-bc4d-40a1-b01e-5a7e1aebb6bc",
+        "class": "Label",
+        "confidence": 0.9018704295158386,
+        "bbox": [
+            39,
+            360,
+            163,
+            385
+        ],
+        "text": "Account No.:",
+        "child": []
+    },
+    {
+        "uuid": "d4b2d125-378c-4d11-82e2-0bb4e657d46b",
+        "class": "Label",
+        "confidence": 0.9936500191688538,
+        "bbox": [
+            809,
+            365,
+            892,
+            390
+        ],
+        "text": "CKYC No :",
+        "child": []
+    },
+    {
+        "uuid": "b90bf328-ebd0-44be-b0a9-314d2febd87f",
+        "class": "Label",
+        "confidence": 0.9557512998580933,
+        "bbox": [
+            36,
+            408,
+            167,
+            436
+        ],
+        "text": "Account type:",
+        "child": []
+    },
+    {
+        "uuid": "e414bbca-b8b0-4af2-a0df-3f46768796a3",
+        "class": "Label",
+        "confidence": 0.9149738550186157,
+        "bbox": [
+            267,
+            413,
+            471,
+            438
+        ],
+        "text": "NormalSmall",
+        "child": []
+    },
+    {
+        "uuid": "a0bc49f8-a0ae-4d8f-80e6-a746e6dbf603",
+        "class": "Label",
+        "confidence": 0.9071536064147949,
+        "bbox": [
+            462,
+            416,
+            558,
+            436
+        ],
+        "text": "Minor",
+        "child": []
+    },
+    {
+        "uuid": "7c61b835-f619-4020-bfde-22f00c737c2f",
+        "class": "Label",
+        "confidence": 0.9626227617263794,
+        "bbox": [
+            796,
+            416,
+            1007,
+            446
+        ],
+        "text": "StaffStaff No",
+        "child": []
+    },
+    {
+        "uuid": "757cf7e3-de93-463a-a821-f2d2485265b6",
+        "class": "Label",
+        "confidence": 0.9459778666496277,
+        "bbox": [
+            35,
+            448,
+            202,
+            473
+        ],
+        "text": "1.Personal Details",
+        "child": []
+    },
+    {
+        "uuid": "bbfa696d-d003-4d9c-958d-5a8f02dd1215",
+        "class": "Label",
+        "confidence": 0.883030116558075,
+        "bbox": [
+            32,
+            487,
+            105,
+            514
+        ],
+        "text": "Name':",
+        "child": []
+    },
+    {
+        "uuid": "63919479-7e84-4288-bb28-e0ab670d6141",
+        "class": "Label",
+        "confidence": 0.934666097164154,
+        "bbox": [
+            27,
+            554,
+            169,
+            581
+        ],
+        "text": "Maiden Name:",
+        "child": []
+    }
+]
