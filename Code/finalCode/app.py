@@ -220,11 +220,11 @@ def connection(image_name):
 def save_changes():
     layout = request.json
     image_name = layout.get('image_name')
-    
+    print(layout)
     # Save the updated layout JSON
-    layout_json_path = os.path.join(output_dir, f"{image_name}_layout.json")
+    layout_json_path = os.path.join(TEMPLATES_DIR, f"{image_name}/layout.json")
     with open(layout_json_path, 'w') as layout_file:
-        json.dump(layout, layout_file, indent=4)
+        json.dump(layout["layout"], layout_file, indent=4)
     
     return jsonify({"message": "Changes saved successfully"}), 200
 

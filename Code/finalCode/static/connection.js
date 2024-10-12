@@ -429,9 +429,9 @@ function onMouseUp(options) {
             
             // Scroll to the corresponding label
             scrollToLabel(startElement.elementData.uuid);
+            // console.log(startElement.elementData, endElement.elementData)
         }
     }
-
     startElement = null;
     canvas.renderAll();
 }
@@ -484,10 +484,12 @@ function updateRelationship(parent, child) {
     // Add the child's UUID to the parent's child array
     if (!parent.elementData.child.includes(child.elementData.uuid)) {
         parent.elementData.child.push(child.elementData.uuid);
+        console.log(parent.elementData.child)
     }
 
     // Set the parent property for the child
     child.elementData.parent = parent.elementData.uuid; // B becomes parent of A
+    console.log(child.elementData.parent)
 }
 
 // Save changes
@@ -501,7 +503,6 @@ function saveChanges() {
             child: el.elementData.child || []
         };
     });
-    
     fetch('/save_changes', {
         method: 'POST',
         headers: {
