@@ -145,10 +145,13 @@
             let optionsHtml = classOptions.map(option => 
                 `<option value="${option}" ${label.class === option ? 'selected' : ''}>${option}</option>`
             ).join('');
-
+            if (label.uuid == null){
+                label.uuid = uuidv4()
+            }
             labelDiv.innerHTML = `
                 <p>Class: ${label.class}</p>
                 <p>Confidence: ${label.confidence.toFixed(2)}</p>
+                <p>UUID: ${label.uuid}</p>
                 <select onchange="updateLabelClass(${index}, this.value)">
                     ${optionsHtml}
                 </select>
