@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,5 +48,41 @@
         <input type="file" name="image" accept="image/*" required>
         <input type="submit" value="Process Image">
     </form>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR and YOLO Processing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <h1>Data Form Processing</h1>
+    
+    <!-- Form for creating a new template -->
+    <form action="/paddleOCRrun" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <input type="submit" value="Process Image">
+    </form>
+
+    <!-- Section to list existing templates -->
+    <div class="template-container">
+        <h2>Existing Templates</h2>
+        <div class="template-list">
+            {% for template in templates %}
+            <div class="template-card" id="{{template}}" onclick="window.location.href='/template/{{template}}'">
+                <div class="img-container">
+                    <img src="{{loc}}/{{ template }}/image.jpg" alt="{{template}}_image">
+                </div>
+                <div class ="descr">
+                    {{template}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

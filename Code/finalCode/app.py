@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file, render_template, redirect, url_for
+from flask import Flask, request, jsonify, send_file, render_template, redirect, url_for, send_from_directory
 import os
 import cv2
 import json
@@ -13,13 +13,39 @@ ocr = PaddleOCR(lang='en', rec_image_shape="3,32,100", rec_batch_num=1, max_text
 YoloModel = YOLO("./Models/best-071024-4.pt")
 
 output_dir = os.path.join(app.static_folder, 'output')
-template_dir = os.path.join(app.static_folder, 'Templates')
-os.makedirs(output_dir, exist_ok=True)
-os.makedirs(template_dir,exist_ok=True)
 
+
+# Directory for storing templates (images and json files)
+TEMPLATES_DIR = os.path.join('static', 'Templates')
+
+# Ensure the templates directory exists
+if not os.path.exists(TEMPLATES_DIR):
+    os.makedirs(TEMPLATES_DIR)
+
+
+# Route to list existing templates
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    templatesDIR = [f for f in os.listdir(TEMPLATES_DIR)]
+    print(templatesDIR)
+    return render_template('index.html', templates=templatesDIR, loc=TEMPLATES_DIR)
+
+# Route to display an existing template (image + JSON)
+@app.route('/template/<template_id>')
+def view_template(template_id):
+    image_filename = f'{template_id}.jpg'
+    json_filename = f'{template_id}.json'
+    
+    image_path = os.path.join(TEMPLATES_DIR, image_filename)
+    json_path = os.path.join(TEMPLATES_DIR, json_filename)
+    
+    if os.path.exists(image_path) and os.path.exists(json_path):
+        with open(json_path, 'r') as f:
+            template_data = f.read()
+        # Using `url_for('static')` to serve the image
+        return render_template('template.html', image_url=url_for('static', filename=f'Templates/{image_filename}'), template_data=template_data)
+    else:
+        return "Template not found", 404
 
 @app.route('/paddleOCRrun', methods=['POST'])
 def paddleOCRrun():
@@ -165,15 +191,15 @@ def connection(image_name):
 
     # Merge YOLO and Paddle data
     combined_layout = yolo_data + paddle_data
-    os.makedirs(template_dir + '/' + image_name, exist_ok=True)
+    os.makedirs(TEMPLATES_DIR + '/' + image_name, exist_ok=True)
 
     # Fix the source path from image_url to the actual file path
     source_image_path = os.path.join(app.static_folder, f'output/{image_name}.jpg')
-    destination_path = os.path.join(template_dir, image_name, "image.jpg")
+    destination_path = os.path.join(TEMPLATES_DIR, image_name, "image.jpg")
     shutil.copy(source_image_path, destination_path)
 
     # Save the layout JSON file
-    layout_json_path = os.path.join(template_dir, f'{image_name}/layout.json')
+    layout_json_path = os.path.join(TEMPLATES_DIR, f'{image_name}/layout.json')
     
     try:
         with open(layout_json_path, 'w') as layout_file:

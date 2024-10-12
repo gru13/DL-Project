@@ -1,0 +1,457 @@
+[
+    {
+        "uuid": "9c020153-49fb-4acf-8b92-babcac58b839",
+        "class": "signature",
+        "confidence": 0.9773558378219604,
+        "bbox": [
+            836,
+            2258,
+            1464,
+            2406
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "1434690e-b3c0-45cb-8271-42c24b38b17b",
+        "class": "signature",
+        "confidence": 0.8746067881584167,
+        "bbox": [
+            1552,
+            2258,
+            2169,
+            2402
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "faa53783-f4b0-428c-97ee-bc5a7a6e87c2",
+        "class": "boxInput",
+        "confidence": 0.766650915145874,
+        "bbox": [
+            405,
+            1588,
+            2234,
+            1658
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "2a90fbed-011b-4ae9-9a8e-5597da7a234e",
+        "class": "boxInput",
+        "confidence": 0.7511256337165833,
+        "bbox": [
+            1691,
+            218,
+            2225,
+            290
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "2146398f-1f97-490b-a2d0-020c0ae0b922",
+        "class": "boxInput",
+        "confidence": 0.7268276214599609,
+        "bbox": [
+            412,
+            889,
+            890,
+            961
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "0b78e7cd-e74c-48ae-8eef-2f229ef7b8bc",
+        "class": "boxInput",
+        "confidence": 0.7190621495246887,
+        "bbox": [
+            390,
+            816,
+            1439,
+            883
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "b8a3674d-db51-470c-8732-6064645fcc88",
+        "class": "boxInput",
+        "confidence": 0.7116532921791077,
+        "bbox": [
+            1730,
+            898,
+            2256,
+            969
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "02be4b74-21ba-4fc4-9370-e1233fa69ad9",
+        "class": "boxInput",
+        "confidence": 0.7053065299987793,
+        "bbox": [
+            411,
+            1165,
+            1180,
+            1232
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "c12a54a0-1406-493a-8ca7-5b71b959019a",
+        "class": "checkBox",
+        "confidence": 0.6866014003753662,
+        "bbox": [
+            754,
+            567,
+            849,
+            643
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "ca6476ac-3016-47d4-b805-1d1d37989f0b",
+        "class": "boxInput",
+        "confidence": 0.6551302671432495,
+        "bbox": [
+            1588,
+            291,
+            2230,
+            358
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "cc4ba0c5-0f8e-440c-8732-b48d15cdf2d4",
+        "class": "boxInput",
+        "confidence": 0.6492753028869629,
+        "bbox": [
+            412,
+            967,
+            2245,
+            1034
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "c4046e2a-f198-4351-9d9a-7586c1803cd9",
+        "class": "boxInput",
+        "confidence": 0.6355304718017578,
+        "bbox": [
+            405,
+            1035,
+            2248,
+            1099
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "fd9bfad6-a1cd-4689-a70f-80cb351cb998",
+        "class": "boxInput",
+        "confidence": 0.6334598660469055,
+        "bbox": [
+            412,
+            1521,
+            1128,
+            1581
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "9253f838-80ea-40aa-9815-d3b39ed4bb9c",
+        "class": "boxInput",
+        "confidence": 0.6323598027229309,
+        "bbox": [
+            413,
+            1450,
+            2237,
+            1521
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "34d4719f-8b3f-4f5d-8a45-6f4a3e6a8dca",
+        "class": "boxInput",
+        "confidence": 0.6248471736907959,
+        "bbox": [
+            405,
+            1096,
+            2237,
+            1167
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "a976c8e0-e77e-4cce-a7d9-d0f8007c20fb",
+        "class": "signature",
+        "confidence": 0.5402045249938965,
+        "bbox": [
+            109,
+            2255,
+            738,
+            2406
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "53453e65-e09b-4d8f-8d0b-7b3e515ab768",
+        "class": "lineInput",
+        "confidence": 0.5089089870452881,
+        "bbox": [
+            1084,
+            1870,
+            1390,
+            1912
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "e7536d1d-3b2b-468e-8673-3c518d7be58b",
+        "class": "lineInput",
+        "confidence": 0.49924802780151367,
+        "bbox": [
+            1219,
+            2979,
+            1653,
+            3043
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "60201027-2ae9-40c1-8ccf-86f9a0239c18",
+        "class": "lineInput",
+        "confidence": 0.4755920171737671,
+        "bbox": [
+            786,
+            2739,
+            1165,
+            2795
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "ea73d990-dacd-4dba-87ea-93a7cc678149",
+        "class": "boxInput",
+        "confidence": 0.425040066242218,
+        "bbox": [
+            413,
+            1384,
+            1422,
+            1450
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "9a7311fc-28e1-49b2-9437-b2fd98aeba83",
+        "class": "lineInput",
+        "confidence": 0.36865338683128357,
+        "bbox": [
+            1427,
+            2662,
+            2188,
+            2720
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "ce03c8fe-233d-408c-842b-7b7e2119f5e0",
+        "class": "lineInput",
+        "confidence": 0.3612613379955292,
+        "bbox": [
+            1429,
+            2733,
+            2164,
+            2797
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "5849f1bc-d0aa-4888-9525-2a034aeae582",
+        "class": "lineInput",
+        "confidence": 0.3450714349746704,
+        "bbox": [
+            103,
+            2808,
+            2143,
+            2881
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "e7600f3f-34d3-4dd1-a6a2-54847e2921c9",
+        "class": "lineInput",
+        "confidence": 0.3286809027194977,
+        "bbox": [
+            744,
+            1664,
+            2166,
+            1730
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "cd927bcf-ed62-4975-a8e3-df83f3a5169b",
+        "class": "lineInput",
+        "confidence": 0.3165976405143738,
+        "bbox": [
+            204,
+            3028,
+            731,
+            3100
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "8cc181fc-dac3-4d4e-8726-7f1eefcec2ce",
+        "class": "lineInput",
+        "confidence": 0.3116876780986786,
+        "bbox": [
+            1111,
+            2908,
+            1655,
+            2966
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "c1157b3c-a9ee-466b-9c2c-a2551a889531",
+        "class": "lineInput",
+        "confidence": 0.2956661581993103,
+        "bbox": [
+            1724,
+            403,
+            2235,
+            465
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "255c84ce-755b-4483-a034-000f509b48d0",
+        "class": "lineInput",
+        "confidence": 0.28276658058166504,
+        "bbox": [
+            942,
+            387,
+            1394,
+            454
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "dfea8d0a-81f2-4764-a9fa-5ed221193919",
+        "class": "checkBox",
+        "confidence": 1,
+        "bbox": [
+            416,
+            567,
+            513,
+            638
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "73e0e83e-fcb8-490a-880c-f20f46f6ddf0",
+        "class": "checkBox",
+        "confidence": 1,
+        "bbox": [
+            109,
+            562,
+            201,
+            637
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "43a1e631-aee2-4b67-8cd1-32f9d497cd9f",
+        "class": "EmptyInput",
+        "confidence": 1,
+        "bbox": [
+            116,
+            450,
+            2147,
+            517
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "8963bc8a-0ef9-4087-80d0-c42883c8dc95",
+        "class": "boxInput",
+        "confidence": 1,
+        "bbox": [
+            414,
+            1308,
+            2241,
+            1384
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "906c84a7-55d5-4ff7-a918-a0f260491738",
+        "class": "EmptyInput",
+        "confidence": 1,
+        "bbox": [
+            165,
+            2954,
+            656,
+            3029
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "9ee820c0-d529-4250-b551-d8ac28f9757c",
+        "class": "EmptyInput",
+        "confidence": 1,
+        "bbox": [
+            415,
+            2654,
+            1162,
+            2722
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "id": "4755fd1b-70ab-4e11-9349-fa5ee0c30a15",
+        "class": "EmptyInput",
+        "confidence": 1,
+        "bbox": [
+            105,
+            264,
+            636,
+            356
+        ],
+        "text": "",
+        "parent": ""
+    }
+]
