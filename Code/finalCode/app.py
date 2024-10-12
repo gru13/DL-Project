@@ -15,6 +15,7 @@ YoloModel = YOLO("./Models/best-071024-4.pt")
 output_dir = os.path.join(app.static_folder, 'output')
 template_dir = os.path.join(app.static_folder, 'Templates')
 os.makedirs(output_dir, exist_ok=True)
+os.makedirs(template_dir,exist_ok=True)
 
 @app.route('/')
 def index():
@@ -25,9 +26,7 @@ def paddleOCRrun():
     image_file = request.files['image']
     image_name = image_file.filename
     img_path = os.path.join(output_dir, image_name)
-    os.makedirs(template_dir+'/'+image_name, exist_ok=True)
     image_file.save(img_path)
-    image_file.save(template_dir+'/'+image_name+'image.jpg')
     result = ocr.ocr(img_path)
     
     def convert_quad_to_rect(quad_bbox):
@@ -143,16 +142,10 @@ def connection(image_name):
     yolo_json_path = os.path.join(output_dir, f'{image_name}_yolo.json')
     paddle_json_path = os.path.join(output_dir, f'{image_name}_Paddle.json')
 
-    print(f"Image URL: {image_url}")
-    print(f"YOLO JSON path: {yolo_json_path}")
-    print(f"Paddle JSON path: {paddle_json_path}")
-
-    
     try:
         with open(yolo_json_path, 'r') as yolo_file:
             yolo_data = json.load(yolo_file)
     except (FileNotFoundError, json.JSONDecodeError) as e:
-        # Handle error (e.g., log it and return an error message to the user)
         return f"Error loading YOLO data: {e}", 500
 
     try:
@@ -161,26 +154,32 @@ def connection(image_name):
     except (FileNotFoundError, json.JSONDecodeError) as e:
         return f"Error loading PaddleOCR data: {e}", 500
 
-    # Add Mode field to YOLO data
+    # Add Model field to YOLO and Paddle data
     for item in yolo_data:
         item['Model'] = 'YOLO'
         item['child'] = []
 
-    # Add Mode field to Paddle data
     for item in paddle_data:
         item['Model'] = 'PADDLE'
         item['parent'] = ''
 
-    # Create the combined layout JSON by merging the two
+    # Merge YOLO and Paddle data
     combined_layout = yolo_data + paddle_data
-    os.makedirs(template_dir+'/'+image_name, exist_ok=True)
+    os.makedirs(template_dir + '/' + image_name, exist_ok=True)
+
+    # Fix the source path from image_url to the actual file path
+    source_image_path = os.path.join(app.static_folder, f'output/{image_name}.jpg')
+    destination_path = os.path.join(template_dir, image_name, "image.jpg")
+    shutil.copy(source_image_path, destination_path)
+
+    # Save the layout JSON file
     layout_json_path = os.path.join(template_dir, f'{image_name}/layout.json')
     
     try:
         with open(layout_json_path, 'w') as layout_file:
             json.dump(combined_layout, layout_file, indent=4)
     except IOError as e:
-        return f"Error writing layout JSON: {e}", 500
+        return f"Error writing layout JSON: {e}", 50
     layout_json_url = url_for('static', filename=f'Templates/{image_name}/layout.json')
     print(f"Layout JSON URL: {layout_json_url}")
 
