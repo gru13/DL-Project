@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template View</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        pre {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css')}}">
 </head>
 <body>
     <h1>Template View</h1>
-    
-    <img src="{{ image_path }}" alt="Template Image">
-    
-    <h2>Template Data (JSON)</h2>
-    <pre>{{ template_data }}</pre>
+    <div class="container">
+        <div class="imageContainer">
+            <input type="file" id="imageInput" accept="image/*">
+            <canvas id="canvas">
+
+            </canvas>
+        </div>
+        <div class="labelList">
+            <h1>Labels</h1>
+            <ul id="labelDetails"></ul> <!-- Placeholder for label details -->
+        </div>
+    </div>
+    <script>
+        const layoutJsonUrl = "{{json_url}}";  // Pass the URL dynamically
+    </script>
+    <script src="{{ url_for('static', filename='js/template.js') }}"></script>
 </body>
 </html>

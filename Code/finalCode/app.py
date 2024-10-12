@@ -33,19 +33,9 @@ def home():
 # Route to display an existing template (image + JSON)
 @app.route('/template/<template_id>')
 def view_template(template_id):
-    image_filename = f'{template_id}.jpg'
-    json_filename = f'{template_id}.json'
-    
-    image_path = os.path.join(TEMPLATES_DIR, image_filename)
-    json_path = os.path.join(TEMPLATES_DIR, json_filename)
-    
-    if os.path.exists(image_path) and os.path.exists(json_path):
-        with open(json_path, 'r') as f:
-            template_data = f.read()
-        # Using `url_for('static')` to serve the image
-        return render_template('template.html', image_url=url_for('static', filename=f'Templates/{image_filename}'), template_data=template_data)
-    else:
-        return "Template not found", 404
+    json_url = url_for('static', filename=f"Templates/{template_id}/layout.json")
+    image_url = url_for('static', filename=f"Templates/{template_id}/image.jpg")
+    return render_template('template.html', template_id=template_id,image_url=image_url,json_url=json_url)
 
 @app.route('/paddleOCRrun', methods=['POST'])
 def paddleOCRrun():

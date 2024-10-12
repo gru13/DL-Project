@@ -13,7 +13,7 @@
 <body>
     <h1>OCR Label Editor</h1>
     <div class="container">
-        <div>
+        <div class = "imageContainer">
             <canvas id="canvas"></canvas>
         </div>
         <div id="labelList">
@@ -93,6 +93,7 @@
                 labelDiv.className = 'label';
                 labelDiv.id = `label-${index}`;
                 labelDiv.innerHTML = `
+                    <p>UUID: ${label.uuid}</p>
                     <p>Text: ${label.text}</p>
                     <p>Confidence: ${label.confidence.toFixed(2)}</p>
                     <p>Class: ${label.class}</p>
@@ -179,7 +180,7 @@
             if (!isDrawing) return;
 
             let newLabel = {
-                id: uuidv4(),
+                uuid: uuidv4(),
                 text: 'New Label',
                 confidence: 1.0,
                 class: 'Label',

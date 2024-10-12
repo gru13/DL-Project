@@ -1,249 +1,120 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if Fabric.js is loaded
-    if (typeof fabric === 'undefined') {
-        console.error('Fabric.js is not loaded. Please check your script inclusion order.');
-        return;
-    }
+let layout = [];
 
-    const canvas = new fabric.Canvas('canvas');
-    let labels = [];
+// Function to load image into the canvas from user input
+function loadImageFromFile(file) {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const reader = new FileReader();
+    const image = new Image();
 
-    document.getElementById('loadImage').addEventListener('click', function() {
-        const fileInput = document.getElementById('imageUpload');
-        const file = fileInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                fabric.Image.fromURL(e.target.result, function(img) {
-                    canvas.setDimensions({width: img.width, height: img.height});
-                    canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
-                    loadBoundingBoxes();
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+    reader.onload = function (event) {
+        image.onload = function () {
+            // Set canvas size to match the image dimensions
+            canvas.width = image.width;
+            canvas.height = image.height;
 
-    function loadBoundingBoxes() {
-        fetch(json_url)
-            .then(response => response.json())
-            .then(data => {
-                canvas.clear();
-                labels = [];
-                data.forEach(item => drawBoundingBox(item));
-                updateLabels();
-                runHandwrittenDataModel();
-            })
-            .catch(error => console.error('Error loading bounding boxes:', error));
-    }
+            // Draw the image onto the canvas
+            ctx.drawImage(image, 0, 0);
 
-    function drawBoundingBox(item) {
-        const [x, y, width, height] = item.bbox;
-        const rect = new fabric.Rect({
-            left: x,
-            top: y,
-            width: width - x,
-            height: height - y,
-            stroke: item.Model === 'YOLO' ? 'red' : 'blue',
-            strokeWidth: 2,
-            fill: 'rgba(0,0,0,0.1)',
-            selectable: false
-        });
-        canvas.add(rect);
-        
-        const text = new fabric.Text(item.uuid, {
-            left: x,
-            top: y - 20,
-            fontSize: 12,
-            fill: item.Model === 'YOLO' ? 'red' : 'blue'
-        });
-        canvas.add(text);
-        
-        labels.push({
-            uuid: item.uuid,
-            text: item.text || '',
-            bbox: item.bbox,
-            model: item.Model
-        });
-    }
+            // After the image is drawn, render the bounding boxes
+            renderDetections();
 
-    function updateLabels() {
-        const labelsContainer = document.getElementById('labels');
-        labelsContainer.innerHTML = '';
-        labels.forEach(label => {
-            const labelDiv = document.createElement('div');
-            labelDiv.innerHTML = `
-                <span>UUID: ${label.uuid}</span>
-                <span>Model: ${label.model}</span>
-                <input type="text" value="${label.text}" data-uuid="${label.uuid}">
-            `;
-            labelsContainer.appendChild(labelDiv);
-        });
-    }
-
-    document.getElementById('saveChanges').addEventListener('click', function() {
-        const updatedLabels = Array.from(document.querySelectorAll('#labels input')).map(input => ({
-            uuid: input.dataset.uuid,
-            text: input.value
-        }));
-        console.log('Updated labels:', updatedLabels);
-        // Placeholder for sending data to server
-    });
-
-    function runHandwrittenDataModel() {
-        const yoloBoundingBoxes = labels.filter(label => label.model === 'YOLO');
-        console.log('Running handwritten data model on YOLO bounding boxes:', yoloBoundingBoxes);
-        // Placeholder for handwritten data extraction logic
-        yoloBoundingBoxes.forEach(box => {
-            const extractedText = `Extracted text for ${box.uuid}`;
-            const labelInput = document.querySelector(`input[data-uuid="${box.uuid}"]`);
-            if (labelInput) {
-                labelInput.value = extractedText;
-            }
-        });
-    }
-
-    // Add event listener for label text changes
-    document.getElementById('labels').addEventListener('input', function(e) {
-        if (e.target.tagName === 'INPUT') {
-            const uuid = e.target.dataset.uuid;
-            const newText = e.target.value;
-            const label = labels.find(l => l.uuid === uuid);
-            if (label) {
-                label.text = newText;
-            }
-            const canvasText = canvas.getObjects('text').find(obj => obj.text === uuid);
-            if (canvasText) {
-                canvasText.set('text', `${uuid}: ${newText}`);
-                canvas.renderAll();
-            }
-        }
-    });
-});
-
-document.getElementById('loadImage').addEventListener('click', function() {
-    const fileInput = document.getElementById('imageUpload');
-    const file = fileInput.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            fabric.Image.fromURL(e.target.result, function(img) {
-                canvas.setDimensions({width: img.width, height: img.height});
-                canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
-                loadBoundingBoxes();
-            });
+            // Hide the file input after the image is loaded
+            document.getElementById('imageInput').style.display = 'none';
         };
-        reader.readAsDataURL(file);
-    }
-});
+        image.src = event.target.result; // Set the image source to the file data
+    };
 
-function loadBoundingBoxes() {
-    fetch(json_url)
-        .then(response => response.json())
-        .then(data => {
-            canvas.clear();
-            labels = [];
-            data.forEach(item => drawBoundingBox(item));
-            updateLabels();
-            runHandwrittenDataModel();
+    reader.readAsDataURL(file);  // Read the file as a data URL
+}
+
+// Load JSON data when the page loads
+function loadLayoutData() {
+    // Fetch the JSON data using the passed URL
+    fetch(layoutJsonUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load layout JSON from ' + layoutJsonUrl);
+            }
+            return response.json();  // Parse the JSON response
         })
-        .catch(error => console.error('Error loading bounding boxes:', error));
+        .then(data => {
+            layout = data; // Assign the data to the 'layout' variable or use it as needed
+            renderLabelDetails(); // Render label details after data is loaded
+        })
+        .catch(error => {
+            console.error('Error loading JSON:', error);
+            alert('Failed to load layout data. Please try again.');
+        });
 }
 
-function drawBoundingBox(item) {
-    const [x, y, width, height] = item.bbox;
-    const rect = new fabric.Rect({
-        left: x,
-        top: y,
-        width: width - x,
-        height: height - y,
-        stroke: item.Model === 'YOLO' ? 'red' : 'blue',
-        strokeWidth: 2,
-        fill: 'rgba(0,0,0,0.1)',
-        selectable: false
-    });
-    canvas.add(rect);
-    
-    const text = new fabric.Text(item.uuid, {
-        left: x,
-        top: y - 20,
-        fontSize: 12,
-        fill: item.Model === 'YOLO' ? 'red' : 'blue'
-    });
-    canvas.add(text);
-    
-    labels.push({
-        uuid: item.uuid,
-        text: item.text || '',
-        bbox: item.bbox,
-        model: item.Model
+// Function to render detections (bounding boxes) on the canvas
+function renderDetections() {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Loop through each detection in the layout data
+    layout.forEach(detection => {
+        const bbox = detection.bbox;
+        const model = detection.Model;
+
+        // Set the style for the bounding box fill based on the Model
+        if (model === 'YOLO') {
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';  // Red with 90% opacity
+            ctx.strokeStyle = 'red';  // Red border for bbox
+        } else if (model === 'PADDLE') {
+            ctx.fillStyle = 'rgba(0, 0, 255, 0.1)';  // Blue with 90% opacity
+            ctx.strokeStyle = 'blue';  // Blue border for bbox
+        } else {
+            ctx.fillStyle = 'rgba(0, 255, 0, 0.1)';  // Green as a fallback (if no model matches)
+            ctx.strokeStyle = 'green';
+        }
+
+        ctx.lineWidth = 2;
+
+        // Fill the bounding box with the semi-transparent color
+        ctx.fillRect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
+
+        // Draw the bounding box (bbox: [x, y, width, height])
+        ctx.strokeRect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
+
+        // Optionally, add the label/class name above the bbox
+        ctx.fillStyle = 'black';
+        ctx.font = '16px Arial';
+        ctx.fillText(detection.class, bbox[0], bbox[1] - 10); // Display class above the bounding box
     });
 }
 
-function updateLabels() {
-    const labelsContainer = document.getElementById('labels');
-    labelsContainer.innerHTML = '';
-    labels.forEach(label => {
-        const labelDiv = document.createElement('div');
-        labelDiv.innerHTML = `
-            <span>UUID: ${label.uuid}</span>
-            <span>Model: ${label.model}</span>
-            <input type="text" value="${label.text}" data-uuid="${label.uuid}">
+// Function to render label details in the sidebar
+function renderLabelDetails() {
+    const labelList = document.getElementById('labelDetails');
+    labelList.innerHTML = ''; // Clear previous details
+
+    // Loop through each detection and add details to the list
+    layout.forEach(detection => {
+        const li = document.createElement('li');
+        li.className = 'label'
+        li.innerHTML = `
+            <strong>UUID:</strong> ${detection.uuid}<br>
+            <strong>Class:</strong> ${detection.class}<br>
+            <strong>Confidence:</strong> ${detection.confidence}<br>
+            <strong>BBox:</strong> [${detection.bbox.join(', ')}]<br>
+            <strong>Text:</strong> ${detection.text}<br>
+            <strong>Model:</strong> ${detection.Model}<br>
+            <strong>Parent:</strong> ${detection.parent}<br>
+            <hr>
         `;
-        labelsContainer.appendChild(labelDiv);
+        labelList.appendChild(li);
     });
 }
 
-document.getElementById('saveChanges').addEventListener('click', function() {
-    const updatedLabels = Array.from(document.querySelectorAll('#labels input')).map(input => ({
-        uuid: input.dataset.uuid,
-        text: input.value
-    }));
-    // Here you would typically send the updatedLabels to your server
-    console.log('Updated labels:', updatedLabels);
-    // Placeholder for sending data to server
-    // fetch('/update_labels', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(updatedLabels),
-    // })
-    // .then(response => response.json())
-    // .then(data => console.log('Success:', data))
-    // .catch((error) => console.error('Error:', error));
-});
-
-function runHandwrittenDataModel() {
-    const yoloBoundingBoxes = labels.filter(label => label.model === 'YOLO');
-    console.log('Running handwritten data model on YOLO bounding boxes:', yoloBoundingBoxes);
-    // Placeholder for handwritten data extraction logic
-    yoloBoundingBoxes.forEach(box => {
-        // Simulate extracting text from the bounding box
-        const extractedText = `Extracted text for ${box.uuid}`;
-        // Update the label with the extracted text
-        const labelInput = document.querySelector(`input[data-uuid="${box.uuid}"]`);
-        if (labelInput) {
-            labelInput.value = extractedText;
-        }
-    });
-}
-
-// Add event listener for label text changes
-document.getElementById('labels').addEventListener('input', function(e) {
-    if (e.target.tagName === 'INPUT') {
-        const uuid = e.target.dataset.uuid;
-        const newText = e.target.value;
-        // Update the label object
-        const label = labels.find(l => l.uuid === uuid);
-        if (label) {
-            label.text = newText;
-        }
-        // Update the text on the canvas
-        const canvasText = canvas.getObjects('text').find(obj => obj.text === uuid);
-        if (canvasText) {
-            canvasText.set('text', `${uuid}: ${newText}`);
-            canvas.renderAll();
-        }
+// Add event listener for the file input
+document.getElementById('imageInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        loadImageFromFile(file);
     }
 });
+
+// Start loading layout data after the page loads
+window.onload = loadLayoutData;

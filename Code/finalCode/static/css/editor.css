@@ -79,7 +79,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     max-height: 80vh;
-    min-width: 15vw;
+    min-width: 23vw;
+    max-width: 23vw;
+    scrollbar-width: none;
     overflow-y: auto;
 }
 h1, h2 {
@@ -117,4 +119,7 @@ h1, h2 {
 .paddle {
     background-color: rgba(0, 255, 0, 0.3);
     border: 2px solid green;
+}
+.imageContainer{
+    width: 72vw;
 }
