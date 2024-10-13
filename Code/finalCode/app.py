@@ -6,11 +6,22 @@ import uuid
 from paddleocr import PaddleOCR
 from ultralytics import YOLO
 import shutil
+from PIL import ImageDraw, Image, ImageEnhance, ImageFilter
+
 
 labels = ['Detailed', 'EmptyInput', 'TableColumn', 'boxInput', 'checkBox', 'lineInput', 'signature']
 app = Flask(__name__)
-ocr = PaddleOCR(lang='en', rec_image_shape="3,32,100", rec_batch_num=1, max_text_length=25, rec_algorithm='CRNN', use_gpu=True, rec_model_dir='./Models/ppocr_mobile_v4.0_rec_infer/')
+Pocr = PaddleOCR(lang='en', rec_image_shape="3,32,100", rec_batch_num=1, max_text_length=25, rec_algorithm='CRNN', use_gpu=True, rec_model_dir='./Models/ppocr_mobile_v4.0_rec_infer/')
 YoloModel = YOLO("./Models/best-071024-4.pt")
+
+history = 'history'
+cropped = "cropped"
+app.config['history'] = history
+app.config['cropped'] = cropped
+
+# Ensure the upload folder exists
+os.makedirs(history, exist_ok=True)
+os.makedirs(cropped, exist_ok=True)
 
 output_dir = os.path.join(app.static_folder, 'output')
 
@@ -43,7 +54,7 @@ def paddleOCRrun():
     image_name = image_file.filename
     img_path = os.path.join(output_dir, image_name)
     image_file.save(img_path)
-    result = ocr.ocr(img_path)
+    result = Pocr.ocr(img_path)
     
     def convert_quad_to_rect(quad_bbox):
         x_coords = [point[0] for point in quad_bbox]
@@ -222,6 +233,70 @@ def save_changes():
 def get_labels():
     labels = ['Detailed', 'EmptyInput', 'TableColumn', 'boxInput', 'checkBox', 'lineInput', 'signature']
     return jsonify(labels)
+
+
+
+from google.cloud import vision
+import io
+
+def detect_text(image_path):
+    client = vision.ImageAnnotatorClient()
+
+    with io.open(image_path, 'rb') as image_file:
+        content = image_file.read()
+
+    image = vision.Image(content=content)
+    response = client.text_detection(image=image)
+    texts = response.text_annotations
+
+    if texts:
+        return texts[0].description
+    return ""
+
+@app.route('/process-empty-text-elements', methods=['POST'])
+def process_empty_text_elements():
+    try:
+        # Get the layout data from the form (as JSON string)
+        layout_data = request.form.get('layout')
+        if layout_data:
+            layout_data = json.loads(layout_data)
+
+        # Get the image file from the form
+        image = request.files.get('image')
+        
+        if image:
+            # Save the image to the upload folder
+            image_path = os.path.join(app.config['history'], image.filename)
+            image.save(image_path)
+            
+            # Process each bounding box and recognize text using Google Vision AI
+            updated_layout = []
+            for detection in layout_data:
+                bbox = detection['bbox']
+                # Create a new image with just this bounding box
+                with Image.open(image_path) as img:
+                    cropped_image = img.crop((bbox[0], bbox[1], bbox[2], bbox[3]))
+                    cropped_path = os.path.join(app.config['cropped'], f"{detection['uuid']}.png")
+                    cropped_image.save(cropped_path)
+                
+                recognized_text = detect_text(cropped_path)
+                if recognized_text:
+                    updated_layout.append({
+                        "uuid": detection["uuid"],
+                        "text": recognized_text
+                    })
+                    print(recognized_text)
+
+        # Return a response back to the frontend
+        return jsonify({
+            "message": "Data and image processed successfully",
+            "status": "success",
+            "updated_layout": updated_layout
+        }), 200
+
+    except Exception as e:
+        print(e)
+        return jsonify({"message": str(e), "status": "error"}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

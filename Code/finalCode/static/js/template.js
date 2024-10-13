@@ -21,6 +21,8 @@ function loadImageFromFile(file) {
 
             // Hide the file input after the image is loaded
             document.getElementById('imageInput').style.display = 'none';
+            document.getElementById('extractData').style.display = 'block';
+
         };
         image.src = event.target.result; // Set the image source to the file data
     };
@@ -41,6 +43,7 @@ function loadLayoutData() {
         .then(data => {
             layout = data; // Assign the data to the 'layout' variable or use it as needed
             renderLabelDetails(); // Render label details after data is loaded
+            addCanvasClickListener(); // Add click listener to the canvas
         })
         .catch(error => {
             console.error('Error loading JSON:', error);
@@ -53,7 +56,7 @@ function renderDetections() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
-    // Loop through each detection in the layout data
+    // First, draw all the bounding boxes and labels
     layout.forEach(detection => {
         const bbox = detection.bbox;
         const model = detection.Model;
@@ -75,7 +78,7 @@ function renderDetections() {
         // Fill the bounding box with the semi-transparent color
         ctx.fillRect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
 
-        // Draw the bounding box (bbox: [x, y, width, height])
+        // Draw the bounding box (bbox: [x1, y1, x2, y2])
         ctx.strokeRect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
 
         // Optionally, add the label/class name above the bbox
@@ -83,6 +86,54 @@ function renderDetections() {
         ctx.font = '16px Arial';
         ctx.fillText(detection.class, bbox[0], bbox[1] - 10); // Display class above the bounding box
     });
+
+    // Now, draw the green lines with arrowheads between parent and child elements
+    layout.forEach(detection => {
+        // Check if the detection has a parent
+        if (detection.parent) {
+            const parentDetection = layout.find(item => item.uuid === detection.parent);
+            if (parentDetection) {
+                // Calculate the center of the parent bounding box
+                const parentBbox = parentDetection.bbox;
+                const parentCenterX = (parentBbox[0] + parentBbox[2]) / 2;
+                const parentCenterY = (parentBbox[1] + parentBbox[3]) / 2;
+
+                // Calculate the center of the child bounding box (current detection)
+                const childBbox = detection.bbox;
+                const childCenterX = (childBbox[0] + childBbox[2]) / 2;
+                const childCenterY = (childBbox[1] + childBbox[3]) / 2;
+
+                // Draw a green line connecting the child to the parent
+                ctx.strokeStyle = 'green';  // Set the line color to green
+                ctx.lineWidth = 2;          // Set the line width
+                ctx.beginPath();
+                ctx.moveTo(childCenterX, childCenterY);  // Start at child center
+                ctx.lineTo(parentCenterX, parentCenterY);  // Draw to parent center
+                ctx.stroke();  // Actually draw the line
+
+                // Now draw the arrowhead at the parent point
+                drawArrowhead(ctx, childCenterX, childCenterY, parentCenterX, parentCenterY);
+            }
+        }
+    });
+}
+
+// Function to draw an arrowhead pointing from (x0, y0) to (x1, y1)
+function drawArrowhead(ctx, x0, y0, x1, y1) {
+    const headLength = 10;  // Length of the arrowhead
+    const dx = x1 - x0;
+    const dy = y1 - y0;
+    const angle = Math.atan2(dy, dx);  // Angle of the line
+
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);  // Arrow tip (at parent)
+
+    // Draw the two lines of the arrowhead
+    ctx.lineTo(x1 - headLength * Math.cos(angle - Math.PI / 6), y1 - headLength * Math.sin(angle - Math.PI / 6));
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x1 - headLength * Math.cos(angle + Math.PI / 6), y1 - headLength * Math.sin(angle + Math.PI / 6));
+
+    ctx.stroke();
 }
 
 // Function to render label details in the sidebar
@@ -93,19 +144,54 @@ function renderLabelDetails() {
     // Loop through each detection and add details to the list
     layout.forEach(detection => {
         const li = document.createElement('li');
-        li.className = 'label'
+        li.className = 'label';
+        li.id = `label-${detection.uuid}`; // Add an ID to each label element
         li.innerHTML = `
-            <strong>UUID:</strong> ${detection.uuid}<br>
-            <strong>Class:</strong> ${detection.class}<br>
-            <strong>Confidence:</strong> ${detection.confidence}<br>
-            <strong>BBox:</strong> [${detection.bbox.join(', ')}]<br>
-            <strong>Text:</strong> ${detection.text}<br>
-            <strong>Model:</strong> ${detection.Model}<br>
-            <strong>Parent:</strong> ${detection.parent}<br>
-            <hr>
+            <div> <strong>UUID:</strong> ${detection.uuid}</div>
+            <div> <strong>Class:</strong> ${detection.class}</div>
+            <div> <strong>Text:</strong> ${detection.text}</div>
         `;
+        if(detection.Model === 'YOLO'){
+            li.innerHTML += '<div> <strong>Parent:</strong>'+detection.parent+'</div>';
+            li.style.color = 'rgba(255, 0, 0, 0.7)';
+        }else{
+            li.innerHTML += '<div> <strong>Child:</strong><br><hr><center>' +detection.child.join("<br><hr>") +'<br><hr></center></div>';
+            li.style.color = 'rgba(0, 0, 255, 0.7)';
+        }
         labelList.appendChild(li);
     });
+}
+
+// Function to add click listener to the canvas
+function addCanvasClickListener() {
+    const canvas = document.getElementById('canvas');
+    canvas.addEventListener('click', function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        // Find the clicked element
+        const clickedElement = layout.find(detection => {
+            const bbox = detection.bbox;
+            return x >= bbox[0] && x <= bbox[2] && y >= bbox[1] && y <= bbox[3];
+        });
+
+        if (clickedElement) {
+            focusOnLabel(clickedElement.uuid);
+        }
+    });
+}
+
+// Function to focus on and scroll to a label
+function focusOnLabel(uuid) {
+    const labelElement = document.getElementById(`label-${uuid}`);
+    if (labelElement) {
+        labelElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        labelElement.style.backgroundColor = 'yellow'; // Highlight the focused label
+        setTimeout(() => {
+            labelElement.style.backgroundColor = ''; // Remove highlight after a short delay
+        }, 2000);
+    }
 }
 
 // Add event listener for the file input
@@ -115,6 +201,51 @@ document.getElementById('imageInput').addEventListener('change', function (event
         loadImageFromFile(file);
     }
 });
+
+// Add event listener for the 'extractData' button
+document.getElementById('extractData').addEventListener('click', function () {
+    // Filter the elements in the layout where 'text' is empty
+    const emptyTextElements = layout.filter(detection => detection.text.trim() === '');
+
+    // If no empty text elements are found, alert the user
+    if (emptyTextElements.length === 0) {
+        alert('No elements with empty text found.');
+        return;
+    }
+
+    // Get the image file from the file input
+    const imageInput = document.getElementById('imageInput');
+    const imageFile = imageInput.files[0];
+
+    // Send the filtered data and image to the Flask backend
+    sendDataToFlask(emptyTextElements, imageFile);
+});
+
+// Function to send the filtered data and image to the Flask backend
+function sendDataToFlask(data, imageFile) {
+    const formData = new FormData();
+
+    // Append the JSON data (layout with empty text) to the FormData object
+    formData.append('layout', JSON.stringify(data));
+
+    // Append the image file to the FormData object
+    formData.append('image', imageFile);
+
+    // Send the FormData to the Flask backend
+    fetch('/process-empty-text-elements', {  // Adjust the URL to match your Flask route
+        method: 'POST',
+        body: formData  // Send the FormData object
+    })
+    .then(response => response.json())  // Parse the JSON response from Flask
+    .then(result => {
+        console.log('Success:', result);  // Log the result
+        alert('Data and image successfully sent to the backend.');
+    })
+    .catch(error => {
+        console.error('Error:', error);  // Log any errors
+        alert('An error occurred while sending data and image to the backend.');
+    });
+}
 
 // Start loading layout data after the page loads
 window.onload = loadLayoutData;

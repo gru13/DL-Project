@@ -17,7 +17,7 @@ body{
 
 .labelList{
     width: 22vw;
-    height: 80vh;
+    height: 84vh;
     border: 3px solid black;
     border-radius: 10px;
     margin: 10px;
@@ -26,12 +26,11 @@ body{
     scrollbar-width: none;
     h1{
         position: fixed;
-        top: 1.90vw;
+        top: 1vw;
     }
-}
-.labelList-container{
-    position: relative;
-    bottom: 2vw;
+    li{
+        list-style: none;
+    }
 }
 
 .container{
@@ -40,8 +39,30 @@ body{
 }
 
 .label {
-    border: 1px solid rgb(70, 62, 62);
+    border: 3px solid rgb(70, 62, 62);
     border-radius: 5px;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: x-large;
+    div{
+        padding: 10px;
+    }
+}
+
+.btn{
+    background-color: #45a049;
+    font-size: large;
+    color: black;
+    border: 2px solid #45a049;
+    border-radius: 3px;
+    padding: 10px 20px;
+    display: none;
+}
+
+#labelDetails{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: 20px;
 }
