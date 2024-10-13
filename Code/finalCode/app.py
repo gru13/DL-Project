@@ -285,7 +285,7 @@ def process_empty_text_elements():
                         "uuid": detection["uuid"],
                         "text": recognized_text
                     })
-                    print(recognized_text)
+                    print(recognized_text, detection["uuid"])
 
         # Return a response back to the frontend
         return jsonify({

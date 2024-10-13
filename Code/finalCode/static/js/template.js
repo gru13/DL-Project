@@ -203,7 +203,7 @@ document.getElementById('imageInput').addEventListener('change', function (event
 });
 
 // Add event listener for the 'extractData' button
-document.getElementById('extractData').addEventListener('click', function () {
+document.getElementById('extractData').addEventListener('click', async function () {
     // Filter the elements in the layout where 'text' is empty
     const emptyTextElements = layout.filter(detection => detection.text.trim() === '');
 
@@ -218,11 +218,11 @@ document.getElementById('extractData').addEventListener('click', function () {
     const imageFile = imageInput.files[0];
 
     // Send the filtered data and image to the Flask backend
-    sendDataToFlask(emptyTextElements, imageFile);
+    await sendDataToFlask(emptyTextElements, imageFile);
 });
 
 // Function to send the filtered data and image to the Flask backend
-function sendDataToFlask(data, imageFile) {
+async function sendDataToFlask(data, imageFile) {
     const formData = new FormData();
 
     // Append the JSON data (layout with empty text) to the FormData object
@@ -231,21 +231,48 @@ function sendDataToFlask(data, imageFile) {
     // Append the image file to the FormData object
     formData.append('image', imageFile);
 
-    // Send the FormData to the Flask backend
-    fetch('/process-empty-text-elements', {  // Adjust the URL to match your Flask route
-        method: 'POST',
-        body: formData  // Send the FormData object
-    })
-    .then(response => response.json())  // Parse the JSON response from Flask
-    .then(result => {
-        console.log('Success:', result);  // Log the result
-        alert('Data and image successfully sent to the backend.');
-    })
-    .catch(error => {
-        console.error('Error:', error);  // Log any errors
+    try {
+        // Send the FormData to the Flask backend and wait for the response
+        const response = await fetch('/process-empty-text-elements', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Error with request: ' + response.statusText);
+        }
+
+        // Parse the JSON response from Flask
+        const result = await response.json();
+
+        // Display success message and log the result
+        console.log('Success:', result);
+        alert('Data and image processed successfully.');
+
+        // Update the layout with the returned updated_layout from the backend
+        updateLayoutWithRecognizedText(result.updated_layout);
+
+        // Re-render label details and bounding boxes
+        renderLabelDetails();
+        renderDetections();
+    } catch (error) {
+        console.error('Error:', error);
         alert('An error occurred while sending data and image to the backend.');
+    }
+}
+
+// Function to update the layout based on the backend response
+function updateLayoutWithRecognizedText(updatedLayout) {
+    updatedLayout.forEach(updatedItem => {
+        // Find the item in the original layout by UUID
+        for (let index = 0; index < layout.length; index++) {
+            if(layout[index]['uuid'] === updatedItem['uuid']){
+                layout[index]['text'] = updatedItem.text
+            }
+        }
     });
 }
+
 
 // Start loading layout data after the page loads
 window.onload = loadLayoutData;
