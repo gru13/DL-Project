@@ -8,9 +8,13 @@
     <title>Connection</title>
 </head>
 <body>
-    <h1>Input Editor</h1>
+    <h1>Connection</h1>
     <div class="container">
-        <div class="canvas-container">
+        <div class="imageContainer">
+            <nav>
+                <button onclick="window.location.href='/input_editor/{{image_name}}'">Prev: Inputs</button>
+                <button onclick="window.location.href='/'">Next: HOME</button>
+            </nav>
             <canvas id="canvas"></canvas>
         </div>
         <div id="labelList">
@@ -18,8 +22,9 @@
             <div id="labels"></div>
         </div>
     </div>    
+    <br>
     <button onclick="saveChanges()" id ="saveChanges">Save Changes</button>
-    <button onclick="window.location.href='/'">Home</button>
+    <button id ="deleteConnectionBtn">Delete Connection</button>
     <script>
         const imageUrl = "{{ image_url }}";
         const layoutJsonUrl = "{{ layout_json_url }}";

@@ -1,0 +1,41 @@
+[
+    {
+        "uuid": "ee23b3cc-880f-44ea-8227-64b4f7b09335",
+        "class": "Label",
+        "confidence": 0.9879698753356934,
+        "bbox": [
+            111,
+            828,
+            364,
+            867
+        ],
+        "text": "Account Number",
+        "child": []
+    },
+    {
+        "uuid": "ff0033a5-aa09-4816-a71e-ef6cddb1b787",
+        "class": "Label",
+        "confidence": 0.9815024137496948,
+        "bbox": [
+            101,
+            887,
+            364,
+            940
+        ],
+        "text": "Cheque Number",
+        "child": []
+    },
+    {
+        "uuid": "7b8d0b06-db14-44c5-9323-c30924f963d1",
+        "class": "Label",
+        "confidence": 0.9891067147254944,
+        "bbox": [
+            1924,
+            3057,
+            2105,
+            3093
+        ],
+        "text": "ofRequest",
+        "child": []
+    }
+]
