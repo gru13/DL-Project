@@ -25,7 +25,6 @@ function loadImageFromFile(file) {
                 element.style.display = 'none';
             });
             document.getElementById('extractData').style.display = 'block';
-            document.getElementById('imageContainer').classList.remove('flex-container');
 
         };
         image.src = event.target.result; // Set the image source to the file data
@@ -200,7 +199,7 @@ function focusOnLabel(uuid) {
 }
 
 // Add event listener for the file input
-document.getElementById('imageInput').addEventListener('change', function (event) {
+document.getElementById('image-upload').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file) {
         loadImageFromFile(file);
