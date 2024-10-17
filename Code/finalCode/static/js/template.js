@@ -20,8 +20,13 @@ function loadImageFromFile(file) {
             renderDetections();
 
             // Hide the file input after the image is loaded
-            document.getElementById('imageInput').style.display = 'none';
+            const elements = document.querySelectorAll('.fileInput');
+            elements.forEach(function(element) {
+                element.style.display = 'none';
+            });
+            // document.getElementById('imageInput').style.display = 'none';
             document.getElementById('extractData').style.display = 'block';
+            document.classList.remove('flex-container');
 
         };
         image.src = event.target.result; // Set the image source to the file data
@@ -138,12 +143,12 @@ function drawArrowhead(ctx, x0, y0, x1, y1) {
 
 // Function to render label details in the sidebar
 function renderLabelDetails() {
-    const labelList = document.getElementById('labelDetails');
+    const labelList = document.getElementById('labelList');
     labelList.innerHTML = ''; // Clear previous details
 
     // Loop through each detection and add details to the list
     layout.forEach(detection => {
-        const li = document.createElement('li');
+        const li = document.createElement('div');
         li.className = 'label';
         li.id = `label-${detection.uuid}`; // Add an ID to each label element
         li.innerHTML = `
@@ -153,10 +158,10 @@ function renderLabelDetails() {
         `;
         if(detection.Model === 'YOLO'){
             li.innerHTML += '<div> <strong>Parent:</strong>'+detection.parent+'</div>';
-            li.style.color = 'rgba(255, 0, 0, 0.7)';
+            li.classList.add("yolo");
         }else{
             li.innerHTML += '<div> <strong>Child:</strong><br><hr><center>' +detection.child.join("<br><hr>") +'<br><hr></center></div>';
-            li.style.color = 'rgba(0, 0, 255, 0.7)';
+            li.classList.add("paddle");
         }
         labelList.appendChild(li);
     });
@@ -187,9 +192,9 @@ function focusOnLabel(uuid) {
     const labelElement = document.getElementById(`label-${uuid}`);
     if (labelElement) {
         labelElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        labelElement.style.backgroundColor = 'yellow'; // Highlight the focused label
+        labelElement.classList.add('highlighted') // Highlight the focused label
         setTimeout(() => {
-            labelElement.style.backgroundColor = ''; // Remove highlight after a short delay
+            labelElement.classList.remove('highlighted') ; // Remove highlight after a short delay
         }, 2000);
     }
 }

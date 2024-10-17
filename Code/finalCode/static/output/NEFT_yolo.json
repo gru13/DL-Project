@@ -1,54 +1,626 @@
 [
     {
-        "uuid": "4e83e9ed-7210-4ef7-baf2-4bc5453cd9bc",
+        "uuid": "0b977a65-a74a-4a9e-8fa2-85a1275067cf",
+        "class": "signature",
+        "confidence": 0.9773558378219604,
+        "bbox": [
+            797,
+            2245,
+            1480,
+            2444
+        ],
         "text": "",
-        "class": "EmptyInput",
-        "confidence": 1,
+        "parent": ""
+    },
+    {
+        "uuid": "6e8b466b-2304-42be-8794-027a16721184",
+        "class": "signature",
+        "confidence": 0.8746067881584167,
+        "bbox": [
+            1527,
+            2237,
+            2208,
+            2436
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "e15430b5-60e3-446c-a30f-c6977d5745d0",
+        "class": "boxInput",
+        "confidence": 0.766650915145874,
         "bbox": [
             405,
-            812,
-            1470,
-            896
+            1588,
+            1109,
+            1649
         ],
+        "text": "",
         "parent": ""
     },
     {
-        "uuid": "1ad81d9d-60e7-4a16-a7a0-724756137d9a",
-        "text": "",
-        "class": "EmptyInput",
-        "confidence": 1,
+        "uuid": "1da28bfc-735a-4744-9480-671d3aca7e7a",
+        "class": "boxInput",
+        "confidence": 0.7511256337165833,
         "bbox": [
-            402,
-            885,
-            874,
-            951
+            1942,
+            218,
+            2223,
+            288
         ],
+        "text": "",
         "parent": ""
     },
     {
-        "uuid": "208125d6-cb8a-4cf5-b6d5-7336137d6504",
-        "text": "",
-        "class": "EmptyInput",
-        "confidence": 1,
+        "uuid": "d101b4fd-9d29-4d2c-8c80-3cb1bbf4571f",
+        "class": "boxInput",
+        "confidence": 0.7268276214599609,
         "bbox": [
-            414,
+            426,
+            891,
+            856,
+            961
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "f2138a11-08f3-4547-a9cf-7abdb2c0ce5c",
+        "class": "boxInput",
+        "confidence": 0.7262070775032043,
+        "bbox": [
+            1287,
+            1588,
+            1938,
+            1654
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "953b1f1b-c35a-4967-94d1-d93db4fa70d0",
+        "class": "boxInput",
+        "confidence": 0.7190621495246887,
+        "bbox": [
+            390,
+            816,
+            1439,
+            883
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "0c63ff67-6bba-4b55-8992-fa663db2e684",
+        "class": "boxInput",
+        "confidence": 0.7116532921791077,
+        "bbox": [
+            1708,
+            898,
+            2256,
+            967
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "12c2e8fd-53f5-4e43-96d7-215792c0100c",
+        "class": "boxInput",
+        "confidence": 0.7053065299987793,
+        "bbox": [
+            397,
+            1165,
+            1312,
+            1230
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "b44e40c6-d18c-4c43-9dc5-409a164253d3",
+        "class": "checkBox",
+        "confidence": 0.6866014003753662,
+        "bbox": [
+            754,
+            567,
+            849,
+            643
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "bdc4e3b0-6f56-4694-8692-4fd021b1dfe4",
+        "class": "lineInput",
+        "confidence": 0.6852803826332092,
+        "bbox": [
+            808,
+            2426,
+            1471,
+            2498
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "379305b3-7709-4413-9cb6-95fb2c9b9802",
+        "class": "boxInput",
+        "confidence": 0.6551302671432495,
+        "bbox": [
+            1588,
+            291,
+            1906,
+            356
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "a69e4195-e51a-4e12-bc9e-46b06d0ca6d2",
+        "class": "boxInput",
+        "confidence": 0.6492753028869629,
+        "bbox": [
+            443,
             965,
-            1080,
-            1020
+            2308,
+            1028
         ],
+        "text": "",
         "parent": ""
     },
     {
-        "uuid": "64067c43-c9bd-41f1-beae-cbe901a6cb00",
-        "text": "",
-        "class": "EmptyInput",
-        "confidence": 1,
+        "uuid": "5c304ea5-df12-4ba8-9f8c-513f4d6f261c",
+        "class": "boxInput",
+        "confidence": 0.6355304718017578,
         "bbox": [
-            403,
-            1017,
-            1126,
-            1103
+            432,
+            1035,
+            2308,
+            1095
         ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "6a4cc97f-b8d6-44aa-81ab-79b4eb26d73c",
+        "class": "boxInput",
+        "confidence": 0.6334598660469055,
+        "bbox": [
+            410,
+            1515,
+            1124,
+            1582
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "2b02f286-1bd5-4174-ad21-f3db207db682",
+        "class": "boxInput",
+        "confidence": 0.6323598027229309,
+        "bbox": [
+            486,
+            1458,
+            2308,
+            1533
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "d6df2eb8-4043-4089-bfc7-4380ec3db070",
+        "class": "boxInput",
+        "confidence": 0.6314181089401245,
+        "bbox": [
+            1512,
+            1587,
+            1929,
+            1658
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "7b221e5b-5189-4949-897e-c2b7d9f558ef",
+        "class": "boxInput",
+        "confidence": 0.6262508034706116,
+        "bbox": [
+            1897,
+            289,
+            2240,
+            360
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "88bf6791-d4f0-4452-b866-38ed5705246d",
+        "class": "boxInput",
+        "confidence": 0.6248471736907959,
+        "bbox": [
+            420,
+            1102,
+            2155,
+            1156
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "ec7e4c7f-684d-40ef-ba39-f679afa02f94",
+        "class": "lineInput",
+        "confidence": 0.5579045414924622,
+        "bbox": [
+            265,
+            2376,
+            753,
+            2436
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "ff00872d-7833-46db-bdae-5698e0ce188f",
+        "class": "signature",
+        "confidence": 0.5402045249938965,
+        "bbox": [
+            75,
+            2245,
+            755,
+            2375
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "98c61d88-d93c-4199-8c1e-3b3b918ee5f4",
+        "class": "boxInput",
+        "confidence": 0.5097290873527527,
+        "bbox": [
+            1282,
+            1584,
+            2147,
+            1657
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "9e725645-de66-413f-bcc4-dc12a21fbb26",
+        "class": "boxInput",
+        "confidence": 0.5092387199401855,
+        "bbox": [
+            389,
+            1317,
+            2235,
+            1397
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "49aef2b7-2701-45a4-a9e8-05cf0f459d05",
+        "class": "lineInput",
+        "confidence": 0.5089089870452881,
+        "bbox": [
+            1084,
+            1870,
+            1342,
+            1910
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "5de356fd-1301-4e98-82d0-23c71a5d600d",
+        "class": "lineInput",
+        "confidence": 0.49924802780151367,
+        "bbox": [
+            1250,
+            2979,
+            1651,
+            3041
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "fe0f51ea-d0d9-4e98-ba59-48427c87f9d4",
+        "class": "boxInput",
+        "confidence": 0.4852392375469208,
+        "bbox": [
+            365,
+            966,
+            1425,
+            1031
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "37bd4575-28cd-4358-ae10-2c5a88f94afd",
+        "class": "boxInput",
+        "confidence": 0.4840138852596283,
+        "bbox": [
+            426,
+            1458,
+            2145,
+            1516
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "27eb9618-ab1e-45e8-8c46-4992abb7e0bb",
+        "class": "lineInput",
+        "confidence": 0.4755920171737671,
+        "bbox": [
+            786,
+            2739,
+            1165,
+            2795
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "b73e23c6-d457-4601-a77b-fbe399a76efa",
+        "class": "boxInput",
+        "confidence": 0.4752095341682434,
+        "bbox": [
+            1027,
+            813,
+            1419,
+            884
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "dba4c27c-fe88-4c9a-a178-efa7ed1af783",
+        "class": "boxInput",
+        "confidence": 0.46282464265823364,
+        "bbox": [
+            1706,
+            216,
+            1919,
+            289
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "fec7385f-ed0d-4a07-9eb8-dfb548677567",
+        "class": "boxInput",
+        "confidence": 0.4599464237689972,
+        "bbox": [
+            486,
+            1348,
+            2308,
+            1415
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "3ddb11bc-f13c-4163-80fb-994f07f77f36",
+        "class": "boxInput",
+        "confidence": 0.45358023047447205,
+        "bbox": [
+            1145,
+            1458,
+            2273,
+            1530
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "cf01ce6f-2e11-4982-9240-5f117c1dd83b",
+        "class": "boxInput",
+        "confidence": 0.42751017212867737,
+        "bbox": [
+            390,
+            1035,
+            1466,
+            1096
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "0fd08e76-3624-4e9e-849d-279a69149232",
+        "class": "boxInput",
+        "confidence": 0.425040066242218,
+        "bbox": [
+            446,
+            1378,
+            2240,
+            1452
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "ad4f56cf-80ab-4227-91af-5d9c7c00c8e1",
+        "class": "boxInput",
+        "confidence": 0.4153827726840973,
+        "bbox": [
+            366,
+            1094,
+            1436,
+            1162
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "6759e851-4394-4715-b2b7-81b8883ab05e",
+        "class": "lineInput",
+        "confidence": 0.36865338683128357,
+        "bbox": [
+            1427,
+            2662,
+            1965,
+            2718
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "06674f1c-1dd0-41a1-bea0-91adb941bb5a",
+        "class": "lineInput",
+        "confidence": 0.3612613379955292,
+        "bbox": [
+            1429,
+            2733,
+            2164,
+            2797
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "58fde91e-aab3-4f3c-ba19-224b7d5ebe0d",
+        "class": "lineInput",
+        "confidence": 0.35680902004241943,
+        "bbox": [
+            814,
+            2440,
+            1107,
+            2500
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "c66d82ee-e891-45fe-9cee-c19092c607ca",
+        "class": "lineInput",
+        "confidence": 0.3450714349746704,
+        "bbox": [
+            1503,
+            2813,
+            2168,
+            2884
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "90c30bdc-244e-4f3b-b5c9-b5b482e862f7",
+        "class": "boxInput",
+        "confidence": 0.3423493504524231,
+        "bbox": [
+            385,
+            978,
+            2215,
+            1045
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "c95eaa0f-c282-4422-929b-78a78db393b3",
+        "class": "lineInput",
+        "confidence": 0.3286809027194977,
+        "bbox": [
+            760,
+            1660,
+            1286,
+            1724
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "cd465311-57cd-44ae-b309-64dbd6a5f0bf",
+        "class": "lineInput",
+        "confidence": 0.3165976405143738,
+        "bbox": [
+            204,
+            3028,
+            595,
+            3098
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "f414d84d-52ae-4cb4-85f8-d73b5e95ce0b",
+        "class": "lineInput",
+        "confidence": 0.3116876780986786,
+        "bbox": [
+            1111,
+            2908,
+            1464,
+            2964
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "e7ad4f3d-4bb6-4525-acd9-f4c71fe9a920",
+        "class": "boxInput",
+        "confidence": 0.31073665618896484,
+        "bbox": [
+            483,
+            1447,
+            1261,
+            1513
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "11992ee0-86bf-45b9-af54-958e96756e28",
+        "class": "lineInput",
+        "confidence": 0.2956661581993103,
+        "bbox": [
+            1719,
+            400,
+            2180,
+            460
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "7ae08523-edb1-40ce-bcfa-cbe1868cdd18",
+        "class": "boxInput",
+        "confidence": 0.2922505736351013,
+        "bbox": [
+            408,
+            1456,
+            1703,
+            1513
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "1ea56b1c-51d4-4a6e-8ba6-301c218cadee",
+        "class": "lineInput",
+        "confidence": 0.28276658058166504,
+        "bbox": [
+            942,
+            387,
+            1394,
+            454
+        ],
+        "text": "",
+        "parent": ""
+    },
+    {
+        "uuid": "382d24d4-0337-4dce-8ce8-171135ea5947",
+        "class": "boxInput",
+        "confidence": 0.2647073566913605,
+        "bbox": [
+            1714,
+            896,
+            2064,
+            968
+        ],
+        "text": "",
         "parent": ""
     }
 ]

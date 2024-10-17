@@ -6,6 +6,7 @@ let isDrawing = false;
 let line;
 let isDeleteMode = false;
 let connections = [];
+const labelList = document.getElementById('labelList');
 
 // Initialize the canvas when the page loads
 window.onload = function() {
@@ -109,15 +110,16 @@ function renderDetections() {
 
 // Add a label to the label list
 function addLabel(detection, color) {
-    const labelList = document.getElementById('labels');
     const labelElement = document.createElement('div');
     labelElement.className = "label";
-    labelElement.style.color = color;
     labelElement.style.marginBottom = "10px";
-    labelElement.style.border = `1px solid ${color}`;
     labelElement.style.padding = "5px";
     labelElement.dataset.uuid = detection.uuid;
-
+    if(detection.Model === 'YOLO') {
+        labelElement.classList.add("yolo");
+    }else{
+        labelElement.classList.add("paddle");
+    }
     const labelContent = `
         <div><strong>Class:</strong> ${detection.class}</div>
         <div><strong>UUID:</strong> ${detection.uuid}</div>

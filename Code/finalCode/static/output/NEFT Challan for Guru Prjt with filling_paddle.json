@@ -1,0 +1,938 @@
+[
+    {
+        "uuid": "8f03a2ad-7cb9-401e-96d3-17102a53f994",
+        "class": "Label",
+        "confidence": 0.989062488079071,
+        "bbox": [
+            86,
+            27,
+            540,
+            70
+        ],
+        "text": "PGK/06-2020/2500Px50",
+        "child": []
+    },
+    {
+        "uuid": "5d2dbfbc-daf3-434e-a555-570eeba25dee",
+        "class": "Label",
+        "confidence": 0.9804077744483948,
+        "bbox": [
+            2106,
+            33,
+            2261,
+            70
+        ],
+        "text": "F.No.272",
+        "child": []
+    },
+    {
+        "uuid": "464aaf0b-989a-4fcc-801a-71b621f40588",
+        "class": "Label",
+        "confidence": 0.9517436027526855,
+        "bbox": [
+            102,
+            78,
+            178,
+            133
+        ],
+        "text": "TO,",
+        "child": []
+    },
+    {
+        "uuid": "0a0c6a1f-237a-4bc9-bdbe-61d77c6693f4",
+        "class": "Label",
+        "confidence": 0.9675374031066895,
+        "bbox": [
+            1134,
+            77,
+            2228,
+            127
+        ],
+        "text": "Application for National Electronic Fund Transfer",
+        "child": []
+    },
+    {
+        "uuid": "d6ca1b09-ae31-4a09-8253-2f2dcca2859a",
+        "class": "Label",
+        "confidence": 0.9625841975212097,
+        "bbox": [
+            115,
+            137,
+            511,
+            188
+        ],
+        "text": "The Branch Manager",
+        "child": []
+    },
+    {
+        "uuid": "a217c98d-7ac8-4f87-bc8f-38069e5d381d",
+        "class": "Label",
+        "confidence": 0.9585317373275757,
+        "bbox": [
+            1087,
+            131,
+            2231,
+            181
+        ],
+        "text": "Real-Time Gross Settlement Systems (NEFT /RTGS)",
+        "child": []
+    },
+    {
+        "uuid": "d9e609ac-85cb-4786-870a-7813dec66970",
+        "class": "Label",
+        "confidence": 0.8367998600006104,
+        "bbox": [
+            115,
+            198,
+            649,
+            258
+        ],
+        "text": "CITY UNION BANK",
+        "child": []
+    },
+    {
+        "uuid": "838710ea-4d8f-4f04-8c09-ac710c540389",
+        "class": "Label",
+        "confidence": 0.8764351010322571,
+        "bbox": [
+            1594,
+            207,
+            2212,
+            285
+        ],
+        "text": "Date0024",
+        "child": []
+    },
+    {
+        "uuid": "c14822c1-4f1e-4e8f-b22f-44d5bebf93c8",
+        "class": "Label",
+        "confidence": 0.9798569083213806,
+        "bbox": [
+            122,
+            271,
+            791,
+            339
+        ],
+        "text": "THEPPERUMANALLUR Branch",
+        "child": []
+    },
+    {
+        "uuid": "b46c5e7b-9bd2-4648-a2ed-f6cfce4456ba",
+        "class": "Label",
+        "confidence": 0.8995427489280701,
+        "bbox": [
+            1437,
+            285,
+            1615,
+            322
+        ],
+        "text": "PAN No.",
+        "child": []
+    },
+    {
+        "uuid": "14c303a6-c950-4a32-af8f-8971f0193b31",
+        "class": "Label",
+        "confidence": 0.9090068340301514,
+        "bbox": [
+            125,
+            335,
+            283,
+            372
+        ],
+        "text": "Dear sir,",
+        "child": []
+    },
+    {
+        "uuid": "7cc45b04-6076-4f82-823b-97bf3d5abde6",
+        "class": "Label",
+        "confidence": 0.8989677429199219,
+        "bbox": [
+            1529,
+            338,
+            2231,
+            389
+        ],
+        "text": "*To be provided by CITy UNION BANK customer",
+        "child": []
+    },
+    {
+        "uuid": "d13a50f8-45af-4db5-abc2-cf03384adb78",
+        "class": "Label",
+        "confidence": 0.8816997408866882,
+        "bbox": [
+            112,
+            375,
+            1233,
+            456
+        ],
+        "text": "Pleaseremit through NEFT/RTGS a sum of _lOOOO/",
+        "child": []
+    },
+    {
+        "uuid": "44f1db2c-1f8e-4344-82c3-e624ce850619",
+        "class": "Label",
+        "confidence": 0.9845361113548279,
+        "bbox": [
+            1758,
+            387,
+            1887,
+            447
+        ],
+        "text": "Ten",
+        "child": []
+    },
+    {
+        "uuid": "50881bcf-ebc4-47e0-8f74-8603acbe561f",
+        "class": "Label",
+        "confidence": 0.9439479112625122,
+        "bbox": [
+            1397,
+            402,
+            1753,
+            446
+        ],
+        "text": "Rupees in words)",
+        "child": []
+    },
+    {
+        "uuid": "e914c055-5470-499a-a938-a5c67de498d2",
+        "class": "Label",
+        "confidence": 0.8922727108001709,
+        "bbox": [
+            246,
+            438,
+            532,
+            514
+        ],
+        "text": "Thousand",
+        "child": []
+    },
+    {
+        "uuid": "dfda416f-30bb-4b06-9dff-9ce53763bf3d",
+        "class": "Label",
+        "confidence": 0.8700699210166931,
+        "bbox": [
+            676,
+            452,
+            834,
+            502
+        ],
+        "text": "only",
+        "child": []
+    },
+    {
+        "uuid": "2c58e9ac-86fb-4d8c-bc44-0c43d63499b9",
+        "class": "Label",
+        "confidence": 0.9979166984558105,
+        "bbox": [
+            2149,
+            476,
+            2234,
+            516
+        ],
+        "text": "only",
+        "child": []
+    },
+    {
+        "uuid": "1f3f8631-ff3c-42b4-bda5-238e852235c3",
+        "class": "Label",
+        "confidence": 0.9447277784347534,
+        "bbox": [
+            122,
+            506,
+            623,
+            549
+        ],
+        "text": "as per details given below:",
+        "child": []
+    },
+    {
+        "uuid": "4b040500-b2cc-4553-a426-78439c348b31",
+        "class": "Label",
+        "confidence": 0.9192780256271362,
+        "bbox": [
+            434,
+            555,
+            677,
+            631
+        ],
+        "text": "VCheque",
+        "child": []
+    },
+    {
+        "uuid": "a783a456-6a0a-4159-9a58-12edff3ac6bc",
+        "class": "Label",
+        "confidence": 0.9676377773284912,
+        "bbox": [
+            145,
+            573,
+            306,
+            620
+        ],
+        "text": "Cash",
+        "child": []
+    },
+    {
+        "uuid": "ada6571d-dbca-435c-9bdf-4ce88355cec8",
+        "class": "Label",
+        "confidence": 0.9743322134017944,
+        "bbox": [
+            777,
+            566,
+            1279,
+            630
+        ],
+        "text": "Debit my / our account",
+        "child": []
+    },
+    {
+        "uuid": "e1e7ddfc-e422-493b-a43d-f29223a30e39",
+        "class": "Label",
+        "confidence": 0.9331266283988953,
+        "bbox": [
+            122,
+            623,
+            857,
+            674
+        ],
+        "text": "*In case of cash,please fill in the pay-in-slip",
+        "child": []
+    },
+    {
+        "uuid": "9851e367-f097-45e1-be17-32ad1cd11648",
+        "class": "Label",
+        "confidence": 0.9554837346076965,
+        "bbox": [
+            129,
+            667,
+            1031,
+            714
+        ],
+        "text": "*To be filled by the Applicant in CAPITAL LETTERS",
+        "child": []
+    },
+    {
+        "uuid": "1ee767fa-3f3c-405c-b1f1-06ada219efd3",
+        "class": "Label",
+        "confidence": 0.9650512933731079,
+        "bbox": [
+            830,
+            737,
+            1555,
+            781
+        ],
+        "text": "DETAILS OF APPLICANT (REMITTER)",
+        "child": []
+    },
+    {
+        "uuid": "5cdc5e37-7100-4659-91c8-0f67e4586777",
+        "class": "Label",
+        "confidence": 0.9897595643997192,
+        "bbox": [
+            112,
+            821,
+            366,
+            861
+        ],
+        "text": "Account Number",
+        "child": []
+    },
+    {
+        "uuid": "b12a19c4-f51d-4f21-b952-426de5e90ae8",
+        "class": "Label",
+        "confidence": 0.8021092414855957,
+        "bbox": [
+            432,
+            817,
+            883,
+            861
+        ],
+        "text": "500001",
+        "child": []
+    },
+    {
+        "uuid": "998197ef-069e-4247-984f-ad64daa52d68",
+        "class": "Label",
+        "confidence": 0.8391730785369873,
+        "bbox": [
+            883,
+            817,
+            1420,
+            864
+        ],
+        "text": "106653",
+        "child": []
+    },
+    {
+        "uuid": "70550702-9263-4858-bab6-a140e2e427c6",
+        "class": "Label",
+        "confidence": 0.9651197195053101,
+        "bbox": [
+            112,
+            891,
+            359,
+            928
+        ],
+        "text": "Cheque Number",
+        "child": []
+    },
+    {
+        "uuid": "9f28bb0a-4775-4ac5-ac0f-1f08ae1d3d84",
+        "class": "Label",
+        "confidence": 0.9305133819580078,
+        "bbox": [
+            1503,
+            901,
+            1697,
+            938
+        ],
+        "text": "Cheque Date",
+        "child": []
+    },
+    {
+        "uuid": "d4f7cd5a-1d35-4fd5-af54-29d3abf4c2cd",
+        "class": "Label",
+        "confidence": 0.9582172632217407,
+        "bbox": [
+            105,
+            954,
+            369,
+            999
+        ],
+        "text": "Remitter's Name",
+        "child": []
+    },
+    {
+        "uuid": "61c4e657-b778-4bc1-95bd-79ed5ca0523b",
+        "class": "Label",
+        "confidence": 0.9930407404899597,
+        "bbox": [
+            105,
+            1025,
+            241,
+            1072
+        ],
+        "text": "Address",
+        "child": []
+    },
+    {
+        "uuid": "24ac4326-a1bc-47a4-bf91-41e3683fbc88",
+        "class": "Label",
+        "confidence": 0.9875166416168213,
+        "bbox": [
+            112,
+            1172,
+            405,
+            1206
+        ],
+        "text": "Mobile/OtherNumber",
+        "child": []
+    },
+    {
+        "uuid": "effed801-7bb9-4a93-b739-5a6e3560f3f1",
+        "class": "Label",
+        "confidence": 0.9543313980102539,
+        "bbox": [
+            478,
+            1176,
+            999,
+            1219
+        ],
+        "text": "10044234",
+        "child": []
+    },
+    {
+        "uuid": "4aec76a0-ec3e-47ea-b9c4-d9a15cdfe344",
+        "class": "Label",
+        "confidence": 0.9563921093940735,
+        "bbox": [
+            946,
+            1246,
+            1391,
+            1280
+        ],
+        "text": "ETAILS OF BENEFICIAR",
+        "child": []
+    },
+    {
+        "uuid": "39982449-2344-4f81-ada3-962ca5c39d1b",
+        "class": "Label",
+        "confidence": 0.943070113658905,
+        "bbox": [
+            105,
+            1303,
+            406,
+            1357
+        ],
+        "text": "Beneticiary's Name",
+        "child": []
+    },
+    {
+        "uuid": "b96e6e38-6a66-4ed7-9dea-c384a7bd7329",
+        "class": "Label",
+        "confidence": 0.9791640043258667,
+        "bbox": [
+            109,
+            1384,
+            362,
+            1417
+        ],
+        "text": "Account Number",
+        "child": []
+    },
+    {
+        "uuid": "2b5e7ff3-6d3b-4799-9726-3463a6006fab",
+        "class": "Label",
+        "confidence": 0.9625082015991211,
+        "bbox": [
+            102,
+            1440,
+            294,
+            1495
+        ],
+        "text": "Bank Name",
+        "child": []
+    },
+    {
+        "uuid": "94317e0e-4971-40a5-843e-5410b47c11f9",
+        "class": "Label",
+        "confidence": 0.9081902503967285,
+        "bbox": [
+            105,
+            1521,
+            366,
+            1564
+        ],
+        "text": "lfs code (11-digit)",
+        "child": []
+    },
+    {
+        "uuid": "ff300a18-b013-4ecc-a134-a0f6dafab57b",
+        "class": "Label",
+        "confidence": 0.9847450256347656,
+        "bbox": [
+            109,
+            1591,
+            349,
+            1628
+        ],
+        "text": "Branch Address",
+        "child": []
+    },
+    {
+        "uuid": "3bd23ca2-a9de-4f10-b785-31bd04046207",
+        "class": "Label",
+        "confidence": 0.9627682566642761,
+        "bbox": [
+            105,
+            1672,
+            761,
+            1715
+        ],
+        "text": "Sender to Receiver information (if any)",
+        "child": []
+    },
+    {
+        "uuid": "c965d477-1b55-40d0-aefe-25ecd7204b5a",
+        "class": "Label",
+        "confidence": 0.9534862637519836,
+        "bbox": [
+            900,
+            1735,
+            1450,
+            1769
+        ],
+        "text": "TERMS AND CONDITIONS",
+        "child": []
+    },
+    {
+        "uuid": "0dfa51c5-f23e-4afd-b471-7db66313827f",
+        "class": "Label",
+        "confidence": 0.9505719542503357,
+        "bbox": [
+            122,
+            1779,
+            2188,
+            1836
+        ],
+        "text": "This transfer is valid for a single transaction.The fund transfer will be governed by the Terms and Conditions given on our website www.City Union Bank.com",
+        "child": []
+    },
+    {
+        "uuid": "828674af-56ec-4f5e-9c80-8254fcfb1276",
+        "class": "Label",
+        "confidence": 0.9512344002723694,
+        "bbox": [
+            119,
+            1819,
+            2205,
+            1873
+        ],
+        "text": "Due care is taken while filling up the beneficiary account number & IFsC code.Transfer of an amount up to 49.999 in cash permissible using this facility.",
+        "child": []
+    },
+    {
+        "uuid": "41aad341-2433-498b-bc3a-9cf119d8f922",
+        "class": "Label",
+        "confidence": 0.9413959980010986,
+        "bbox": [
+            112,
+            1859,
+            1097,
+            1903
+        ],
+        "text": "*Photo lD proof to be given by non customer tor cash payment above",
+        "child": []
+    },
+    {
+        "uuid": "21e5f793-c669-401e-8d1e-b2c43bc9cc14",
+        "class": "Label",
+        "confidence": 0.9537543654441833,
+        "bbox": [
+            1407,
+            1866,
+            2208,
+            1906
+        ],
+        "text": "Do not fall prey to false promises :beware of dubious scheme.",
+        "child": []
+    },
+    {
+        "uuid": "6006441b-fbea-4c9c-b64c-064f0d8f2b0b",
+        "class": "Label",
+        "confidence": 0.9975839853286743,
+        "bbox": [
+            1035,
+            1960,
+            1302,
+            1993
+        ],
+        "text": "DECLARATION",
+        "child": []
+    },
+    {
+        "uuid": "404731c7-29b1-4656-9e39-704f6d943347",
+        "class": "Label",
+        "confidence": 0.9520717263221741,
+        "bbox": [
+            135,
+            2007,
+            1635,
+            2050
+        ],
+        "text": "l/we authorise City Union Bank to recover charges as may be applicable by debiting my account as mentioned above",
+        "child": []
+    },
+    {
+        "uuid": "81fd43c5-ffb6-4906-b7e8-ca25b12d8478",
+        "class": "Label",
+        "confidence": 0.9080572724342346,
+        "bbox": [
+            128,
+            2077,
+            1651,
+            2127
+        ],
+        "text": "number ofthe beneficiary provided while initing the transaction.Name will NOT be considered as a criteria for providing credit.",
+        "child": []
+    },
+    {
+        "uuid": "1a8ef97d-5e0a-405a-be5c-4cb2f03471fa",
+        "class": "Label",
+        "confidence": 0.9560896158218384,
+        "bbox": [
+            125,
+            2121,
+            1895,
+            2161
+        ],
+        "text": "I understand that this facity is available only at select locations and banks covered under Electronic Funds Transfer Facility offered by RBI",
+        "child": []
+    },
+    {
+        "uuid": "1a60063a-43a2-45bb-9d13-63ccd89cede2",
+        "class": "Label",
+        "confidence": 0.9686266183853149,
+        "bbox": [
+            919,
+            2181,
+            1414,
+            2214
+        ],
+        "text": "CUSTOMER SIGNATURE (s)",
+        "child": []
+    },
+    {
+        "uuid": "435eb830-eb68-4b1e-856d-30f285d8af54",
+        "class": "Label",
+        "confidence": 0.5645687580108643,
+        "bbox": [
+            147,
+            2240,
+            651,
+            2343
+        ],
+        "text": "SRaMBShBOte",
+        "child": []
+    },
+    {
+        "uuid": "4e9519ae-df60-448a-8314-959b6ef3f174",
+        "class": "Label",
+        "confidence": 0.9954345226287842,
+        "bbox": [
+            115,
+            2368,
+            274,
+            2415
+        ],
+        "text": "Signature",
+        "child": []
+    },
+    {
+        "uuid": "b75725b6-acb0-472d-8448-e8eec4ff9a9d",
+        "class": "Label",
+        "confidence": 0.9971328377723694,
+        "bbox": [
+            837,
+            2375,
+            992,
+            2412
+        ],
+        "text": "Signature",
+        "child": []
+    },
+    {
+        "uuid": "0d714107-7042-4fa5-bfdf-2a528653762d",
+        "class": "Label",
+        "confidence": 0.997211754322052,
+        "bbox": [
+            1559,
+            2375,
+            1714,
+            2412
+        ],
+        "text": "Signature",
+        "child": []
+    },
+    {
+        "uuid": "62d8807b-f294-470e-b752-8d3df40c41c8",
+        "class": "Label",
+        "confidence": 0.9988385438919067,
+        "bbox": [
+            379,
+            2435,
+            478,
+            2472
+        ],
+        "text": "Name",
+        "child": []
+    },
+    {
+        "uuid": "23b536a6-90c4-4037-8127-672f17952ec4",
+        "class": "Label",
+        "confidence": 0.9988065958023071,
+        "bbox": [
+            1101,
+            2439,
+            1196,
+            2476
+        ],
+        "text": "Name",
+        "child": []
+    },
+    {
+        "uuid": "2e858fce-2e40-4517-a2fd-fb15f0d2d885",
+        "class": "Label",
+        "confidence": 0.9974135160446167,
+        "bbox": [
+            1822,
+            2442,
+            1918,
+            2479
+        ],
+        "text": "Name",
+        "child": []
+    },
+    {
+        "uuid": "2d029ff3-a1be-4f8e-a4a5-2fa1599396fd",
+        "class": "Label",
+        "confidence": 0.9621587991714478,
+        "bbox": [
+            273,
+            2482,
+            584,
+            2533
+        ],
+        "text": "*Primary Applicant)",
+        "child": []
+    },
+    {
+        "uuid": "e39e5aec-0670-4735-8867-5db7ab6bdeb6",
+        "class": "Label",
+        "confidence": 0.9447819590568542,
+        "bbox": [
+            1012,
+            2489,
+            1295,
+            2533
+        ],
+        "text": "(Joint Applicant 1)",
+        "child": []
+    },
+    {
+        "uuid": "a771edaf-469d-4987-bfd3-c3e439562fdf",
+        "class": "Label",
+        "confidence": 0.9428725242614746,
+        "bbox": [
+            1727,
+            2485,
+            2017,
+            2536
+        ],
+        "text": "*(Joint Applicant 2",
+        "child": []
+    },
+    {
+        "uuid": "a449cbb3-7579-464a-b36a-486229ac0ac1",
+        "class": "Label",
+        "confidence": 0.997211217880249,
+        "bbox": [
+            906,
+            2596,
+            1414,
+            2640
+        ],
+        "text": "Customer Acknowledgment",
+        "child": []
+    },
+    {
+        "uuid": "3f23cf4e-0f7b-4da2-aa78-b07bcadc8b8a",
+        "class": "Label",
+        "confidence": 0.9716057181358337,
+        "bbox": [
+            125,
+            2663,
+            422,
+            2707
+        ],
+        "text": "Beneficiary's Name",
+        "child": []
+    },
+    {
+        "uuid": "ca991b86-21ae-4958-b8f0-8eaf43fd49ae",
+        "class": "Label",
+        "confidence": 0.9894432425498962,
+        "bbox": [
+            1180,
+            2670,
+            1434,
+            2710
+        ],
+        "text": "Account Number",
+        "child": []
+    },
+    {
+        "uuid": "09584d2c-8e7e-4f1c-8559-62eafea701d8",
+        "class": "Label",
+        "confidence": 0.9553545713424683,
+        "bbox": [
+            129,
+            2744,
+            798,
+            2777
+        ],
+        "text": "Please remit through NEFT/RTGS a sum of",
+        "child": []
+    },
+    {
+        "uuid": "e3e2661c-756b-4851-913e-56990dd08383",
+        "class": "Label",
+        "confidence": 0.9176074266433716,
+        "bbox": [
+            1170,
+            2740,
+            1447,
+            2784
+        ],
+        "text": "(Rupees in words)",
+        "child": []
+    },
+    {
+        "uuid": "b2a75023-6ae2-45eb-883c-75b9929e0f78",
+        "class": "Label",
+        "confidence": 0.997086763381958,
+        "bbox": [
+            2142,
+            2824,
+            2215,
+            2864
+        ],
+        "text": "only",
+        "child": []
+    },
+    {
+        "uuid": "b4895abf-d30a-4bd8-85e7-b0994da17b28",
+        "class": "Label",
+        "confidence": 0.9585025310516357,
+        "bbox": [
+            115,
+            2908,
+            1117,
+            2958
+        ],
+        "text": "We acknowledge receipt of NEFT/RTGS instruction(s).Reference no.",
+        "child": []
+    },
+    {
+        "uuid": "7184f4d4-632e-4a8e-b5a7-ac1faa631c8d",
+        "class": "Label",
+        "confidence": 0.9488980174064636,
+        "bbox": [
+            1915,
+            2925,
+            2129,
+            2971
+        ],
+        "text": "Bank Seal",
+        "child": []
+    },
+    {
+        "uuid": "51d5c5ee-2c98-4565-982c-b44b4e853f60",
+        "class": "Label",
+        "confidence": 0.9365652799606323,
+        "bbox": [
+            1878,
+            3005,
+            2165,
+            3048
+        ],
+        "text": "With Date &Time",
+        "child": []
+    },
+    {
+        "uuid": "809f27d7-00c8-43e0-924f-0aa32f0a0067",
+        "class": "Label",
+        "confidence": 0.9567995071411133,
+        "bbox": [
+            114,
+            3044,
+            219,
+            3090
+        ],
+        "text": "Date:",
+        "child": []
+    },
+    {
+        "uuid": "91332afa-885a-4540-b150-fde0d86b7e3a",
+        "class": "Label",
+        "confidence": 0.9346580505371094,
+        "bbox": [
+            1931,
+            3052,
+            2112,
+            3085
+        ],
+        "text": "of Request",
+        "child": []
+    }
+]

@@ -8,7 +8,7 @@
      <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
  </head>
  <body>
-     <h1>Input Editor</h1>
+     <h1 id='hero'>Input Editor</h1>
      <div class="container">
          <div class="imageContainer">
             <nav>
@@ -16,16 +16,17 @@
                 <button onclick="window.location.href='/connection/{{image_name}}'">Next: Connections</button>
             </nav>
              <canvas id="canvas"></canvas>
+             <footer>
+                <button onclick="runYOLO()">Run YOLO</button>
+                <button onclick="saveChanges()">Save Changes</button>
+                <button id="addBox">Add Box</button>
+             </footer>
          </div>
-         <div id="labelList">
-             <h2>Labels</h2>
-             <div id="labels"></div>
+         <div>
+             <h2 id="labelName">Labels</h2>
+             <div id="labelList"></div>
          </div>
      </div>
-     <button onclick="runYOLO()">Run YOLO</button>
-     <button onclick="saveChanges()">Save Changes</button>
-     <button id="addBox">Add Box</button>
- 
      <script>
         var image_url = '{{ image_url }}';
         var image_name = '{{ image_name }}';

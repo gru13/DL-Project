@@ -4,25 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template View</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
 </head>
 <body>
     <h1>Template View</h1>
     <div class="container">
         <div>
-            <div class="imageContainer">
-                <input type="file" id="imageInput" accept="image/*">
-                <canvas id="canvas">
-    
-                </canvas>
+            <div id="imageContainer">
+            
+                <label for="imageInput" class="fileInput custom-file-upload">
+                    <span class="material-symbols-outlined fileInput">upload_file</span>
+                    Add File
+                </label>
+                <input type="file" id="imageInput" accept="image/*" class="fileInput">
+                
+
+                <div class="canvas-container">
+                    <canvas id="canvas"></canvas>
+                </div>
             </div>
-            <button class="btn" id="extractData">Extract</button>
+            <footer>
+                <button class="btn" id="extractData">Extract</button>
+            </footer>
         </div>
-        <div class="labelList">
-            <h1>Labels</h1>
-            <ul id="labelDetails"></ul> <!-- Placeholder for label details -->
+        <div>
+            <h2 id="labelName">Labels</h2>
+            <div id="labelList"></div>
         </div>
-    </div>
     <script>
         const layoutJsonUrl = "{{json_url}}";  // Pass the URL dynamically
     </script>

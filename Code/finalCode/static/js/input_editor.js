@@ -4,6 +4,7 @@ let backgroundImage;
 let isDrawing = false;
 let startX, startY;
 const addBoxBtn = document.getElementById('addBox');
+let labelList = document.getElementById('labelList');
 
 window.onload = function() {
     initializeCanvas();
@@ -97,7 +98,6 @@ function createRectFromLabel(label, index) {
 }
 
 function updateLabelList() {
-    let labelList = document.getElementById('labels');
     labelList.innerHTML = '';
 
     labels.forEach((label, index) => {

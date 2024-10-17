@@ -8,7 +8,7 @@
     <title>Connection</title>
 </head>
 <body>
-    <h1>Connection</h1>
+    <h1 id='hero'>Connection</h1>
     <div class="container">
         <div class="imageContainer">
             <nav>
@@ -16,15 +16,18 @@
                 <button onclick="window.location.href='/'">Next: HOME</button>
             </nav>
             <canvas id="canvas"></canvas>
+            <footer>
+                <button onclick="saveChanges()" id ="saveChanges">Save Changes</button>
+                <button id ="deleteConnectionBtn">Delete Connection</button>
+            </footer>
         </div>
-        <div id="labelList">
-            <h2>Labels</h2>
-            <div id="labels"></div>
+        <div>
+            <h2 id="labelName">Labels</h2>
+            <div id="labelList">
+        </div>
         </div>
     </div>    
     <br>
-    <button onclick="saveChanges()" id ="saveChanges">Save Changes</button>
-    <button id ="deleteConnectionBtn">Delete Connection</button>
     <script>
         const imageUrl = "{{ image_url }}";
         const layoutJsonUrl = "{{ layout_json_url }}";

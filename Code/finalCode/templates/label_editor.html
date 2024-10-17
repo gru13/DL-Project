@@ -11,7 +11,7 @@
     />
 </head>
 <body>
-    <h1>OCR Label Editor</h1>
+    <h1 id="hero">OCR Label Editor</h1>
     <div class="container">
         <div class = "imageContainer">
             <nav>
@@ -19,16 +19,17 @@
                 <button onclick="window.location.href='/input_editor/{{image_name}}'">Next: Input Editor</button>
             </nav>
             <canvas id="canvas"></canvas>
+            <footer>
+                <button onclick="saveChanges()">Save Changes</button>
+                <button id="addBox">Add Box</button>
+                <button id="RunPaddle" onclick="runPaddle()">Run Paddle</button>
+            </footer>
         </div>
-        <div id="labelList">
-            <h2>Labels</h2>
-            <div id="labels"></div>
+        <div>
+            <h2 id="labelName">Labels</h2>
+            <div id="labelList"></div>
         </div>
     </div>
-    <br>
-    <button onclick="saveChanges()">Save Changes</button>
-    <button id="addBox">Add Box</button>
-    <button id="RunPaddle" onclick="runPaddle()">Run Paddle</button>
     <script>
         var image_url = '{{ image_url }}';
         var image_name = '{{ image_name }}';
