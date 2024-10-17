@@ -3,33 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCR and YOLO Processing</title>
+    <title>Handwritten Form DATA extraction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
 </head>
 <body>
     <h1>Data Form Processing</h1>
     
-    <!-- Form for creating a new template -->
     <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
-        <input type="submit" value="Process Image">
+        <div class="file-input-container">
+            <label for="image-upload" class="file-input-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Click to upload or drag and drop</span>
+                <span>Supported formats: JPG, PNG</span>
+            </label>
+            <input type="file" id="image-upload" name="image" accept="image/*" required>
+        </div>
+
+        <div class="image-preview-container">
+            <img class="image-preview" src="" alt="Preview">
+            <div class="image-overlay">
+                <button type="button" class="remove-image-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Remove
+                </button>
+            </div>
+        </div>
+        <input type="submit" value="Create template">
     </form>
 
-    <!-- Section to list existing templates -->
     <div class="template-container">
         <h2>Existing Templates</h2>
         <div class="template-list">
             {% for template in templates %}
-            <div class="template-card" id="{{template}}" onclick="window.location.href='/template/{{template}}'">
+            <div class="template-card" id="{{template}}">
                 <div class="img-container">
                     <img src="{{loc}}/{{ template }}/image.jpg" alt="{{template}}_image">
                 </div>
-                <div class ="descr">
+                <div class="descr">
                     {{template}}
+                </div>
+                <div class="template-actions">
+                    <button class="view-btn" onclick="window.location.href='/template/{{template}}'">
+                        View
+                    </button>
+                    <button class="delete-btn" onclick="deleteTemplate('{{template}}', event)">
+                        Delete
+                    </button>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: #fffffe;">Confirm Deletion</h3>
+            <p style="color: #94a1b2;">Are you sure you want to delete this template? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="delete-btn" onclick="confirmDelete()">Delete</button>
+                <button class="view-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('image-upload');
+        const previewContainer = document.querySelector('.image-preview-container');
+        const preview = document.querySelector('.image-preview');
+        const removeButton = document.querySelector('.remove-image-btn');
+        const fileInputLabel = document.querySelector('.file-input-label');
+        let templateToDelete = null;
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.classList.add('active');
+                    fileInputLabel.classList.add('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeButton.addEventListener('click', function() {
+            fileInput.value = '';
+            preview.src = '';
+            previewContainer.classList.remove('active');
+            fileInputLabel.classList.remove('hidden');
+        });
+
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            fileInputLabel.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileInputLabel.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileInputLabel.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            fileInputLabel.style.borderColor = '#2cb67d';
+            fileInputLabel.style.backgroundColor = '#2d2f33';
+        }
+
+        function unhighlight(e) {
+            fileInputLabel.style.borderColor = '#7f5af0';
+            fileInputLabel.style.backgroundColor = '#242629';
+        }
+
+        fileInputLabel.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            fileInput.files = files;
+            
+            if (files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.classList.add('active');
+                    fileInputLabel.classList.add('hidden');
+                }
+                reader.readAsDataURL(files[0]);
+            }
+        }
+        function deleteTemplate(templateName, event) {
+            event.stopPropagation(); // Prevent triggering the card click
+            templateToDelete = templateName;
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+    
+        function closeModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            templateToDelete = null;
+        }
+    
+        function confirmDelete() {
+            if (!templateToDelete) return;
+    
+            fetch(`/delete_template/${templateToDelete}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Remove the template card from the UI
+                    const card = document.getElementById(templateToDelete);
+                    card.remove();
+                    
+                    // Show success message (optional)
+                    // alert('Template deleted successfully');
+                } else {
+                    alert('Error deleting template: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error deleting template');
+            })
+            .finally(() => {
+                closeModal();
+            });
+        }
+    
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('deleteModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>

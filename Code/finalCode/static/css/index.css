@@ -1,70 +1,282 @@
+/* Global Styles */
 body {
-    font-family: 'Inter',Arial, sans-serif;
+    font-family: 'Inter', Arial, sans-serif;
     margin: 0;
-    color: #af5548;
+    color: #94a1b2;
     padding: 20px;
-    background-color: #000000;
+    background-color: #16161a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
-    color: #333;
+    color: #fffffe;
+    text-align: center;
 }
+
+/* Enhanced Form Styling */
 form {
-    background-color: rgb(0, 0, 0);
-    padding: 20px;
+    background-color: #010101;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Custom File Input Styling */
+.file-input-container {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-input-container input[type="file"] {
+    display: none;
+}
+
+.file-input-label {
+    background-color: #242629;
+    color: #fffffe;
+    padding: 15px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px dashed #7f5af0;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    height: 200px;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.file-input-label.hidden {
+    display: none;
+}
+
+.file-input-label:hover {
+    background-color: #2d2f33;
+    border-color: #2cb67d;
+}
+
+.file-input-label span {
+    font-size: 14px;
+    color: #94a1b2;
+}
+
+/* Image Preview Styling */
+.image-preview-container {
+    margin: 20px 0;
+    display: none;
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.image-preview-container.active {
+    display: block;
+}
+
+.image-preview {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    object-fit: cover;
 }
-input[type="file"] {
-    margin-bottom: 10px;
+
+/* Overlay Remove Button */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-input[type="submit"] {
-    background-color: #4CAF50;
+
+.image-preview-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.remove-image-btn {
+    background-color: #ef4444;
+    color: #fffffe;
     border: none;
-    color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remove-image-btn:hover {
+    background-color: #dc2626;
+}
+
+input[type="submit"] {
+    background-color: #7f5af0;
+    border: none;
+    color: #fffffe;
+    padding: 12px 24px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
+
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #2cb67d;
 }
-.template-card{
-    display:flex;
-    padding: 10px;
-    border: 2px solid  rgb(48, 44, 44);
+
+/* Rest of your existing styles... */
+.template-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fffffe;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.template-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.template-card {
+    display: flex;
+    padding: 20px;
+    border: 2px solid #72757e;
     border-radius: 10px;
-    margin: 10px;
+    margin: 15px;
     flex-direction: column;
-    height: fit-content;
-    .img-container{
-        object-fit: contain;
-        img{
-            border-radius: 10px;
-            max-width: 200px; 
-            max-width: 500px;  
-        }
-    }
-    .descr{
-        display: flex;
-        justify-content: center;
-    }
+    width: 300px;
+    height: auto;
+    transition: border-color 0.3s;
+    background-color: #010101;
+    justify-content: space-between;
 }
 
-.template-container{
+.template-card:hover {
+    border-color: #7f5af0;
+}
+
+.img-container {
+    object-fit: contain;
+    margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.template-list{
+.img-container img {
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 250px;
+}
+
+.descr {
     display: flex;
+    justify-content: center;
+    color: #fffffe;
+    font-size: 18px;
+    text-align: center;
+    word-wrap: break-word;
 }
 
-.template-card:hover{
-    border: 5px solid red;
+@media (max-width: 768px) {
+    .template-card {
+        width: 90%;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+.template-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.template-actions button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.view-btn {
+    background-color: #7f5af0;
+    color: #fffffe;
+}
+
+.view-btn:hover {
+    background-color: #6b4cc9;
+}
+
+.delete-btn {
+    background-color: #ef4444;
+    color: #fffffe;
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Add a modal for delete confirmation */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #242629;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }

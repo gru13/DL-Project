@@ -343,6 +343,22 @@ def process_empty_text_elements():
     except Exception as e:
         print(e)
         return jsonify({"message": str(e), "status": "error"}), 400
+    
+@app.route('/delete_template/<template_name>', methods=['DELETE'])
+def delete_template(template_name):
+    try:
+        # Get the template directory path (adjust this based on your setup)
+        template_dir = os.path.join(TEMPLATES_DIR, template_name)
+        # Check if directory exists
+        if os.path.exists(template_dir):
+            # Remove the entire directory and its contents
+            shutil.rmtree(template_dir)
+            return jsonify({'success': True, 'message': f'Template {template_name} deleted successfully'})
+        else:
+            return jsonify({'success': False, 'message': 'Template not found'}), 404
+            
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
