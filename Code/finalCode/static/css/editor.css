@@ -142,3 +142,40 @@ footer{
     margin-bottom: 20px;
 }
 
+  /* Hide the original file input */
+#imageInput {
+    display: none;
+}
+
+/* Custom file upload button using Material Icons */
+.custom-file-upload {
+    position: relative;
+    left: 36vw;
+    top: 40vh;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #7f5af0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;    
+    transition: background-color 0.3s;
+}
+
+.custom-file-upload:hover {
+    background-color: #45a049;
+}
+
+.material-symbols-outlined {
+    font-size: 24px; /* Adjust icon size */
+    margin-right: 8px; /* Add some space between the icon and text */
+}
+
+/* Style for the selected file name */
+#fileName {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #555;
+}

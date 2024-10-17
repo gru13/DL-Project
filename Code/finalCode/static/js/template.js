@@ -24,9 +24,8 @@ function loadImageFromFile(file) {
             elements.forEach(function(element) {
                 element.style.display = 'none';
             });
-            // document.getElementById('imageInput').style.display = 'none';
             document.getElementById('extractData').style.display = 'block';
-            document.classList.remove('flex-container');
+            document.getElementById('imageContainer').classList.remove('flex-container');
 
         };
         image.src = event.target.result; // Set the image source to the file data
@@ -37,6 +36,7 @@ function loadImageFromFile(file) {
 
 // Load JSON data when the page loads
 function loadLayoutData() {
+    document.getElementById('extractData').style.display = 'none';
     // Fetch the JSON data using the passed URL
     fetch(layoutJsonUrl)
         .then(response => {
