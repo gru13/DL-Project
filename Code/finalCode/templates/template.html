@@ -11,28 +11,17 @@
 <body>
     <h1>Template View</h1>
     <div class="container">
-        <div>
-            <div id="imageContainer">
-            
-                <label for="imageInput" class="fileInput custom-file-upload">
-                    <span class="material-symbols-outlined fileInput">upload_file</span>
-                    Add File
-                </label>
-                <input type="file" id="imageInput" accept="image/*" class="fileInput">
-                
-
-                <div class="canvas-container">
-                    <canvas id="canvas"></canvas>
-                </div>
-            </div>
+        <div id="imageContainer">
+            <canvas id="canvas"></canvas>
             <footer>
                 <button class="btn" id="extractData">Extract</button>
             </footer>
         </div>
-        <div>
+        <div id="labelContainer">
             <h2 id="labelName">Labels</h2>
             <div id="labelList"></div>
         </div>
+    </div>
     <script>
         const layoutJsonUrl = "{{json_url}}";  // Pass the URL dynamically
     </script>

@@ -13,19 +13,19 @@
 <body>
     <h1 id="hero">OCR Label Editor</h1>
     <div class="container">
-        <div class = "imageContainer">
+        <div id = "imageContainer">
             <nav>
                 <button onclick="window.location.href='/'">Prev: HOME</button>
                 <button onclick="window.location.href='/input_editor/{{image_name}}'">Next: Input Editor</button>
             </nav>
             <canvas id="canvas"></canvas>
             <footer>
+                <button id="RunPaddle" onclick="runPaddle()">Run Paddle</button>
                 <button onclick="saveChanges()">Save Changes</button>
                 <button id="addBox">Add Box</button>
-                <button id="RunPaddle" onclick="runPaddle()">Run Paddle</button>
             </footer>
         </div>
-        <div>
+        <div id="labelContainer">
             <h2 id="labelName">Labels</h2>
             <div id="labelList"></div>
         </div>
