@@ -1,53 +1,55 @@
 let layout = [];
+let canvas;
+
+// Function to initialize Fabric canvas
+function initCanvas() {
+    canvas = new fabric.Canvas('canvas', {
+        selection: false,
+        hoverCursor: 'pointer'
+    });
+}
 
 // Function to load image into the canvas from user input
 function loadImageFromFile(file) {
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
     const reader = new FileReader();
-    const image = new Image();
 
-    reader.onload = function (event) {
-        image.onload = function () {
+    reader.onload = function(event) {
+        fabric.Image.fromURL(event.target.result, function(img) {
             // Set canvas size to match the image dimensions
-            canvas.width = image.width;
-            canvas.height = image.height;
+            canvas.setWidth(img.width);
+            canvas.setHeight(img.height);
+            
+            // Set the image as canvas background
+            canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                scaleX: 1,
+                scaleY: 1
+            });
 
-            // Draw the image onto the canvas
-            ctx.drawImage(image, 0, 0);
-
-            // After the image is drawn, render the bounding boxes
+            // After the image is loaded, render the bounding boxes
             renderDetections();
 
-            // Hide the file input after the image is loaded
-            const elements = document.querySelectorAll('.fileInput');
-            elements.forEach(function(element) {
-                element.style.display = 'none';
-            });
+            document.getElementById('inputForm').style.display = 'none';
             document.getElementById('extractData').style.display = 'block';
-
-        };
-        image.src = event.target.result; // Set the image source to the file data
+        });
     };
 
-    reader.readAsDataURL(file);  // Read the file as a data URL
+    reader.readAsDataURL(file);
 }
 
 // Load JSON data when the page loads
 function loadLayoutData() {
     document.getElementById('extractData').style.display = 'none';
-    // Fetch the JSON data using the passed URL
     fetch(layoutJsonUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to load layout JSON from ' + layoutJsonUrl);
             }
-            return response.json();  // Parse the JSON response
+            return response.json();
         })
         .then(data => {
-            layout = data; // Assign the data to the 'layout' variable or use it as needed
-            renderLabelDetails(); // Render label details after data is loaded
-            addCanvasClickListener(); // Add click listener to the canvas
+            layout = data;
+            renderLabelDetails();
+            addCanvasClickListener();
         })
         .catch(error => {
             console.error('Error loading JSON:', error);
@@ -57,132 +59,133 @@ function loadLayoutData() {
 
 // Function to render detections (bounding boxes) on the canvas
 function renderDetections() {
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    // Clear all objects except background
+    canvas.getObjects().slice().forEach(obj => {
+        canvas.remove(obj);
+    });
 
     // First, draw all the bounding boxes and labels
     layout.forEach(detection => {
         const bbox = detection.bbox;
         const model = detection.Model;
 
-        // Set the style for the bounding box fill based on the Model
-        if (model === 'YOLO') {
-            ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';  // Red with 90% opacity
-            ctx.strokeStyle = 'red';  // Red border for bbox
-        } else if (model === 'PADDLE') {
-            ctx.fillStyle = 'rgba(0, 0, 255, 0.1)';  // Blue with 90% opacity
-            ctx.strokeStyle = 'blue';  // Blue border for bbox
-        } else {
-            ctx.fillStyle = 'rgba(0, 255, 0, 0.1)';  // Green as a fallback (if no model matches)
-            ctx.strokeStyle = 'green';
-        }
+        // Set colors based on model
+        const fillColor = model === 'YOLO' ? 'rgba(255,0,0,0.1)' :
+                         model === 'PADDLE' ? 'rgba(0,0,255,0.1)' :
+                         'rgba(0,255,0,0.1)';
+        const strokeColor = model === 'YOLO' ? 'red' :
+                          model === 'PADDLE' ? 'blue' :
+                          'green';
 
-        ctx.lineWidth = 2;
+        // Create rectangle for bounding box
+        const rect = new fabric.Rect({
+            left: bbox[0],
+            top: bbox[1],
+            width: bbox[2] - bbox[0],
+            height: bbox[3] - bbox[1],
+            fill: fillColor,
+            stroke: strokeColor,
+            strokeWidth: 2,
+            selectable: false,
+            uuid: detection.uuid
+        });
 
-        // Fill the bounding box with the semi-transparent color
-        ctx.fillRect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
+        // Create text label
+        const text = new fabric.Text(detection.class, {
+            left: bbox[0],
+            top: bbox[1] - 20,
+            fontSize: 16,
+            fill: 'black',
+            selectable: false
+        });
 
-        // Draw the bounding box (bbox: [x1, y1, x2, y2])
-        ctx.strokeRect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
-
-        // Optionally, add the label/class name above the bbox
-        ctx.fillStyle = 'black';
-        ctx.font = '16px Arial';
-        ctx.fillText(detection.class, bbox[0], bbox[1] - 10); // Display class above the bounding box
+        canvas.add(rect, text);
     });
 
-    // Now, draw the green lines with arrowheads between parent and child elements
+    // Draw connection lines with arrows
     layout.forEach(detection => {
-        // Check if the detection has a parent
         if (detection.parent) {
             const parentDetection = layout.find(item => item.uuid === detection.parent);
             if (parentDetection) {
-                // Calculate the center of the parent bounding box
-                const parentBbox = parentDetection.bbox;
-                const parentCenterX = (parentBbox[0] + parentBbox[2]) / 2;
-                const parentCenterY = (parentBbox[1] + parentBbox[3]) / 2;
-
-                // Calculate the center of the child bounding box (current detection)
                 const childBbox = detection.bbox;
-                const childCenterX = (childBbox[0] + childBbox[2]) / 2;
-                const childCenterY = (childBbox[1] + childBbox[3]) / 2;
+                const parentBbox = parentDetection.bbox;
 
-                // Draw a green line connecting the child to the parent
-                ctx.strokeStyle = 'green';  // Set the line color to green
-                ctx.lineWidth = 2;          // Set the line width
-                ctx.beginPath();
-                ctx.moveTo(childCenterX, childCenterY);  // Start at child center
-                ctx.lineTo(parentCenterX, parentCenterY);  // Draw to parent center
-                ctx.stroke();  // Actually draw the line
+                const childCenter = {
+                    x: (childBbox[0] + childBbox[2]) / 2,
+                    y: (childBbox[1] + childBbox[3]) / 2
+                };
+                const parentCenter = {
+                    x: (parentBbox[0] + parentBbox[2]) / 2,
+                    y: (parentBbox[1] + parentBbox[3]) / 2
+                };
 
-                // Now draw the arrowhead at the parent point
-                drawArrowhead(ctx, childCenterX, childCenterY, parentCenterX, parentCenterY);
+                drawArrowLine(childCenter, parentCenter);
             }
         }
     });
+
+    canvas.renderAll();
 }
 
-// Function to draw an arrowhead pointing from (x0, y0) to (x1, y1)
-function drawArrowhead(ctx, x0, y0, x1, y1) {
-    const headLength = 10;  // Length of the arrowhead
-    const dx = x1 - x0;
-    const dy = y1 - y0;
-    const angle = Math.atan2(dy, dx);  // Angle of the line
+// Function to draw an arrow line between two points
+function drawArrowLine(from, to) {
+    const headLength = 10;
+    const angle = Math.atan2(to.y - from.y, to.x - from.x);
 
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);  // Arrow tip (at parent)
+    // Create the main line
+    const line = new fabric.Line([from.x, from.y, to.x, to.y], {
+        stroke: 'green',
+        strokeWidth: 2,
+        selectable: false
+    });
 
-    // Draw the two lines of the arrowhead
-    ctx.lineTo(x1 - headLength * Math.cos(angle - Math.PI / 6), y1 - headLength * Math.sin(angle - Math.PI / 6));
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x1 - headLength * Math.cos(angle + Math.PI / 6), y1 - headLength * Math.sin(angle + Math.PI / 6));
+    // Create arrowhead
+    const arrowHead = new fabric.Triangle({
+        left: to.x,
+        top: to.y,
+        pointType: 'arrow_start',
+        angle: (angle * 180 / Math.PI) + 90,
+        width: headLength,
+        height: headLength * 2,
+        fill: 'green',
+        selectable: false
+    });
 
-    ctx.stroke();
+    // Add both to canvas
+    canvas.add(line, arrowHead);
+}
+
+// Function to add click listener to the canvas
+function addCanvasClickListener() {
+    canvas.on('mouse:down', function(options) {
+        if (options.target && options.target.uuid) {
+            focusOnLabel(options.target.uuid);
+        }
+    });
 }
 
 // Function to render label details in the sidebar
 function renderLabelDetails() {
     const labelList = document.getElementById('labelList');
-    labelList.innerHTML = ''; // Clear previous details
+    labelList.innerHTML = '';
 
-    // Loop through each detection and add details to the list
     layout.forEach(detection => {
         const li = document.createElement('div');
         li.className = 'label';
-        li.id = `label-${detection.uuid}`; // Add an ID to each label element
+        li.id = `label-${detection.uuid}`;
         li.innerHTML = `
-            <div> <strong>UUID:</strong> ${detection.uuid}</div>
-            <div> <strong>Class:</strong> ${detection.class}</div>
-            <div> <strong>Text:</strong> ${detection.text}</div>
+            <div><strong>UUID:</strong> ${detection.uuid}</div>
+            <div><strong>Class:</strong> ${detection.class}</div>
+            <div><strong>Text:</strong> ${detection.text}</div>
         `;
-        if(detection.Model === 'YOLO'){
-            li.innerHTML += '<div> <strong>Parent:</strong>'+detection.parent+'</div>';
+        if (detection.Model === 'YOLO') {
+            li.innerHTML += `<div><strong>Parent:</strong> ${detection.parent}</div>`;
             li.classList.add("yolo");
-        }else{
-            li.innerHTML += '<div> <strong>Child:</strong><br><hr><center>' +detection.child.join("<br><hr>") +'<br><hr></center></div>';
+        } else {
+            li.innerHTML += `<div><strong>Child:</strong><br><hr><center>${detection.child.join("<br><hr>")}<br><hr></center></div>`;
             li.classList.add("paddle");
         }
         labelList.appendChild(li);
-    });
-}
-
-// Function to add click listener to the canvas
-function addCanvasClickListener() {
-    const canvas = document.getElementById('canvas');
-    canvas.addEventListener('click', function(event) {
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        // Find the clicked element
-        const clickedElement = layout.find(detection => {
-            const bbox = detection.bbox;
-            return x >= bbox[0] && x <= bbox[2] && y >= bbox[1] && y <= bbox[3];
-        });
-
-        if (clickedElement) {
-            focusOnLabel(clickedElement.uuid);
-        }
     });
 }
 
@@ -191,52 +194,58 @@ function focusOnLabel(uuid) {
     const labelElement = document.getElementById(`label-${uuid}`);
     if (labelElement) {
         labelElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        labelElement.classList.add('highlighted') // Highlight the focused label
+        labelElement.classList.add('highlighted');
         setTimeout(() => {
-            labelElement.classList.remove('highlighted') ; // Remove highlight after a short delay
+            labelElement.classList.remove('highlighted');
         }, 2000);
     }
 }
 
-// Add event listener for the file input
-document.getElementById('image-upload').addEventListener('change', function (event) {
+// Function to update the layout based on the backend response
+function updateLayoutWithRecognizedText(updatedLayout) {
+    updatedLayout.forEach(updatedItem => {
+        for (let index = 0; index < layout.length; index++) {
+            if (layout[index]['uuid'] === updatedItem['uuid']) {
+                layout[index]['text'] = updatedItem.text;
+            }
+        }
+    });
+}
+
+// Event Listeners
+document.getElementById('image-upload').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         loadImageFromFile(file);
     }
 });
 
-// Add event listener for the 'extractData' button
-document.getElementById('extractData').addEventListener('click', async function () {
-    // Filter the elements in the layout where 'text' is empty
+document.getElementById('extractData').addEventListener('click', async function() {
     const emptyTextElements = layout.filter(detection => detection.text.trim() === '');
-
-    // If no empty text elements are found, alert the user
+    console.log("kff")
     if (emptyTextElements.length === 0) {
         alert('No elements with empty text found.');
         return;
     }
-
-    // Get the image file from the file input
-    const imageInput = document.getElementById('imageInput');
+    const imageInput = document.getElementById('image-upload');
     const imageFile = imageInput.files[0];
-
-    // Send the filtered data and image to the Flask backend
     await sendDataToFlask(emptyTextElements, imageFile);
 });
 
-// Function to send the filtered data and image to the Flask backend
+
+// Initialize everything when the page loads
+window.onload = function() {
+    initCanvas();
+    loadLayoutData();
+};
+
+// Function to send data to Flask backend
 async function sendDataToFlask(data, imageFile) {
     const formData = new FormData();
-
-    // Append the JSON data (layout with empty text) to the FormData object
     formData.append('layout', JSON.stringify(data));
-
-    // Append the image file to the FormData object
     formData.append('image', imageFile);
 
     try {
-        // Send the FormData to the Flask backend and wait for the response
         const response = await fetch('/process-empty-text-elements', {
             method: 'POST',
             body: formData
@@ -246,37 +255,109 @@ async function sendDataToFlask(data, imageFile) {
             throw new Error('Error with request: ' + response.statusText);
         }
 
-        // Parse the JSON response from Flask
         const result = await response.json();
-
-        // Display success message and log the result
         console.log('Success:', result);
         alert('Data and image processed successfully.');
 
-        // Update the layout with the returned updated_layout from the backend
         updateLayoutWithRecognizedText(result.updated_layout);
-
-        // Re-render label details and bounding boxes
         renderLabelDetails();
         renderDetections();
+        updateJsonList();
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred while sending data and image to the backend.');
     }
 }
 
-// Function to update the layout based on the backend response
-function updateLayoutWithRecognizedText(updatedLayout) {
-    updatedLayout.forEach(updatedItem => {
-        // Find the item in the original layout by UUID
-        for (let index = 0; index < layout.length; index++) {
-            if(layout[index]['uuid'] === updatedItem['uuid']){
-                layout[index]['text'] = updatedItem.text
-            }
+
+
+
+function mapTextToAllElements() {
+    // Create a dictionary to store elements by UUID for quick access
+    const elementDict = {};
+    
+    // Iterate through each element in the layout
+    layout.forEach(element => {
+        // Initialize the array for storing child texts if element has children
+        elementDict[element.text] = [];
+
+        // Check if the current element has any children
+        if (element.child && element.child.length > 0) {
+            // Iterate through the child UUIDs
+            element.child.forEach(childUUID => {
+                // Find the child element in the layout by UUID
+                const child = layout.find(el => el.uuid === childUUID);
+                if (child) {
+                    // Add the child's text to the elementDict
+                    elementDict[element.text].push(child.text);
+                }
+            });
         }
     });
+
+    return elementDict;
 }
 
+function updateJsonList() {
+    const jsonList = document.getElementById('jsonList');
+    const mappedData = mapTextToAllElements();
+    
+    jsonList.innerHTML = '';
+    
+    for (const [key, value] of Object.entries(mappedData)) {
+        const jsonItem = createJsonItem(key, value);
+        jsonList.appendChild(jsonItem);
+    }
 
-// Start loading layout data after the page loads
-window.onload = loadLayoutData;
+    // Add a button to add new items
+    const addButton = document.createElement('button');
+    addButton.textContent = 'Add New Item';
+    addButton.addEventListener('click', () => addNewJsonItem(jsonList));
+    jsonList.appendChild(addButton);
+}
+
+function createJsonItem(key, value) {
+    const jsonItem = document.createElement('div');
+    jsonItem.className = 'json-item';
+    jsonItem.innerHTML = `
+        <input type="text" class="json-key" value="${key}">
+        <textarea class="json-value">${value.join('\n')}</textarea>
+        <button class="remove-item">Remove</button>
+    `;
+
+    jsonItem.querySelector('.remove-item').addEventListener('click', () => {
+        jsonItem.remove();
+    });
+
+    return jsonItem;
+}
+
+function addNewJsonItem(container) {
+    const newItem = createJsonItem('New Key', ['New Value']);
+    container.insertBefore(newItem, container.lastElementChild);
+}
+
+function saveJsonFile() {
+    const jsonData = {};
+    const jsonItems = document.querySelectorAll('.json-item');
+    
+    jsonItems.forEach(item => {
+        const key = item.querySelector('.json-key').value.trim();
+        const value = item.querySelector('.json-value').value.split('\n').map(v => v.trim()).filter(v => v !== '');
+        if (key !== '') {
+            jsonData[key] = value;
+        }
+    });
+    
+    const jsonString = JSON.stringify(jsonData, null, 2);
+    const blob = new Blob([jsonString], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mapped_data.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}

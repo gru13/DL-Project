@@ -6,13 +6,48 @@
     <title>Template View</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editor.css') }}">   
+    <style>
+        .tab-container {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: -1px;
+        }
+        
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 4px 4px 0 0;
+        }
+        
+        .tab-button.active {
+            background: #2cb67d;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1rem 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+    </style>
 </head>
 <body>
     <h1>Template View</h1>
     <div class="container">
         <div id="imageContainer">
-            <form action="/upload" method="post" enctype="multipart/form-data">
+            <form action="/upload" method="post" enctype="multipart/form-data" id="inputForm">
                 <div class="file-input-container">
                     <label for="image-upload" class="file-input-label">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -25,19 +60,6 @@
                     </label>
                     <input type="file" id="image-upload" name="image" accept="image/*" required>
                 </div>
-        
-                <div class="image-preview-container">
-                    <img class="image-preview" src="" alt="Preview">
-                    <div class="image-overlay">
-                        <button type="button" class="remove-image-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                            Remove
-                        </button>
-                    </div>
-                </div>
             </form>
             <canvas id="canvas"></canvas>
             <footer>
@@ -45,12 +67,32 @@
             </footer>
         </div>
         <div id="labelContainer">
-            <h2 id="labelName">Labels</h2>
-            <div id="labelList"></div>
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="labels">Labels</button>
+                    <button class="tab-button" data-tab="json">Dict</button>
+                </div>
+            </div>
+            <div id="labelsTab" class="tab-content active">
+                <div id="labelList"></div>
+            </div>
+            <div id="jsonTab" class="tab-content">
+                <div id="jsonList"></div>
+                <button id="saveJson" class="btn">Save JSON</button>
+            </div>
         </div>
     </div>
     <script>
         const layoutJsonUrl = "{{json_url}}";  // Pass the URL dynamically
+         // Tab switching functionality
+         document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(`${button.dataset.tab}Tab`).classList.add('active');
+            });
+        });
     </script>
     <script src="{{ url_for('static', filename='js/template.js') }}"></script>
 </body>
