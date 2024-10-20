@@ -1,5 +1,20 @@
 let layout = [];
 let canvas;
+let elementDict = [];
+let imageFile ;
+// Initialize everything when the page loads
+window.onload = function() {
+    initCanvas();
+    loadLayoutData()
+    .then(() => {
+        console.log('Layout data loaded successfully');
+        updateJsonList();
+    })
+    .catch(error => {
+        console.error('Error during initialization:', error);
+    });
+    updateJsonList();
+};
 
 // Function to initialize Fabric canvas
 function initCanvas() {
@@ -36,25 +51,24 @@ function loadImageFromFile(file) {
     reader.readAsDataURL(file);
 }
 
-// Load JSON data when the page loads
-function loadLayoutData() {
+// Modified loadLayoutData to return a Promise
+async function loadLayoutData() {
     document.getElementById('extractData').style.display = 'none';
-    fetch(layoutJsonUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to load layout JSON from ' + layoutJsonUrl);
-            }
-            return response.json();
-        })
-        .then(data => {
-            layout = data;
-            renderLabelDetails();
-            addCanvasClickListener();
-        })
-        .catch(error => {
-            console.error('Error loading JSON:', error);
-            alert('Failed to load layout data. Please try again.');
-        });
+    try {
+        const response = await fetch(layoutJsonUrl);
+        if (!response.ok) {
+            throw new Error('Failed to load layout JSON from ' + layoutJsonUrl);
+        }
+        const data = await response.json();
+        layout = data;
+        renderLabelDetails();
+        addCanvasClickListener();
+        return true; // Indicate successful loading
+    } catch (error) {
+        console.error('Error loading JSON:', error);
+        alert('Failed to load layout data. Please try again.');
+        throw error;  // Re-throw the error to be caught by the caller
+    }
 }
 
 // Function to render detections (bounding boxes) on the canvas
@@ -228,16 +242,11 @@ document.getElementById('extractData').addEventListener('click', async function(
         return;
     }
     const imageInput = document.getElementById('image-upload');
-    const imageFile = imageInput.files[0];
+    imageFile = imageInput.files[0];
     await sendDataToFlask(emptyTextElements, imageFile);
 });
 
 
-// Initialize everything when the page loads
-window.onload = function() {
-    initCanvas();
-    loadLayoutData();
-};
 
 // Function to send data to Flask backend
 async function sendDataToFlask(data, imageFile) {
@@ -271,28 +280,41 @@ async function sendDataToFlask(data, imageFile) {
 
 
 
-
 function mapTextToAllElements() {
-    // Create a dictionary to store elements by UUID for quick access
-    const elementDict = {};
-    
+    console.log('Starting mapTextToAllElements...');
+    console.log('Current layout:', layout);
+    // Array to store mapped elements
+    elementDict = [];
     // Iterate through each element in the layout
     layout.forEach(element => {
-        // Initialize the array for storing child texts if element has children
-        elementDict[element.text] = [];
-
-        // Check if the current element has any children
-        if (element.child && element.child.length > 0) {
-            // Iterate through the child UUIDs
+        // Only process YOLO elements (elements with parents)
+        if (element.parent != '' || !element.child){
+            return;
+        }
+        
+        // Create an object for current element
+        const currentElement = {
+            parent: {
+                uuid: element.uuid,
+                text: element.text || ''
+            },
+            children: []
+        };
+        
+        // Find and add children if they exist
+        if (element.child && Array.isArray(element.child)) {
             element.child.forEach(childUUID => {
-                // Find the child element in the layout by UUID
-                const child = layout.find(el => el.uuid === childUUID);
-                if (child) {
-                    // Add the child's text to the elementDict
-                    elementDict[element.text].push(child.text);
+                const childElement = layout.find(el => el.uuid === childUUID);
+                if (childElement) {
+                    currentElement.children.push({
+                        uuid: childElement.uuid,
+                        text: childElement.text || ''
+                    });
                 }
             });
         }
+        
+        elementDict.push(currentElement);
     });
 
     return elementDict;
@@ -304,55 +326,116 @@ function updateJsonList() {
     
     jsonList.innerHTML = '';
     
-    for (const [key, value] of Object.entries(mappedData)) {
-        const jsonItem = createJsonItem(key, value);
+    mappedData.forEach(item => {
+        const jsonItem = createJsonItem(item);
         jsonList.appendChild(jsonItem);
-    }
+    });
 
-    // Add a button to add new items
+    // Add button to add new items
     const addButton = document.createElement('button');
     addButton.textContent = 'Add New Item';
+    addButton.className = 'add-button';
     addButton.addEventListener('click', () => addNewJsonItem(jsonList));
     jsonList.appendChild(addButton);
 }
 
-function createJsonItem(key, value) {
+function createJsonItem(item) {
     const jsonItem = document.createElement('div');
-    jsonItem.className = 'json-item';
-    jsonItem.innerHTML = `
-        <input type="text" class="json-key" value="${key}">
-        <textarea class="json-value">${value.join('\n')}</textarea>
-        <button class="remove-item">Remove</button>
+    jsonItem.className = 'label';
+    
+    // Create parent element section
+    const parentSection = document.createElement('div');
+    parentSection.className = 'parent-section';
+    parentSection.innerHTML = `
+        <div class="parent-header">
+            <span>Parent:</span>
+            <input type="text" class="parent-text" value="${item.parent.text}" placeholder="Parent Text">
+        </div>
     `;
 
-    jsonItem.querySelector('.remove-item').addEventListener('click', () => {
-        jsonItem.remove();
+    // Add onchange event to parent input
+    const parentInput = parentSection.querySelector('.parent-text');
+    parentInput.addEventListener('change', (e) => {
+        item.parent.text = e.target.value;  // Update the text in the elementDict
     });
+
+    // Create children section
+    const childrenSection = document.createElement('div');
+    childrenSection.innerHTML += '<span>Children:</span>';
+    childrenSection.className = 'children-section';
+    item.children.forEach(child => {
+        const childElement = document.createElement('div');
+        childElement.className = 'child-item';
+        childElement.innerHTML = `
+            <input type="text" class="child-text" value="${child.text}" placeholder="Child Text">
+        `;
+        
+        // Add onchange event to child input
+        const childInput = childElement.querySelector('.child-text');
+        childInput.addEventListener('change', (e) => {
+            child.text = e.target.value; // Update the child text in the elementDict
+        });
+
+        childrenSection.appendChild(childElement);
+    });
+
+    // Add remove button
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.className = 'remove-item';
+    removeButton.addEventListener('click', () => jsonItem.remove());
+
+    // Combine all sections
+    jsonItem.appendChild(parentSection);
+    jsonItem.appendChild(childrenSection);
+    jsonItem.appendChild(removeButton);
 
     return jsonItem;
 }
 
+
 function addNewJsonItem(container) {
-    const newItem = createJsonItem('New Key', ['New Value']);
-    container.insertBefore(newItem, container.lastElementChild);
+    const newItem = {
+        parent: {
+            uuid: uuidv4(),
+            text: ''
+        },
+        children: []
+    };
+    const jsonItem = createJsonItem(newItem);
+    container.insertBefore(jsonItem, container.lastElementChild);
 }
 
 function saveJsonFile() {
     const jsonData = {};
-    const jsonItems = document.querySelectorAll('.json-item');
-    
+    const jsonItems = document.querySelectorAll('#jsonList .label'); // Find all 'label' divs inside #jsonList
+
+    // Generate a unique ID for this entry (simulating UUID)
+    const uniqueID = generateUUID(); // You can implement or use a library to generate a UUID
+    jsonData["uuid"] = uniqueID; // Add unique ID to the JSON object
+
+    // Iterate through each parent-child group
     jsonItems.forEach(item => {
-        const key = item.querySelector('.json-key').value.trim();
-        const value = item.querySelector('.json-value').value.split('\n').map(v => v.trim()).filter(v => v !== '');
-        if (key !== '') {
-            jsonData[key] = value;
+        const parentText = item.querySelector('.parent-text').value.trim(); // Get the parent text
+
+        // Initialize parent text in jsonData if it doesn't already exist
+        if (!jsonData[parentText]) {
+            jsonData[parentText] = "";
         }
+
+        // Get all child text fields related to the parent
+        const childTexts = item.querySelectorAll('.child-text');
+        childTexts.forEach(child => {
+            const childText = child.value.trim();
+            jsonData[parentText] += childText + "  "; // Append child text to the parent field
+        });
     });
-    
+
+    // Save the data as a JSON file
     const jsonString = JSON.stringify(jsonData, null, 2);
-    const blob = new Blob([jsonString], {type: 'application/json'});
+    const blob = new Blob([jsonString], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    
+
     const a = document.createElement('a');
     a.href = url;
     a.download = 'mapped_data.json';
@@ -360,4 +443,58 @@ function saveJsonFile() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+
+    console.log(jsonData); // Output to console for debugging
+}
+
+
+async function updateExcel() {
+    // Get the image file from the input field
+    const imageInput = document.getElementById('image-upload');
+    imageFile = imageInput.files[0];
+
+    // Check if the image file exists
+    if (!imageFile) {
+        alert('Please upload an image before submitting.');
+        return; // Exit the function if no image is found
+    }
+
+    // Check if layout and elementDict are valid
+    if (!layout || layout.length === 0) {
+        alert('Layout data is missing. Please load the layout data before submitting.');
+        return;
+    }
+
+    if (!elementDict || elementDict.length === 0) {
+        alert('Element data is missing. Please ensure elementDict is populated before submitting.');
+        return;
+    }
+
+    // Create FormData object to send data to the backend
+    const formData = new FormData();
+    formData.append('layout', JSON.stringify(layout));
+    formData.append('elementDict', JSON.stringify(elementDict));
+    formData.append('image', imageFile);
+    formData.append('template', templateName);
+
+    try {
+        // Send data to the Flask backend using fetch
+        const response = await fetch('/update-excel', {
+            method: 'POST',
+            body: formData
+        });
+
+        // Handle the response
+        if (!response.ok) {
+            throw new Error('Error with request: ' + response.statusText);
+        }
+
+        const result = await response.json();
+        console.log('Success:', result);
+        alert('Data and image updated successfully.');
+    } catch (error) {
+        // Handle any errors during the request
+        console.error('Error:', error);
+        alert('An error occurred while sending data and image to the backend.');
+    }
 }

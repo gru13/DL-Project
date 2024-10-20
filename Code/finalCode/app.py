@@ -6,7 +6,10 @@ import uuid
 from paddleocr import PaddleOCR
 from ultralytics import YOLO
 import shutil
+from werkzeug.utils import secure_filename
+import pandas as pd
 from PIL import ImageDraw, Image, ImageEnhance, ImageFilter
+
 
 
 labels = ['Detailed', 'EmptyInput', 'TableColumn', 'boxInput', 'checkBox', 'lineInput', 'signature']
@@ -257,7 +260,18 @@ def connection(image_name):
         return f"Error writing layout JSON: {e}", 500
 
     print(f"Created new layout JSON: {layout_json_url}")
+    # Create the data.xlsx file
+    try:
+        # Extract 'text' from Paddle data
+        paddle_texts = ['uuid'] + [item['text'] for item in paddle_data if 'text' in item]
 
+        # Create a DataFrame with the 'text' column
+        df = pd.DataFrame(columns= paddle_texts)
+        excel_file_path = os.path.join(TEMPLATES_DIR, image_name, 'data.xlsx')
+        df.to_excel(excel_file_path, index=False)
+    except Exception as e:
+        return f"Error creating Excel file: {e}", 500
+    
     return render_template('connection.html',
                            image_name=image_name,
                            image_url=image_url,
@@ -272,7 +286,7 @@ def save_changes():
     layout_json_path = os.path.join(TEMPLATES_DIR, f"{image_name}/layout.json")
     with open(layout_json_path, 'w') as layout_file:
         json.dump(layout["layout"], layout_file, indent=4)
-    
+
     return jsonify({"message": "Changes saved successfully"}), 200
 
 @app.route('/get_labels')
@@ -359,6 +373,101 @@ def delete_template(template_name):
             
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/update-excel', methods=['POST'])
+def update_excel():
+    if 'image' not in request.files:
+        return jsonify({"error": "No image part in the request"}), 400
+
+    image = request.files['image']
+    if image.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+
+    # Get form data from the request
+    layout = request.form.get('layout')
+    element_dict = request.form.get('elementDict')
+    template_name = request.form.get('template')
+
+    # Ensure templateName is provided
+    if not template_name:
+        return jsonify({"error": "templateName is required"}), 400
+
+    # Create the directory for the template if it doesn't exist
+    template_dir = os.path.join(TEMPLATES_DIR, template_name)
+    if not os.path.exists(template_dir):
+        os.makedirs(template_dir)
+
+    # Generate a unique ID for the image file
+    unique_id = str(uuid.uuid4())
+    image_filename = f"{unique_id}.jpg"
+    image_path = os.path.join(template_dir, image_filename)
+
+    # Save the image file
+    try:
+        image.save(image_path)
+        print(f"Received image file: {image.filename} -> Saved as: {image_filename} in {template_dir}")
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    # # Debug prints for layout and elementDict
+    # print("Layout:", layout)
+    # print("Element Dict:", element_dict)
+    # print("Template:", template_name)
+
+    # Parse the elementDict into a Python object
+    try:
+        element_dict = json.loads(element_dict)
+    except json.JSONDecodeError as e:
+        return jsonify({"error": "Invalid JSON format for elementDict"}), 400
+
+    # Prepare the data for the DataFrame
+    new_data = {"uuid":unique_id}
+    
+    for item in element_dict:
+        parent = item['parent']['text']
+        children = item['children']
+
+        # If parent doesn't exist in new_data dictionary, create a list for it
+        if parent not in new_data:
+            new_data[parent] = ""
+
+        # Collect child texts; if none, append an empty string
+        if children:
+            for child in children:
+                new_data[parent] += str(child['text']) + "  "
+
+
+    # Convert the new_data dictionary to a DataFrame
+    new_df = pd.DataFrame(dict([(k, pd.Series(v)) for k, v in new_data.items()]))
+    new_df.to_excel("show.xlsx")
+    # Define the path for the existing Excel file
+    excel_file_path = os.path.join(template_dir, 'data.xlsx')
+
+    # Load the existing Excel file if it exists, otherwise create a new one
+    try:
+        if os.path.exists(excel_file_path):
+            # Load existing data
+            existing_df = pd.read_excel(excel_file_path, dtype=str)
+            
+            # Append new data
+            combined_df = pd.concat([existing_df, new_df], ignore_index=True)
+        else:
+            # If file doesn't exist, use new_df as the combined data
+            combined_df = new_df
+
+        # Save the updated DataFrame back to Excel
+        combined_df.to_excel(excel_file_path, index=False)
+        print(f"Excel file updated at: {excel_file_path}")
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    # Return a success response
+    return jsonify({
+        "message": "Data and image processed successfully",
+        "status": "success",
+        "saved_image": image_filename,
+        "image_path": image_path
+    }), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

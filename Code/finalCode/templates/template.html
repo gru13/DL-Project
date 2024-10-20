@@ -78,13 +78,16 @@
             </div>
             <div id="jsonTab" class="tab-content">
                 <div id="jsonList"></div>
-                <button id="saveJson" class="btn">Save JSON</button>
+                <button id="saveJson" class="btn" onclick="saveJsonFile()">Save JSON</button>
+                <button id="saveJson" class="btn" onclick="updateExcel()">Update</button>
             </div>
         </div>
     </div>
     <script>
         const layoutJsonUrl = "{{json_url}}";  // Pass the URL dynamically
-         // Tab switching functionality
+        const templateName =  "{{template_id}}"
+        console.log(templateName); 
+        // Tab switching functionality
          document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', () => {
                 document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));

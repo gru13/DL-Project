@@ -1,96 +1,66 @@
 [
     {
-        "uuid": "0b977a65-a74a-4a9e-8fa2-85a1275067cf",
+        "uuid": "c22bcde1-07b1-44c9-bf3e-c328dbb0a1d3",
         "class": "signature",
         "confidence": 0.9773558378219604,
         "bbox": [
-            797,
+            841,
             2245,
-            1480,
-            2444
+            1482,
+            2429
         ],
         "text": "",
-        "parent": "",
+        "parent": "f65f664a-2f57-4a9f-9eff-bb42e68503c9",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "6e8b466b-2304-42be-8794-027a16721184",
+        "uuid": "b2f5b021-10d9-4335-ac1d-f05724764a3f",
         "class": "signature",
         "confidence": 0.8746067881584167,
         "bbox": [
-            1527,
+            1559,
             2237,
-            2208,
-            2436
+            2210,
+            2438
         ],
         "text": "",
-        "parent": "",
+        "parent": "5b91032d-607e-4a9b-8373-87b431df6ad2",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "e15430b5-60e3-446c-a30f-c6977d5745d0",
+        "uuid": "2ecbcf9d-ad17-4309-b4b4-122cbc8b0e57",
         "class": "boxInput",
         "confidence": 0.766650915145874,
         "bbox": [
             405,
             1588,
-            1109,
-            1649
+            2265,
+            1651
         ],
         "text": "",
-        "parent": "",
+        "parent": "c67b1435-8269-4c48-aa25-d34dab0c5683",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "1da28bfc-735a-4744-9480-671d3aca7e7a",
-        "class": "boxInput",
-        "confidence": 0.7511256337165833,
-        "bbox": [
-            1942,
-            218,
-            2223,
-            288
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "d101b4fd-9d29-4d2c-8c80-3cb1bbf4571f",
+        "uuid": "32911fbc-e0d2-4b32-973a-35465f03e094",
         "class": "boxInput",
         "confidence": 0.7268276214599609,
         "bbox": [
-            426,
+            408,
             891,
-            856,
-            961
+            858,
+            963
         ],
         "text": "",
-        "parent": "",
+        "parent": "a75fd59a-a777-4821-9c0d-358f0c67a1c7",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "f2138a11-08f3-4547-a9cf-7abdb2c0ce5c",
-        "class": "boxInput",
-        "confidence": 0.7262070775032043,
-        "bbox": [
-            1287,
-            1588,
-            1938,
-            1654
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "953b1f1b-c35a-4967-94d1-d93db4fa70d0",
+        "uuid": "7170bc69-4b97-4427-bc05-8766101ec841",
         "class": "boxInput",
         "confidence": 0.7190621495246887,
         "bbox": [
@@ -100,42 +70,42 @@
             883
         ],
         "text": "",
-        "parent": "",
+        "parent": "33b89106-a8a1-4bd3-91f4-6c10b7f1cc6d",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "0c63ff67-6bba-4b55-8992-fa663db2e684",
+        "uuid": "f330afb3-c283-4809-8315-72a80ccd40aa",
         "class": "boxInput",
         "confidence": 0.7116532921791077,
         "bbox": [
-            1708,
-            898,
-            2256,
-            967
+            1718,
+            897,
+            2242,
+            968
         ],
         "text": "",
-        "parent": "",
+        "parent": "5c9f228e-9f84-4e9d-82d0-f1c709a4c21e",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "12c2e8fd-53f5-4e43-96d7-215792c0100c",
+        "uuid": "d53954fb-0d6a-4589-be9f-f54706e7acb7",
         "class": "boxInput",
         "confidence": 0.7053065299987793,
         "bbox": [
-            397,
+            406,
             1165,
-            1312,
-            1230
+            1185,
+            1232
         ],
         "text": "",
-        "parent": "",
+        "parent": "bc31dc5b-597a-42e9-b15e-e607d74ab141",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "b44e40c6-d18c-4c43-9dc5-409a164253d3",
+        "uuid": "ce4d1bcc-4463-4319-8e02-f731811bc5b2",
         "class": "checkBox",
         "confidence": 0.6866014003753662,
         "bbox": [
@@ -145,72 +115,57 @@
             643
         ],
         "text": "",
-        "parent": "",
+        "parent": "aaaf3da5-dcf5-474c-8b8e-ad7c3aa278f6",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "bdc4e3b0-6f56-4694-8692-4fd021b1dfe4",
-        "class": "lineInput",
-        "confidence": 0.6852803826332092,
-        "bbox": [
-            808,
-            2426,
-            1471,
-            2498
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "379305b3-7709-4413-9cb6-95fb2c9b9802",
+        "uuid": "2181bde5-d30a-4b8d-8278-8582c3671cf8",
         "class": "boxInput",
         "confidence": 0.6551302671432495,
         "bbox": [
             1588,
             291,
-            1906,
-            356
+            2233,
+            358
         ],
         "text": "",
-        "parent": "",
+        "parent": "6b7c91c7-555d-40a9-abc4-8315df841bac",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "a69e4195-e51a-4e12-bc9e-46b06d0ca6d2",
+        "uuid": "5317a87a-4b13-454c-960f-7e101f08aa73",
         "class": "boxInput",
         "confidence": 0.6492753028869629,
         "bbox": [
-            443,
-            965,
-            2308,
-            1028
+            417,
+            964,
+            2244,
+            1031
         ],
         "text": "",
-        "parent": "",
+        "parent": "d6530a8b-7460-46a2-a7ee-7494a167ee67",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "5c304ea5-df12-4ba8-9f8c-513f4d6f261c",
+        "uuid": "229eb9aa-13f8-4d73-a6ae-7dac79200bfd",
         "class": "boxInput",
         "confidence": 0.6355304718017578,
         "bbox": [
-            432,
+            412,
             1035,
-            2308,
-            1095
+            2239,
+            1099
         ],
         "text": "",
-        "parent": "",
+        "parent": "da61235d-62e3-4d75-8894-4944e74c060e",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "6a4cc97f-b8d6-44aa-81ab-79b4eb26d73c",
+        "uuid": "782e39cf-dcc7-45ea-817a-cdc3bf9a76c9",
         "class": "boxInput",
         "confidence": 0.6334598660469055,
         "bbox": [
@@ -220,147 +175,87 @@
             1582
         ],
         "text": "",
-        "parent": "",
+        "parent": "88b39946-1b78-4968-98e2-818cec316218",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "2b02f286-1bd5-4174-ad21-f3db207db682",
+        "uuid": "6bd06cd2-31d1-4332-a4d1-52bce2dfef94",
         "class": "boxInput",
         "confidence": 0.6323598027229309,
         "bbox": [
-            486,
-            1458,
-            2308,
-            1533
+            411,
+            1450,
+            2235,
+            1527
         ],
         "text": "",
-        "parent": "",
+        "parent": "2567a7ff-150f-48bf-9ef8-c3436b04bf30",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "d6df2eb8-4043-4089-bfc7-4380ec3db070",
-        "class": "boxInput",
-        "confidence": 0.6314181089401245,
-        "bbox": [
-            1512,
-            1587,
-            1929,
-            1658
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "7b221e5b-5189-4949-897e-c2b7d9f558ef",
-        "class": "boxInput",
-        "confidence": 0.6262508034706116,
-        "bbox": [
-            1897,
-            289,
-            2240,
-            360
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "88bf6791-d4f0-4452-b866-38ed5705246d",
+        "uuid": "22d8caa0-7712-4000-adb1-e5be55ec206e",
         "class": "boxInput",
         "confidence": 0.6248471736907959,
         "bbox": [
             420,
             1102,
-            2155,
-            1156
+            2237,
+            1166
         ],
         "text": "",
-        "parent": "",
+        "parent": "da61235d-62e3-4d75-8894-4944e74c060e",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "ec7e4c7f-684d-40ef-ba39-f679afa02f94",
-        "class": "lineInput",
-        "confidence": 0.5579045414924622,
-        "bbox": [
-            265,
-            2376,
-            753,
-            2436
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "ff00872d-7833-46db-bdae-5698e0ce188f",
+        "uuid": "1f00169f-10b8-4dde-9313-f20dbd5b11ab",
         "class": "signature",
         "confidence": 0.5402045249938965,
         "bbox": [
-            75,
-            2245,
-            755,
-            2375
+            116,
+            2255,
+            757,
+            2418
         ],
         "text": "",
-        "parent": "",
+        "parent": "7941f23a-9574-4446-8813-5b345eefa81d",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "98c61d88-d93c-4199-8c1e-3b3b918ee5f4",
-        "class": "boxInput",
-        "confidence": 0.5097290873527527,
-        "bbox": [
-            1282,
-            1584,
-            2147,
-            1657
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "9e725645-de66-413f-bcc4-dc12a21fbb26",
+        "uuid": "c8b02da3-e8aa-4691-b099-ca9df31f6004",
         "class": "boxInput",
         "confidence": 0.5092387199401855,
         "bbox": [
-            389,
+            411,
             1317,
-            2235,
-            1397
+            2237,
+            1380
         ],
         "text": "",
-        "parent": "",
+        "parent": "b6498262-47ee-4185-9aab-023c37fd9827",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "49aef2b7-2701-45a4-a9e8-05cf0f459d05",
+        "uuid": "53baaf74-d6ef-45bf-b17e-559b919f22d4",
         "class": "lineInput",
         "confidence": 0.5089089870452881,
         "bbox": [
             1084,
             1870,
-            1342,
-            1910
+            1387,
+            1912
         ],
         "text": "",
-        "parent": "",
+        "parent": "8dc61d7d-ef6f-415a-9493-cce78f3da7e2",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "5de356fd-1301-4e98-82d0-23c71a5d600d",
+        "uuid": "352c1a42-f9bd-4a9f-824c-94b2e1ca61d9",
         "class": "lineInput",
         "confidence": 0.49924802780151367,
         "bbox": [
@@ -370,42 +265,12 @@
             3041
         ],
         "text": "",
-        "parent": "",
+        "parent": "becd0da3-528a-4aaf-ac57-f7f121ae8eb1",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "fe0f51ea-d0d9-4e98-ba59-48427c87f9d4",
-        "class": "boxInput",
-        "confidence": 0.4852392375469208,
-        "bbox": [
-            365,
-            966,
-            1425,
-            1031
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "37bd4575-28cd-4358-ae10-2c5a88f94afd",
-        "class": "boxInput",
-        "confidence": 0.4840138852596283,
-        "bbox": [
-            426,
-            1458,
-            2145,
-            1516
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "27eb9618-ab1e-45e8-8c46-4992abb7e0bb",
+        "uuid": "61f0d0d7-7f1b-4f10-894a-18e80c09189c",
         "class": "lineInput",
         "confidence": 0.4755920171737671,
         "bbox": [
@@ -415,132 +280,57 @@
             2795
         ],
         "text": "",
-        "parent": "",
+        "parent": "578b6d10-e637-460b-81cb-069e975e040c",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "b73e23c6-d457-4601-a77b-fbe399a76efa",
-        "class": "boxInput",
-        "confidence": 0.4752095341682434,
-        "bbox": [
-            1027,
-            813,
-            1419,
-            884
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "dba4c27c-fe88-4c9a-a178-efa7ed1af783",
+        "uuid": "c5769c31-5f89-4fa8-b03e-c3d8e6207809",
         "class": "boxInput",
         "confidence": 0.46282464265823364,
         "bbox": [
             1706,
             216,
-            1919,
-            289
+            2238,
+            291
         ],
         "text": "",
-        "parent": "",
+        "parent": "7b119963-8bff-4496-ace8-5f17a5f13859",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "fec7385f-ed0d-4a07-9eb8-dfb548677567",
+        "uuid": "26168987-c80f-4e10-9fdc-8078f5d9d919",
         "class": "boxInput",
         "confidence": 0.4599464237689972,
         "bbox": [
-            486,
-            1348,
-            2308,
-            1415
+            412,
+            1380,
+            1444,
+            1449
         ],
         "text": "",
-        "parent": "",
+        "parent": "8f3d255e-6b89-4cb8-87be-bbae59c49013",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "3ddb11bc-f13c-4163-80fb-994f07f77f36",
-        "class": "boxInput",
-        "confidence": 0.45358023047447205,
-        "bbox": [
-            1145,
-            1458,
-            2273,
-            1530
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "cf01ce6f-2e11-4982-9240-5f117c1dd83b",
-        "class": "boxInput",
-        "confidence": 0.42751017212867737,
-        "bbox": [
-            390,
-            1035,
-            1466,
-            1096
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "0fd08e76-3624-4e9e-849d-279a69149232",
-        "class": "boxInput",
-        "confidence": 0.425040066242218,
-        "bbox": [
-            446,
-            1378,
-            2240,
-            1452
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "ad4f56cf-80ab-4227-91af-5d9c7c00c8e1",
-        "class": "boxInput",
-        "confidence": 0.4153827726840973,
-        "bbox": [
-            366,
-            1094,
-            1436,
-            1162
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "6759e851-4394-4715-b2b7-81b8883ab05e",
+        "uuid": "f8f85ea1-a96c-44f6-9119-3a53fdf59689",
         "class": "lineInput",
         "confidence": 0.36865338683128357,
         "bbox": [
             1427,
             2662,
-            1965,
-            2718
+            2183,
+            2720
         ],
         "text": "",
-        "parent": "",
+        "parent": "8c181c6c-fed9-431d-9d88-e61abd45b4f5",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "06674f1c-1dd0-41a1-bea0-91adb941bb5a",
+        "uuid": "c635c714-a634-4b22-866d-40b17db8ac84",
         "class": "lineInput",
         "confidence": 0.3612613379955292,
         "bbox": [
@@ -550,147 +340,87 @@
             2797
         ],
         "text": "",
-        "parent": "",
+        "parent": "d6f703e4-335c-45ad-9890-837676fb1b82",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "58fde91e-aab3-4f3c-ba19-224b7d5ebe0d",
-        "class": "lineInput",
-        "confidence": 0.35680902004241943,
-        "bbox": [
-            814,
-            2440,
-            1107,
-            2500
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "c66d82ee-e891-45fe-9cee-c19092c607ca",
+        "uuid": "fef70e7c-5ebc-4960-bc76-f57eab4a6344",
         "class": "lineInput",
         "confidence": 0.3450714349746704,
         "bbox": [
-            1503,
-            2813,
-            2168,
-            2884
+            116,
+            2812,
+            2142,
+            2885
         ],
         "text": "",
-        "parent": "",
+        "parent": "d6f703e4-335c-45ad-9890-837676fb1b82",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "90c30bdc-244e-4f3b-b5c9-b5b482e862f7",
-        "class": "boxInput",
-        "confidence": 0.3423493504524231,
-        "bbox": [
-            385,
-            978,
-            2215,
-            1045
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "c95eaa0f-c282-4422-929b-78a78db393b3",
+        "uuid": "330f5b26-259e-4b63-9fcd-ec347e7d1aaf",
         "class": "lineInput",
         "confidence": 0.3286809027194977,
         "bbox": [
             760,
             1660,
-            1286,
-            1724
+            2248,
+            1726
         ],
         "text": "",
-        "parent": "",
+        "parent": "eab577b6-de68-4fd3-bc31-01fcd8c91942",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "cd465311-57cd-44ae-b309-64dbd6a5f0bf",
+        "uuid": "335f5528-f644-4d9f-b249-19a72aafcaaf",
         "class": "lineInput",
         "confidence": 0.3165976405143738,
         "bbox": [
-            204,
-            3028,
-            595,
-            3098
+            210,
+            3029,
+            713,
+            3101
         ],
         "text": "",
-        "parent": "",
+        "parent": "eb1d1050-1946-4158-9c0e-308f867d4d5c",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "f414d84d-52ae-4cb4-85f8-d73b5e95ce0b",
+        "uuid": "bf641f00-31a6-454e-9723-be7495ccaf5b",
         "class": "lineInput",
         "confidence": 0.3116876780986786,
         "bbox": [
             1111,
             2908,
-            1464,
-            2964
+            1650,
+            2966
         ],
         "text": "",
-        "parent": "",
+        "parent": "bd6bfe61-215a-40ef-8ef7-2cccd04b8e79",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "e7ad4f3d-4bb6-4525-acd9-f4c71fe9a920",
-        "class": "boxInput",
-        "confidence": 0.31073665618896484,
-        "bbox": [
-            483,
-            1447,
-            1261,
-            1513
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "11992ee0-86bf-45b9-af54-958e96756e28",
+        "uuid": "0bde8a87-62d0-42c8-9dd2-f726c7dd7367",
         "class": "lineInput",
         "confidence": 0.2956661581993103,
         "bbox": [
             1719,
-            400,
-            2180,
-            460
+            387,
+            2182,
+            462
         ],
         "text": "",
-        "parent": "",
+        "parent": "bcae5bfe-f1df-48e3-9f2c-c33a7daa454c",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "7ae08523-edb1-40ce-bcfa-cbe1868cdd18",
-        "class": "boxInput",
-        "confidence": 0.2922505736351013,
-        "bbox": [
-            408,
-            1456,
-            1703,
-            1513
-        ],
-        "text": "",
-        "parent": "",
-        "Model": "YOLO",
-        "child": []
-    },
-    {
-        "uuid": "1ea56b1c-51d4-4a6e-8ba6-301c218cadee",
+        "uuid": "21388f0c-8466-46b4-aa93-8fc410b947bb",
         "class": "lineInput",
         "confidence": 0.28276658058166504,
         "bbox": [
@@ -700,132 +430,102 @@
             454
         ],
         "text": "",
-        "parent": "e94a56cc-cc3f-4154-8a83-ceca34066172",
+        "parent": "0c83f173-38f2-4cca-9ba7-12cab8db0786",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "382d24d4-0337-4dce-8ce8-171135ea5947",
-        "class": "boxInput",
-        "confidence": 0.2647073566913605,
-        "bbox": [
-            1714,
-            896,
-            2064,
-            968
-        ],
+        "uuid": "fc4056a5-0aed-4572-870a-d88b2920a2c8",
         "text": "",
-        "parent": "",
+        "class": "checkBox",
+        "confidence": 1,
+        "bbox": [
+            122,
+            565,
+            193,
+            639
+        ],
+        "parent": "9bf46a26-8be4-4027-9451-a338976ef567",
         "Model": "YOLO",
         "child": []
     },
     {
-        "uuid": "f62bc1d1-c6ee-4680-98e1-db3c4ccdd6af",
-        "class": "Label",
-        "confidence": 0.9849200248718262,
+        "uuid": "61c58e0c-c499-40b6-a220-5154a0ea4fb5",
+        "text": "",
+        "class": "boxInput",
+        "confidence": 1,
         "bbox": [
-            82,
-            26,
-            541,
-            79
+            430,
+            562,
+            502,
+            634
         ],
-        "text": "PGK/06-2020/2500Px50",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
+        "parent": "713f228b-0d24-4257-b66e-d16114320e07",
+        "Model": "YOLO",
+        "child": []
     },
     {
-        "uuid": "47ed113b-6469-4958-8da6-97edb6080592",
-        "class": "Label",
-        "confidence": 0.9857202172279358,
+        "uuid": "4159affa-6b15-4a63-8b59-e503ff57b173",
+        "text": "",
+        "class": "lineInput",
+        "confidence": 1,
         "bbox": [
-            2098,
-            40,
-            2259,
-            86
+            118,
+            455,
+            2151,
+            519
         ],
-        "text": "F.No.272",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
+        "parent": "bcae5bfe-f1df-48e3-9f2c-c33a7daa454c",
+        "Model": "YOLO",
+        "child": []
     },
     {
-        "uuid": "4e13ab8a-f99f-4f8c-9486-3078b67a40cc",
-        "class": "Label",
-        "confidence": 0.9665057063102722,
+        "uuid": "5bd82fb9-ed07-4876-9319-94bff5130b7f",
+        "text": "",
+        "class": "lineInput",
+        "confidence": 1,
         "bbox": [
-            1131,
-            79,
-            2236,
-            142
+            414,
+            2634,
+            1166,
+            2714
         ],
-        "text": "Application for National Electronic Fund Transfer /",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
+        "parent": "c6af8f08-dc81-4b12-a923-8e666a04b762",
+        "Model": "YOLO",
+        "child": []
     },
     {
-        "uuid": "93f5293a-b24e-4a11-a8fd-5b4c3afc6870",
-        "class": "Label",
-        "confidence": 0.7798801064491272,
+        "uuid": "5992068c-5efa-4d87-aadb-a76f15253587",
+        "text": "",
+        "class": "lineInput",
+        "confidence": 1,
         "bbox": [
-            108,
-            92,
-            177,
-            132
+            157,
+            2950,
+            689,
+            3027
         ],
-        "text": "To,",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
+        "parent": "0474b86e-3604-44db-8206-e9014b4a491d",
+        "Model": "YOLO",
+        "child": []
     },
     {
-        "uuid": "ae8bf63b-033c-49a0-83e6-f5a6c1278533",
-        "class": "Label",
-        "confidence": 0.9703200459480286,
+        "uuid": "9f414156-a0bd-43a1-b533-8782499fa1ca",
+        "text": "",
+        "class": "EmptyInput",
+        "confidence": 1,
         "bbox": [
-            115,
-            145,
-            512,
-            195
+            118,
+            263,
+            629,
+            346
         ],
-        "text": "The Branch Manager",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
+        "parent": "9d350db8-4e0c-4c00-a8b6-9ec3dbb22f5a",
+        "Model": "YOLO",
+        "child": []
     },
     {
-        "uuid": "981d6500-2793-4ca8-8156-817884d28be9",
-        "class": "Label",
-        "confidence": 0.9658656716346741,
-        "bbox": [
-            1085,
-            138,
-            2226,
-            191
-        ],
-        "text": "Real-Time Gross Settlement Systems (NEFT/RTGS)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "e8b3fc8f-04c7-42ad-bf9b-3e84aa4e5491",
-        "class": "Label",
-        "confidence": 0.8061276078224182,
-        "bbox": [
-            115,
-            208,
-            649,
-            267
-        ],
-        "text": "CITY UNION BANK",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "933cb4ad-2e3b-4dff-8f1e-1cb6409935ae",
+        "uuid": "7b119963-8bff-4496-ace8-5f17a5f13859",
         "class": "Label",
         "confidence": 0.9976589679718018,
         "bbox": [
@@ -835,27 +535,31 @@
             278
         ],
         "text": "Date",
-        "child": [],
+        "child": [
+            "c5769c31-5f89-4fa8-b03e-c3d8e6207809"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "fa6862d5-23ec-469d-8101-b03264f410d3",
+        "uuid": "9d350db8-4e0c-4c00-a8b6-9ec3dbb22f5a",
         "class": "Label",
         "confidence": 0.959921658039093,
         "bbox": [
-            114,
-            270,
-            797,
-            363
+            649,
+            283,
+            799,
+            359
         ],
-        "text": "THEPPERUMANALLUR Branch",
-        "child": [],
+        "text": "Branch-Top",
+        "child": [
+            "9f414156-a0bd-43a1-b533-8782499fa1ca"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "5f1b6ba4-7de3-4dc7-bd99-61640b7aa5fb",
+        "uuid": "6b7c91c7-555d-40a9-abc4-8315df841bac",
         "class": "Label",
         "confidence": 0.8694050908088684,
         "bbox": [
@@ -865,59 +569,31 @@
             337
         ],
         "text": "PAN No.",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "c549802d-f809-444f-a296-d4364ec99142",
-        "class": "Label",
-        "confidence": 0.9714844822883606,
-        "bbox": [
-            117,
-            332,
-            286,
-            386
+        "child": [
+            "2181bde5-d30a-4b8d-8278-8582c3671cf8"
         ],
-        "text": "Dear sir,",
-        "child": [],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "40e435a4-b9a4-4a92-9029-cb0be142dcc7",
-        "class": "Label",
-        "confidence": 0.9152971506118774,
-        "bbox": [
-            1531,
-            349,
-            2226,
-            399
-        ],
-        "text": "*To be provided by CITy UNION BANK customer",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "e94a56cc-cc3f-4154-8a83-ceca34066172",
+        "uuid": "0c83f173-38f2-4cca-9ba7-12cab8db0786",
         "class": "Label",
         "confidence": 0.9539227485656738,
         "bbox": [
-            121,
+            510,
             406,
-            954,
-            452
+            956,
+            454
         ],
-        "text": "Please remit through NEFT/RTGS a sum of",
+        "text": "NEFT/RTGS a sum of-Top",
         "child": [
-            "1ea56b1c-51d4-4a6e-8ba6-301c218cadee"
+            "21388f0c-8466-46b4-aa93-8fc410b947bb"
         ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "1f48b9d4-4e25-4d27-9e35-ba30071b30a7",
+        "uuid": "bcae5bfe-f1df-48e3-9f2c-c33a7daa454c",
         "class": "Label",
         "confidence": 0.9764330387115479,
         "bbox": [
@@ -926,133 +602,67 @@
             1731,
             459
         ],
-        "text": "Rupees in words)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "844d2d08-3653-4cf3-b2a8-880116f88240",
-        "class": "Label",
-        "confidence": 0.9979171752929688,
-        "bbox": [
-            2144,
-            485,
-            2229,
-            524
+        "text": "Rupees in words-Top",
+        "child": [
+            "0bde8a87-62d0-42c8-9dd2-f726c7dd7367",
+            "4159affa-6b15-4a63-8b59-e503ff57b173"
         ],
-        "text": "only",
-        "child": [],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "baba05dc-1b1f-4271-ba93-ff4b49e44ca2",
-        "class": "Label",
-        "confidence": 0.9695530533790588,
-        "bbox": [
-            121,
-            518,
-            626,
-            561
-        ],
-        "text": "as per details given below:",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "f40de4f3-baf5-4a14-90ca-3816dc6224c6",
+        "uuid": "9bf46a26-8be4-4027-9451-a338976ef567",
         "class": "Label",
         "confidence": 0.9706231355667114,
         "bbox": [
-            138,
+            198,
             580,
-            308,
-            627
+            310,
+            629
         ],
         "text": "Cash",
-        "child": [],
+        "child": [
+            "fc4056a5-0aed-4572-870a-d88b2920a2c8"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "c50af27b-280f-4894-a84b-c5e3bc267ac8",
+        "uuid": "713f228b-0d24-4257-b66e-d16114320e07",
         "class": "Label",
         "confidence": 0.9664389491081238,
         "bbox": [
-            429,
+            510,
             577,
-            669,
-            630
+            671,
+            632
         ],
         "text": "Cheque",
-        "child": [],
+        "child": [
+            "61c58e0c-c499-40b6-a220-5154a0ea4fb5"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "5b1c4461-6a40-499e-8486-07113a3575d3",
+        "uuid": "aaaf3da5-dcf5-474c-8b8e-ad7c3aa278f6",
         "class": "Label",
         "confidence": 0.9602909684181213,
         "bbox": [
-            760,
+            843,
             574,
-            1279,
-            637
+            1281,
+            639
         ],
         "text": "Debit my / our account",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "d5976d2b-545f-49db-9b94-31481a99b82f",
-        "class": "Label",
-        "confidence": 0.927327573299408,
-        "bbox": [
-            121,
-            630,
-            856,
-            679
+        "child": [
+            "ce4d1bcc-4463-4319-8e02-f731811bc5b2"
         ],
-        "text": "*In case of cash,please fill in the pay-in-slip",
-        "child": [],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "58787618-84a3-4536-8810-073f76d3147f",
-        "class": "Label",
-        "confidence": 0.9407702684402466,
-        "bbox": [
-            125,
-            669,
-            1029,
-            719
-        ],
-        "text": "*To be filled by the Applicant in CAPITAL LETTERS",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "52103027-af3f-42a7-86f2-887f348c7be6",
-        "class": "Label",
-        "confidence": 0.9677138328552246,
-        "bbox": [
-            829,
-            745,
-            1505,
-            788
-        ],
-        "text": "DETAILS OF APPLICANT (REMITTER)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "e46f7ce7-2bc0-48e2-aa94-b9053eb912bb",
+        "uuid": "33b89106-a8a1-4bd3-91f4-6c10b7f1cc6d",
         "class": "Label",
         "confidence": 0.9879698753356934,
         "bbox": [
@@ -1062,12 +672,14 @@
             867
         ],
         "text": "Account Number",
-        "child": [],
+        "child": [
+            "7170bc69-4b97-4427-bc05-8766101ec841"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "b0439f5b-2a48-45b6-989f-638db77ce40b",
+        "uuid": "a75fd59a-a777-4821-9c0d-358f0c67a1c7",
         "class": "Label",
         "confidence": 0.9815024137496948,
         "bbox": [
@@ -1077,12 +689,14 @@
             940
         ],
         "text": "Cheque Number",
-        "child": [],
+        "child": [
+            "32911fbc-e0d2-4b32-973a-35465f03e094"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "18db2157-56e6-4a86-83bb-42695f4ccc4e",
+        "uuid": "5c9f228e-9f84-4e9d-82d0-f1c709a4c21e",
         "class": "Label",
         "confidence": 0.9648439288139343,
         "bbox": [
@@ -1092,12 +706,14 @@
             950
         ],
         "text": "Cheque Date",
-        "child": [],
+        "child": [
+            "f330afb3-c283-4809-8315-72a80ccd40aa"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "0e8cd00a-be42-42ce-9299-f31d6eb87da0",
+        "uuid": "d6530a8b-7460-46a2-a7ee-7494a167ee67",
         "class": "Label",
         "confidence": 0.9367125630378723,
         "bbox": [
@@ -1107,12 +723,14 @@
             1009
         ],
         "text": "Remitter's Name",
-        "child": [],
+        "child": [
+            "5317a87a-4b13-454c-960f-7e101f08aa73"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "435ba808-21e4-4c8f-b813-4d964fd846f9",
+        "uuid": "da61235d-62e3-4d75-8894-4944e74c060e",
         "class": "Label",
         "confidence": 0.988251268863678,
         "bbox": [
@@ -1122,12 +740,15 @@
             1083
         ],
         "text": "Address",
-        "child": [],
+        "child": [
+            "229eb9aa-13f8-4d73-a6ae-7dac79200bfd",
+            "22d8caa0-7712-4000-adb1-e5be55ec206e"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "b7640646-7216-48ae-98b1-a375c1d0068d",
+        "uuid": "bc31dc5b-597a-42e9-b15e-e607d74ab141",
         "class": "Label",
         "confidence": 0.9915297031402588,
         "bbox": [
@@ -1137,27 +758,14 @@
             1217
         ],
         "text": "Mobile/OtherNumber",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "2ec8d9ca-5145-41fb-b42e-1e561eeedbcc",
-        "class": "Label",
-        "confidence": 0.9706717729568481,
-        "bbox": [
-            859,
-            1253,
-            1406,
-            1286
+        "child": [
+            "d53954fb-0d6a-4589-be9f-f54706e7acb7"
         ],
-        "text": " DETAILS OF BENEFICIARY",
-        "child": [],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "37010295-654c-479e-8ed5-4639820aed78",
+        "uuid": "b6498262-47ee-4185-9aab-023c37fd9827",
         "class": "Label",
         "confidence": 0.9536399841308594,
         "bbox": [
@@ -1167,12 +775,14 @@
             1359
         ],
         "text": "Beneticiary's Name",
-        "child": [],
+        "child": [
+            "c8b02da3-e8aa-4691-b099-ca9df31f6004"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "dbb58e24-7388-497b-9234-84ee6bbbc389",
+        "uuid": "8f3d255e-6b89-4cb8-87be-bbae59c49013",
         "class": "Label",
         "confidence": 0.9869080185890198,
         "bbox": [
@@ -1182,12 +792,14 @@
             1428
         ],
         "text": "Account Number",
-        "child": [],
+        "child": [
+            "26168987-c80f-4e10-9fdc-8078f5d9d919"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "6f3fc8b5-60e9-44e4-95d7-97b89dd4e245",
+        "uuid": "2567a7ff-150f-48bf-9ef8-c3436b04bf30",
         "class": "Label",
         "confidence": 0.9628899693489075,
         "bbox": [
@@ -1197,12 +809,14 @@
             1501
         ],
         "text": "Bank Name",
-        "child": [],
+        "child": [
+            "6bd06cd2-31d1-4332-a4d1-52bce2dfef94"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "23f58878-eeb7-489f-ae7b-0ef340efd402",
+        "uuid": "88b39946-1b78-4968-98e2-818cec316218",
         "class": "Label",
         "confidence": 0.9369374513626099,
         "bbox": [
@@ -1212,12 +826,14 @@
             1574
         ],
         "text": "fs code (11-digit)",
-        "child": [],
+        "child": [
+            "782e39cf-dcc7-45ea-817a-cdc3bf9a76c9"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "e75e4f3f-01e7-471b-b674-09a25dffd07e",
+        "uuid": "c67b1435-8269-4c48-aa25-d34dab0c5683",
         "class": "Label",
         "confidence": 0.9678309559822083,
         "bbox": [
@@ -1227,12 +843,14 @@
             1639
         ],
         "text": "Branch Address",
-        "child": [],
+        "child": [
+            "2ecbcf9d-ad17-4309-b4b4-122cbc8b0e57"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "b5705d5a-b028-443c-8324-89f34c1feb24",
+        "uuid": "eab577b6-de68-4fd3-bc31-01fcd8c91942",
         "class": "Label",
         "confidence": 0.9392633438110352,
         "bbox": [
@@ -1242,267 +860,82 @@
             1722
         ],
         "text": "Sender to Receiver information (if any):",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "dbacb62d-2280-485e-b5bd-a363c5dd52cc",
-        "class": "Label",
-        "confidence": 0.9418252110481262,
-        "bbox": [
-            115,
-            1784,
-            2184,
-            1844
+        "child": [
+            "330f5b26-259e-4b63-9fcd-ec347e7d1aaf"
         ],
-        "text": "This transfer is valid for a single transaction.The fund transfer will be governed by the Terms and Conditions given on our website www.City Union Bank.com",
-        "child": [],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "12f30231-1370-4ece-a8cf-0f8a97a247e7",
+        "uuid": "8dc61d7d-ef6f-415a-9493-cce78f3da7e2",
         "class": "Label",
         "confidence": 0.9554519057273865,
         "bbox": [
-            105,
+            820,
             1860,
-            1102,
-            1916
+            1104,
+            1918
         ],
-        "text": "*Photo lD proof to be given by non customer tor cash payment above",
-        "child": [],
+        "text": "lD to non customer",
+        "child": [
+            "53baaf74-d6ef-45bf-b17e-559b919f22d4"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "7f6c6c67-37ce-456b-9665-282b5660bcc4",
-        "class": "Label",
-        "confidence": 0.9480165243148804,
-        "bbox": [
-            1393,
-            1873,
-            2200,
-            1913
-        ],
-        "text": "Do not fall prey to false promises :beware ot dubious scheme",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "79c7296d-5ff3-4c61-a49c-31cc4ce98a84",
-        "class": "Label",
-        "confidence": 0.9556780457496643,
-        "bbox": [
-            118,
-            1899,
-            2200,
-            1956
-        ],
-        "text": "Please do not disclose your Account details/Internet BankingUser ID and Passwords/ATM debit Card/Credit Card/Mobile Banking/Personal Information to any person",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "d97de3fd-1666-41e1-8fba-489fb1fedab5",
-        "class": "Label",
-        "confidence": 0.9359713196754456,
-        "bbox": [
-            128,
-            2084,
-            1649,
-            2134
-        ],
-        "text": "number of the beneficiary provided while initing the transaction.Name will NOT be considered as a criteria for providing credit.",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "e8a6e594-fd47-41f8-828b-7378e5a4adbc",
-        "class": "Label",
-        "confidence": 0.9611496329307556,
-        "bbox": [
-            108,
-            2120,
-            1888,
-            2170
-        ],
-        "text": "*Iunderstand that this facity is available only at select locations and banks covered under Electronic Funds Transfer Facility offered by RBI",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "51c41a5b-553d-4844-b26a-0ce8a901c457",
-        "class": "Label",
-        "confidence": 0.9229021072387695,
-        "bbox": [
-            508,
-            2180,
-            1518,
-            2226
-        ],
-        "text": "CUSTOMER SIGNATURE (S)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "e80bdf78-8fca-4933-8307-3744e0d4ab6a",
+        "uuid": "7941f23a-9574-4446-8813-5b345eefa81d",
         "class": "Label",
         "confidence": 0.9943037033081055,
         "bbox": [
-            115,
+            88,
             2378,
-            269,
-            2414
+            271,
+            2416
         ],
-        "text": "Signature",
-        "child": [],
+        "text": "Signature 1",
+        "child": [
+            "1f00169f-10b8-4dde-9313-f20dbd5b11ab"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "1508b5bb-4ec9-4b1e-a51c-0b13d2e74b40",
+        "uuid": "f65f664a-2f57-4a9f-9eff-bb42e68503c9",
         "class": "Label",
         "confidence": 0.9973983764648438,
         "bbox": [
-            833,
+            801,
             2381,
-            987,
-            2417
+            989,
+            2419
         ],
-        "text": "Signature",
-        "child": [],
+        "text": "Signature 2",
+        "child": [
+            "c22bcde1-07b1-44c9-bf3e-c328dbb0a1d3"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "a2907ad2-424f-4e94-8bb3-61dabf40ded5",
+        "uuid": "5b91032d-607e-4a9b-8373-87b431df6ad2",
         "class": "Label",
         "confidence": 0.9963862895965576,
         "bbox": [
-            1554,
+            1521,
             2384,
-            1708,
-            2421
+            1710,
+            2423
         ],
-        "text": "Signature",
-        "child": [],
+        "text": "Signature 3",
+        "child": [
+            "b2f5b021-10d9-4335-ac1d-f05724764a3f"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "73b747b5-db48-4097-a9d0-458679b1e27a",
-        "class": "Label",
-        "confidence": 0.997667670249939,
-        "bbox": [
-            369,
-            2433,
-            483,
-            2488
-        ],
-        "text": "Name",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "159115b4-72ad-41ba-beac-07737e8e5ae1",
-        "class": "Label",
-        "confidence": 0.9981318712234497,
-        "bbox": [
-            1090,
-            2436,
-            1201,
-            2491
-        ],
-        "text": "Name",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "0181b121-503c-4d77-b64d-f04b0e3b0d41",
-        "class": "Label",
-        "confidence": 0.9982519745826721,
-        "bbox": [
-            1812,
-            2436,
-            1919,
-            2491
-        ],
-        "text": "Name",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "da0ffd43-f3fb-4684-ae55-d192c97146d6",
-        "class": "Label",
-        "confidence": 0.9411670565605164,
-        "bbox": [
-            268,
-            2486,
-            577,
-            2540
-        ],
-        "text": "*Primary Applicant)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "34bc716f-028e-499a-b2c5-3a348a63e188",
-        "class": "Label",
-        "confidence": 0.9478694796562195,
-        "bbox": [
-            996,
-            2490,
-            1292,
-            2543
-        ],
-        "text": "*(Joint Applicant 1",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "44f75dd4-1618-451c-8326-17875d414395",
-        "class": "Label",
-        "confidence": 0.9354435801506042,
-        "bbox": [
-            1721,
-            2493,
-            2010,
-            2543
-        ],
-        "text": "*(Joint Applicant 2)",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "cce5430f-05f5-4db5-98e8-12e20b9bba3c",
-        "class": "Label",
-        "confidence": 0.9918369650840759,
-        "bbox": [
-            908,
-            2602,
-            1413,
-            2645
-        ],
-        "text": "Customer Acknowledgment",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "25778a2f-c9d8-4e8b-a8ff-7b0e9adbf7c5",
+        "uuid": "c6af8f08-dc81-4b12-a923-8e666a04b762",
         "class": "Label",
         "confidence": 0.9554936289787292,
         "bbox": [
@@ -1511,13 +944,15 @@
             420,
             2711
         ],
-        "text": "Beneticiary's Name",
-        "child": [],
+        "text": "Beneticiary's Name-bottom",
+        "child": [
+            "5bd82fb9-ed07-4876-9319-94bff5130b7f"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "5d08cdc2-2117-4f8d-afed-91014212db5c",
+        "uuid": "8c181c6c-fed9-431d-9d88-e61abd45b4f5",
         "class": "Label",
         "confidence": 0.9914286732673645,
         "bbox": [
@@ -1526,28 +961,32 @@
             1433,
             2714
         ],
-        "text": "Account Number",
-        "child": [],
+        "text": "Account Number-Bottom",
+        "child": [
+            "f8f85ea1-a96c-44f6-9119-3a53fdf59689"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "b62e90f9-a656-470a-9ee9-fb2cf98513ed",
+        "uuid": "578b6d10-e637-460b-81cb-069e975e040c",
         "class": "Label",
         "confidence": 0.964317798614502,
         "bbox": [
-            118,
+            438,
             2744,
-            800,
-            2787
+            802,
+            2789
         ],
-        "text": "Please remit through NEFT/RTGS a sum of",
-        "child": [],
+        "text": "NEFT/RTGS a sum of-Bottom",
+        "child": [
+            "61f0d0d7-7f1b-4f10-894a-18e80c09189c"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "b84c9777-ee6a-4f45-8778-e13b53546a44",
+        "uuid": "d6f703e4-335c-45ad-9890-837676fb1b82",
         "class": "Label",
         "confidence": 0.9403666257858276,
         "bbox": [
@@ -1556,73 +995,33 @@
             1439,
             2790
         ],
-        "text": "(Rupees in words",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "a05c5644-daef-4c14-adc5-f0f4c9d919ed",
-        "class": "Label",
-        "confidence": 0.9983633756637573,
-        "bbox": [
-            2141,
-            2833,
-            2203,
-            2869
+        "text": "Rupees in words-Bottom",
+        "child": [
+            "c635c714-a634-4b22-866d-40b17db8ac84",
+            "fef70e7c-5ebc-4960-bc76-f57eab4a6344"
         ],
-        "text": "only",
-        "child": [],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "bda792d3-c1de-4af3-b05d-25b79c1b2084",
+        "uuid": "bd6bfe61-215a-40ef-8ef7-2cccd04b8e79",
         "class": "Label",
         "confidence": 0.9493101835250854,
         "bbox": [
-            111,
+            907,
             2912,
-            1125,
-            2962
+            1127,
+            2964
         ],
-        "text": "We acknowledge receipt of NEFT / RTGS instruction(s).Reference no..",
-        "child": [],
+        "text": "Reference no.-Bottom",
+        "child": [
+            "bf641f00-31a6-454e-9723-be7495ccaf5b"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "e4b29c31-cd58-4e5e-bcef-86640e4ce528",
-        "class": "Label",
-        "confidence": 0.94511479139328,
-        "bbox": [
-            1901,
-            2932,
-            2115,
-            2978
-        ],
-        "text": "Bank Seal",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "2e23acd4-2614-4129-b6f4-ed60254cc569",
-        "class": "Label",
-        "confidence": 0.9646941423416138,
-        "bbox": [
-            1868,
-            3007,
-            2157,
-            3057
-        ],
-        "text": "With Date &Time",
-        "child": [],
-        "Model": "PADDLE",
-        "parent": ""
-    },
-    {
-        "uuid": "01f6489c-4e57-4712-b7a0-c8d4da76ef3a",
+        "uuid": "eb1d1050-1946-4158-9c0e-308f867d4d5c",
         "class": "Label",
         "confidence": 0.9634560346603394,
         "bbox": [
@@ -1631,23 +1030,44 @@
             216,
             3090
         ],
-        "text": "Date:",
-        "child": [],
+        "text": "Date:-button",
+        "child": [
+            "335f5528-f644-4d9f-b249-19a72aafcaaf"
+        ],
         "Model": "PADDLE",
         "parent": ""
     },
     {
-        "uuid": "553e3cd3-f2a4-46f3-8b42-726e5f759d7a",
+        "uuid": "0474b86e-3604-44db-8206-e9014b4a491d",
+        "text": "Branch-Bottom",
         "class": "Label",
-        "confidence": 0.9891067147254944,
+        "confidence": 1,
         "bbox": [
-            1924,
-            3057,
-            2105,
-            3093
+            106,
+            2982,
+            233,
+            3033
         ],
-        "text": "ofRequest",
-        "child": [],
+        "child": [
+            "5992068c-5efa-4d87-aadb-a76f15253587"
+        ],
+        "Model": "PADDLE",
+        "parent": ""
+    },
+    {
+        "uuid": "becd0da3-528a-4aaf-ac57-f7f121ae8eb1",
+        "text": "Name and Signature -Bottom",
+        "class": "Label",
+        "confidence": 1,
+        "bbox": [
+            703,
+            2990,
+            1223,
+            3037
+        ],
+        "child": [
+            "352c1a42-f9bd-4a9f-824c-94b2e1ca61d9"
+        ],
         "Model": "PADDLE",
         "parent": ""
     }

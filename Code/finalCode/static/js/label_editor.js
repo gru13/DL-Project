@@ -267,24 +267,10 @@ function updateLabelClass(index, newClass) {
     updateLabelList();
 }
 
-
-function updateLabelFromRect(label, rect) {
-    label.bbox = [
-        Math.round(rect.left),
-        Math.round(rect.top),
-        Math.round(rect.left + rect.width),
-        Math.round(rect.top + rect.height)
-    ];
-}
-
 function updateLabelText(index, newText) {
     labels[index].text = newText;
-    updateLabelInList(index);
-}
-
-function updateLabelClass(index, newClass) {
-    labels[index].class = newClass;
-    updateLabelInList(index);
+    console.log(newText);
+    updateLabelList();
 }
 
 
@@ -311,50 +297,6 @@ function highlightLabel(index) {
 function clearLabelHighlight() {
     document.querySelectorAll('.label.highlighted')
         .forEach(label => label.classList.remove('highlighted'));
-}
-
-function deleteLabel(index) {
-    labels.splice(index, 1);
-    drawBoxes();
-    updateLabelList();
-}
-
-
-
-function updateLabelInList(index) {
-    let labelDiv = document.getElementById(`label-${index}`);
-    if (labelDiv) {
-        labelDiv.innerHTML = `
-            <p>Text: ${labels[index].text}</p>
-            <p>Confidence: ${labels[index].confidence.toFixed(2)}</p>
-            <p>Class: ${labels[index].class}</p>
-            <p>BBox: [${labels.bbox.join(", ")}]</p>
-            <input type="text" value="${labels[index].text}" onchange="updateLabelText(${index}, this.value)">
-            <select onchange="updateLabelClass(${index}, this.value)">
-                <option value="Label" ${labels[index].class === 'Label' ? 'selected' : ''}>Label</option>
-            </select>
-            <button onclick="deleteLabel(${index})">Delete</button>
-        `;
-    }
-}
-
-
-function onSelectionCleared() {
-    clearLabelHighlight();
-}
-
-function highlightLabel(index) {
-    clearLabelHighlight();
-    let labelDiv = document.getElementById(`label-${index}`);
-    if (labelDiv) {
-        labelDiv.classList.add('highlighted');
-        labelDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-}
-
-function clearLabelHighlight() {
-    let highlightedLabels = document.querySelectorAll('.label.highlighted');
-    highlightedLabels.forEach(label => label.classList.remove('highlighted'));
 }
 
 function deleteLabel(index) {
