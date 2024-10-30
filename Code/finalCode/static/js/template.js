@@ -410,9 +410,6 @@ function saveJsonFile() {
     const jsonData = {};
     const jsonItems = document.querySelectorAll('#jsonList .label'); // Find all 'label' divs inside #jsonList
 
-    // Generate a unique ID for this entry (simulating UUID)
-    const uniqueID = generateUUID(); // You can implement or use a library to generate a UUID
-    jsonData["uuid"] = uniqueID; // Add unique ID to the JSON object
 
     // Iterate through each parent-child group
     jsonItems.forEach(item => {
